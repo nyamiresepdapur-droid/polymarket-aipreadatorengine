@@ -334,27 +334,41 @@
                             </div>
                             <div class="mt-4 text-7xl md:text-8xl font-mono font-black text-black dark:text-white" id="profitDisplay">$50,000</div>
                         </div>
-                        <!-- FIXED CONTRAST FOR LABELS -->
-                        <div class="space-y-6 font-mono font-black uppercase">
-                            <div class="flex justify-between p-6 border-4 border-black dark:border-white bg-white dark:bg-black text-black dark:text-white">
-                                <span id="t-ops-label" class="text-black dark:text-white">Operasional (15%)</span>
-                                <span id="valOps" class="text-black dark:text-white"></span>
+                        
+                        <!-- REDESIGNED: CUSTOM LEGEND DENGAN INDIKATOR WARNA UNTUK CHART -->
+                        <div class="space-y-4 font-mono font-black uppercase">
+                            <!-- OPS -->
+                            <div class="flex justify-between items-center p-4 md:p-6 border-4 border-black dark:border-white bg-gray-200 dark:bg-zinc-800 text-black dark:text-white">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-4 h-4 bg-gray-400 dark:bg-gray-500 border-2 border-black dark:border-white"></div>
+                                    <span id="t-ops-label">Operasional (15%)</span>
+                                </div>
+                                <span id="valOps"></span>
                             </div>
-                            <div class="flex justify-between p-6 bg-accent text-white border-4 border-black dark:border-white">
-                                <span id="t-member-label" class="text-white">Porsi Member (60%)</span>
-                                <span id="valMember" class="text-white"></span>
+                            <!-- MEMBER -->
+                            <div class="flex justify-between items-center p-4 md:p-6 bg-accent text-white border-4 border-black dark:border-white">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-4 h-4 bg-accent border-2 border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"></div>
+                                    <span id="t-member-label">Porsi Member (60%)</span>
+                                </div>
+                                <span id="valMember"></span>
                             </div>
-                            <div class="flex justify-between p-6 border-4 border-black dark:border-white bg-white dark:bg-black text-black dark:text-white">
-                                <span id="t-system-label" class="text-black dark:text-white">System Fee (40%)</span>
-                                <span id="valSystem" class="text-black dark:text-white"></span>
+                            <!-- SYSTEM -->
+                            <div class="flex justify-between items-center p-4 md:p-6 border-4 border-black dark:border-white bg-black text-white dark:bg-white dark:text-black">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-4 h-4 bg-black dark:bg-white border-2 border-white dark:border-black"></div>
+                                    <span id="t-system-label">System Fee (40%)</span>
+                                </div>
+                                <span id="valSystem"></span>
                             </div>
                         </div>
                     </div>
                     <div class="fade-in-up flex flex-col items-center">
-                        <div class="chart-container border-4 border-black dark:border-white bg-white dark:bg-black">
+                        <div class="chart-container border-4 border-black dark:border-white bg-white dark:bg-black !h-[350px] md:!h-[450px] flex items-center justify-center">
+                            <!-- Canvas Chart Area (No default legend anymore) -->
                             <canvas id="mathChart"></canvas>
                         </div>
-                        <p class="mt-10 font-mono text-xs uppercase font-black tracking-widest text-black dark:text-white opacity-40">Interactive Split Logic</p>
+                        <p class="mt-10 font-mono text-xs uppercase font-black tracking-widest text-black dark:text-white opacity-40 text-center">Interactive Split Logic<br><span class="lowercase tracking-normal opacity-70">(Arahkan cursor ke diagram)</span></p>
                     </div>
                 </div>
             </div>
@@ -747,6 +761,8 @@
             });
         }
 
+        // REDESIGNED CHART LOGIC:
+        // Text legend bawaan dimatikan agar chart rapi. Diganti dengan custom Tooltip & Custom HTML Legend.
         function initMathChart() {
             if (mathChart) mathChart.destroy();
             const colors = getChartColors();
@@ -766,21 +782,46 @@
                     labels: ['MEMBER (60%)', 'SYSTEM (40%)', 'OPS (15%)'], 
                     datasets: [{ 
                         data: [member, system, ops], 
-                        backgroundColor: ['#FF0000', colors.text, isDark ? '#555' : '#AAA'], 
-                        borderWidth: 10,
-                        borderColor: isDark ? '#000000' : '#FFFFFF'
+                        backgroundColor: [
+                            '#FF0000', // Member
+                            isDark ? '#FFFFFF' : '#000000', // System
+                            isDark ? '#6B7280' : '#9CA3AF' // Ops (Gray)
+                        ], 
+                        borderWidth: 8,
+                        borderColor: isDark ? '#000000' : '#FFFFFF',
+                        hoverOffset: 10
                     }] 
                 },
                 options: { 
                     responsive: true, 
                     maintainAspectRatio: false, 
-                    cutout: '80%', 
+                    cutout: '75%', 
                     animation: { animateScale: true, animateRotate: true, duration: 2000 },
+                    layout: {
+                        padding: 20
+                    },
                     plugins: { 
                         legend: { 
-                            display: true, 
-                            position: 'bottom',
-                            labels: { color: colors.text, padding: 40, font: { size: 12 } }
+                            display: false // MATIKAN LEGENDA DEFAULT AGAR TIDAK TERPOTONG
+                        },
+                        tooltip: {
+                            backgroundColor: isDark ? '#FFFFFF' : '#000000',
+                            titleColor: isDark ? '#000000' : '#FFFFFF',
+                            bodyColor: isDark ? '#000000' : '#FFFFFF',
+                            bodyFont: { family: '"JetBrains Mono", monospace', weight: 'bold' },
+                            padding: 12,
+                            borderColor: isDark ? '#000000' : '#FFFFFF',
+                            borderWidth: 2,
+                            callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) { label += ': '; }
+                                    if (context.parsed !== null) {
+                                        label += new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(context.parsed);
+                                    }
+                                    return label;
+                                }
+                            }
                         }
                     } 
                 }
