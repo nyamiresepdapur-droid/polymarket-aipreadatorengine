@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APEX V7 // Institutional Predictive Fund</title>
+    <title>AXIOM QUANT // Institutional Predictive Fund</title>
     
-    <meta property="og:title" content="APEX V7 - Institutional-Grade Predictive Fund">
+    <meta property="og:title" content="AXIOM QUANT - Institutional-Grade Predictive Fund">
     <meta property="og:description" content="Eksekusi probabilitas algoritmik di prediction market. Sepenuhnya dikelola AI dengan transparansi on-chain.">
     <meta property="og:type" content="website">
 
@@ -58,7 +58,7 @@
         body { 
             background-color: #030303; 
             color: #F3F4F6; 
-            overflow: hidden; /* We manage scroll in the snap-container */
+            overflow: hidden; 
             -webkit-font-smoothing: antialiased;
         }
 
@@ -81,7 +81,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 5rem 1rem 2rem 1rem; /* Space for header & footer */
+            padding: 5rem 1rem 2rem 1rem; 
         }
         
         /* Subtle Background Grid */
@@ -191,7 +191,7 @@
         <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
             <div class="font-serif font-semibold tracking-wide text-xl text-white flex items-center gap-3">
                 <span class="w-6 h-6 rounded-sm bg-gradient-to-br from-gold to-yellow-700 block shadow-[0_0_10px_rgba(212,175,55,0.3)]"></span>
-                APEX<span class="text-gray-500 font-sans text-sm font-normal relative -top-1">V7</span>
+                AXIOM<span class="text-gray-500 font-sans text-sm font-normal relative -top-1">QUANT</span>
             </div>
             <div class="flex items-center gap-6">
                 <!-- Lang Switcher -->
@@ -228,7 +228,7 @@
                 <div class="fade-in-up">
                     <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-golddim border border-gold/30 text-gold text-[10px] sm:text-xs font-mono mb-8 uppercase tracking-widest backdrop-blur-md">
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        Quantitative Predictive Fund
+                        <span id="t-hero-tag">Quantitative Predictive Fund</span>
                     </div>
                     
                     <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl font-normal mb-6 leading-[1.1]" id="t-hero-title">
@@ -236,7 +236,7 @@
                     </h1>
                     
                     <p class="text-gray-400 font-sans text-lg sm:text-xl font-light max-w-2xl mb-12 leading-relaxed" id="t-hero-desc">
-                        Institutional-grade asset management. APEX V7 exploits prediction market inefficiencies (Polymarket) via strictly quantitative algorithms, devoid of human emotion.
+                        The Web3 market is poisoned by emotional speculation. AXIOM QUANT was built with one goal: to eradicate human emotion from the equation and extract mathematical probabilities at scale.
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
@@ -269,8 +269,8 @@
             <div class="max-w-[1200px] w-full mx-auto px-4 fade-in-up">
                 
                 <div class="text-center mb-8">
-                    <h2 class="font-mono text-gold text-xs tracking-[0.2em] uppercase mb-2" id="t-terminal-pre">Engine Telemetry</h2>
-                    <h3 class="font-serif text-3xl md:text-5xl text-white">Real-Time AI Execution</h3>
+                    <h2 class="font-mono text-gold text-xs tracking-[0.2em] uppercase mb-2" id="t-terminal-pre">The Genesis Engine</h2>
+                    <h3 class="font-serif text-3xl md:text-5xl text-white" id="t-terminal-title">Real-Time AI Execution</h3>
                 </div>
 
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-[65vh] min-h-[500px]">
@@ -280,7 +280,7 @@
                                 <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
                                     <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                                 </div>
-                                <span class="text-[10px] text-gray-300 font-bold uppercase tracking-widest">Data Stream</span>
+                                <span class="text-[10px] text-gray-300 font-bold uppercase tracking-widest" id="t-stream-title">Data Stream</span>
                             </div>
                             <span class="text-[8px] text-cyan border border-cyan/30 px-2 py-0.5 rounded-full bg-cyan/10">MIRROR SYNC</span>
                         </div>
@@ -297,11 +297,11 @@
                     <div class="premium-card lg:col-span-8 flex flex-col !p-0 overflow-hidden relative">
                         <div class="absolute top-0 w-full p-5 flex justify-between items-start z-20 bg-gradient-to-b from-black/80 to-transparent">
                             <div>
-                                <span class="text-[9px] text-gray-400 uppercase tracking-widest block mb-1">Portfolio Value</span>
+                                <span class="text-[9px] text-gray-400 uppercase tracking-widest block mb-1" id="t-port-val">Portfolio Value</span>
                                 <span class="text-3xl text-terminal font-mono font-bold flicker">+<span class="live-aum-val"></span></span>
                             </div>
                             <div class="text-right">
-                                <span class="text-[9px] text-gray-400 uppercase tracking-widest block mb-1">Target Win Rate</span>
+                                <span class="text-[9px] text-gray-400 uppercase tracking-widest block mb-1" id="t-win-rate">Target Win Rate</span>
                                 <span class="text-2xl text-white font-mono font-bold">67.9%</span>
                             </div>
                         </div>
@@ -326,8 +326,8 @@
             <div class="max-w-[1000px] w-full mx-auto px-4 fade-in-up">
                 
                 <div class="text-center mb-10">
-                    <h2 class="font-serif text-4xl md:text-5xl font-normal mb-4 text-white" id="t-edge-title">Eradicating Human Bias.</h2>
-                    <p class="font-sans text-gray-400 text-lg" id="t-edge-desc">Our algorithm operates 24/7, objectively measuring mathematical probabilities without emotional speculation.</p>
+                    <h2 class="font-serif text-4xl md:text-5xl font-normal mb-4 text-white" id="t-edge-title">The Cold Truth: Humans Are Wired to Lose.</h2>
+                    <p class="font-sans text-gray-400 text-lg" id="t-edge-desc">Markets punish panic and greed. AXIOM doesn't guess; it parses global sentiment via NLP and brutally mirrors the Top 1% of profitable wallets.</p>
                 </div>
 
                 <div class="premium-card grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden !p-0">
@@ -335,8 +335,8 @@
                         <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-6 border border-gold/20">
                             <svg class="w-6 h-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
-                        <h3 class="font-serif text-2xl mb-4 text-white">Algorithmic Pool</h3>
-                        <p class="font-sans text-gray-400 text-sm leading-relaxed mb-8" id="t-edge-logic">Collective capital is deployed within an exclusive smart pool. Execution decisions are driven purely by quantitative data.</p>
+                        <h3 class="font-serif text-2xl mb-4 text-white" id="t-edge-subtitle">Algorithmic Pool</h3>
+                        <p class="font-sans text-gray-400 text-sm leading-relaxed mb-8" id="t-edge-logic">Collective capital is deployed within an exclusive smart pool. We eliminate the 99% failure rate of retail trading by automating institutional models.</p>
                         
                         <div class="space-y-4">
                             <div class="data-panel flex justify-between items-center !p-4 !rounded-xl">
@@ -372,8 +372,8 @@
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-gray-400 text-[10px] font-mono mb-6 uppercase tracking-widest w-max">
                             <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span> On-Chain Audit
                         </div>
-                        <h2 class="font-serif text-4xl md:text-5xl font-normal mb-6 text-white" id="t-trans-title">Absolute Transparency.</h2>
-                        <p class="font-sans text-gray-400 text-sm md:text-base mb-10 leading-relaxed" id="t-trans-desc">No black boxes. You can verify liquid balances and active trading positions in real-time directly on the blockchain.</p>
+                        <h2 class="font-serif text-4xl md:text-5xl font-normal mb-6 text-white" id="t-trans-title">We Don't Ask For Trust. We Prove It.</h2>
+                        <p class="font-sans text-gray-400 text-sm md:text-base mb-10 leading-relaxed" id="t-trans-desc">No smoke, no mirrors. You can verify liquid balances and active trading positions in real-time directly on the blockchain.</p>
                         
                         <div class="flex flex-col gap-4">
                             <a href="https://zapper.xyz/id/account/0xad85c2f3942561afa448cbbd5811a5f7e2e3c6bd" target="_blank" class="btn-outline text-center text-sm font-sans flex items-center justify-center gap-2" id="t-zapper-btn">
@@ -393,7 +393,7 @@
                                 <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
                                 <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
                             </div>
-                            <span class="font-mono text-[9px] text-gray-500 uppercase tracking-widest">APEX_Console.sh</span>
+                            <span class="font-mono text-[9px] text-gray-500 uppercase tracking-widest">AXIOM_Console.sh</span>
                         </div>
                         <div id="runtime-console" class="flex-grow overflow-y-auto no-scrollbar flex flex-col justify-end text-[10px] space-y-2 font-mono">
                             <!-- JS Injected -->
@@ -408,7 +408,7 @@
             <div class="max-w-[1000px] w-full mx-auto px-4 fade-in-up">
                 
                 <div class="text-center mb-10">
-                    <h2 class="font-serif text-4xl md:text-5xl font-normal mb-4 text-white" id="t-math-title"><span class="font-style: italic text-gold-gradient">High-Water Mark</span> Structure.</h2>
+                    <h2 class="font-serif text-4xl md:text-5xl font-normal mb-4 text-white" id="t-math-title">The Absolute Alliance: <span class="font-style: italic text-gold-gradient">High-Water Mark.</span></h2>
                     <div class="inline-block px-4 py-1.5 rounded-md border border-white/20 bg-white/5 text-gray-300 font-sans text-xs uppercase tracking-widest shadow-sm" id="t-math-badge">
                         No Profit = No Management Fee
                     </div>
@@ -416,7 +416,8 @@
 
                 <div class="premium-card grid grid-cols-1 md:grid-cols-2 gap-8 items-center !p-8 md:!p-10">
                     <div>
-                        <h3 class="font-sans text-sm font-semibold tracking-wide text-gray-300 uppercase mb-8" id="t-calc-title">Yield Simulator</h3>
+                        <p class="font-sans text-gray-400 text-sm mb-8" id="t-math-desc">The conventional financial industry robs you with hidden fees. We shattered that system. If your portfolio doesn't print a new All-Time High, we don't get paid. We bleed with you.</p>
+                        
                         <div class="mb-10 data-panel !p-6 !bg-white/5">
                             <div class="flex justify-between items-end mb-4">
                                 <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest">Simulated Net Profit</label>
@@ -454,7 +455,6 @@
                         <div class="w-full h-[250px] md:h-[350px] relative">
                             <canvas id="mathChart"></canvas>
                         </div>
-                        <p class="font-sans text-[10px] text-gray-500 mt-6 text-center max-w-xs leading-relaxed" id="t-math-desc">Our 40% Performance Fee is ONLY executed if the portfolio breaches its previous All-Time High.</p>
                     </div>
                 </div>
             </div>
@@ -484,12 +484,17 @@
                 </div>
 
                 <div class="mt-12 opacity-40 hover:opacity-100 transition-opacity">
-                    <p class="font-mono text-[8px] tracking-[0.2em] text-white">APEX_CORE // QUANT_ENGINE_V7 // SECURE_CONNECTION</p>
+                    <p class="font-mono text-[8px] tracking-[0.2em] text-white">AXIOM_ENGINE // QUANT_CORE_V9 // SECURE_CONNECTION</p>
                 </div>
             </div>
         </section>
 
     </main>
+
+    <footer class="py-10 bg-[#020202] text-gray-600 text-center font-mono text-[9px] tracking-widest uppercase border-t border-white/5 px-6">
+        <p class="mb-2">AXIOM_ENGINE // QUANT_CORE_V9 // INSTITUTIONAL_GRADE</p>
+        <p class="opacity-50 lowercase tracking-normal text-[10px]">Semua investasi mengandung risiko. Informasi ini bukan saran keuangan.</p>
+    </footer>
 
     <!-- Scripts -->
     <script>
@@ -498,20 +503,26 @@
         const dict = {
             id: {
                 navStatus: "Sistem Online",
+                heroTag: "Institutional Predictive Fund",
                 heroTitle: "Eksekusi <span class='font-style: italic text-gold-gradient'>Probabilitas</span><br>Algoritmik di Web3.",
-                heroDesc: "Standar pengelolaan institusional. APEX V7 mengeksploitasi inefisiensi di prediction market (Polymarket) melalui algoritma kuantitatif tanpa campur tangan emosi manusia.",
+                heroDesc: "Dunia Web3 dipenuhi oleh spekulasi yang memicu kehancuran. Kami membangun AXIOM QUANT dengan satu tujuan: menyingkirkan emosi manusia dari persamaan. Ini bukan sekadar trading, ini adalah ekstraksi probabilitas matematis tingkat institusi.",
                 cta: "Request Allocation",
-                terminalPre: "Engine Telemetry",
-                edgeTitle: "Menghapus Bias Manusia.",
-                edgeDesc: "Algoritma beroperasi objektif 24/7, mengukur probabilitas matematis tanpa spekulasi emosional.",
-                edgeLogic: "Dana kolektif dikelola dalam smart pool eksklusif. Keputusan eksekusi didorong murni oleh data kuantitatif.",
-                transTitle: "Transparansi Mutlak.",
-                transDesc: "Tidak ada *black box*. Anda dapat memverifikasi saldo liquid dan setiap posisi trading aktif secara real-time langsung di blockchain.",
-                zapperBtn: "Verifikasi Wallet",
+                terminalPre: "The Genesis Engine",
+                terminalTitle: "Real-Time AI Execution",
+                streamTitle: "Data Stream",
+                portVal: "Portfolio Value",
+                winRate: "Target Win Rate",
+                edgeTitle: "The Cold Truth: Manusia Didesain Untuk Kalah.",
+                edgeDesc: "Pasar selalu menghukum keserakahan dan kepanikan. 99% trader hancur karena melawan probabilitas dengan perasaan. Kami membalikkan keadaan. AXIOM tidak menebak pasar; ia membedah sentimen berita via NLP dan menyalin dompet Top 1% secara brutal, 24/7.",
+                edgeSubtitle: "Algorithmic Pool",
+                edgeLogic: "Dana kolektif dikelola dalam smart pool eksklusif. Kami mengeleminasi 99% tingkat kegagalan trader retail dengan mengotomatisasi model institusional.",
+                transTitle: "Kami Tidak Meminta Kepercayaan. Kami Membuktikannya.",
+                transDesc: "Tidak ada *smoke and mirrors*. Anda dapat memverifikasi saldo liquid dan setiap posisi trading aktif secara real-time langsung di blockchain.",
+                zapperBtn: "Verifikasi Wallet (Zapper)",
                 polyBtn: "Audit Posisi (Polymarket)",
-                mathTitle: "Struktur <span class='font-style: italic text-gold-gradient'>High-Water Mark.</span>",
+                mathTitle: "Aliansi Paripurna: <span class='font-style: italic text-gold-gradient'>High-Water Mark.</span>",
                 mathBadge: "No Profit = No Management Fee",
-                mathDesc: "Performance Fee 40% pengelola HANYA dieksekusi jika portofolio menembus rekor All-Time High baru.",
+                mathDesc: "Industri keuangan konvensional merampok Anda dengan biaya tersembunyi. Kami menghancurkan sistem itu. Jika portofolio Anda tidak mencetak All-Time High baru, kami tidak dibayar sepeser pun. Kami berdarah bersama Anda.",
                 calcTitle: "Yield Simulator",
                 opsLabel: "Operational Expense (15%)",
                 memberLabel: "L.P Share (60%)",
@@ -519,26 +530,32 @@
                 subTitle: "Aplikasi <span class='font-style: italic text-gold-gradient'>Alokasi.</span>",
                 subScarcity: "BATCH 05 CAPACITY: 88% FILLED [EST. 13 SLOTS REMAINING]",
                 subScarcityUrgent: "BATCH 05 CAPACITY: 92% FILLED [EST. 11 SLOTS REMAINING]",
-                subClose: "Akses terbatas. Isi form untuk masuk antrean peninjauan institusional.",
+                subClose: "Akses sangat dibatasi. Silakan isi form di bawah untuk masuk ke dalam antrean peninjauan institusional.",
                 subBtn: "[ SUBMIT APPLICATION ]",
                 subSpam: "Proses dienkripsi. Dialihkan ke secure lobby (Telegram) setelah verifikasi."
             },
             en: {
                 navStatus: "System Online",
+                heroTag: "Quantitative Predictive Fund",
                 heroTitle: "Algorithmic <span class='font-style: italic text-gold-gradient'>Probability</span><br>Execution in Web3.",
-                heroDesc: "Institutional-grade asset management. APEX V7 exploits prediction market inefficiencies (Polymarket) via strictly quantitative algorithms, devoid of human emotion.",
+                heroDesc: "The Web3 market is poisoned by emotional speculation. AXIOM QUANT was built with one goal: to eradicate human emotion from the equation and extract mathematical probabilities at institutional scale.",
                 cta: "Request Allocation",
-                terminalPre: "Engine Telemetry",
-                edgeTitle: "Eradicating Human Bias.",
-                edgeDesc: "Our algorithm operates 24/7, objectively measuring mathematical probabilities without emotional speculation.",
-                edgeLogic: "Collective capital is deployed within an exclusive smart pool. Execution decisions are driven purely by quantitative data.",
-                transTitle: "Absolute Transparency.",
-                transDesc: "No black boxes. You can verify liquid balances and active trading positions in real-time directly on the blockchain.",
-                zapperBtn: "Verify Wallet",
+                terminalPre: "The Genesis Engine",
+                terminalTitle: "Real-Time AI Execution",
+                streamTitle: "Data Stream",
+                portVal: "Portfolio Value",
+                winRate: "Target Win Rate",
+                edgeTitle: "The Cold Truth: Humans Are Wired to Lose.",
+                edgeDesc: "Markets punish panic and greed. 99% of retail traders are slaughtered fighting math with emotion. We flipped the script. AXIOM doesn't guess; it parses global sentiment via NLP and brutally mirrors the Top 1% of profitable wallets, 24/7.",
+                edgeSubtitle: "Algorithmic Pool",
+                edgeLogic: "Collective capital is deployed within an exclusive smart pool. We eliminate the 99% failure rate of retail trading by automating institutional models.",
+                transTitle: "We Don't Ask For Trust. We Prove It.",
+                transDesc: "No smoke, no mirrors. You can verify liquid balances and active trading positions in real-time directly on the blockchain.",
+                zapperBtn: "Verify Wallet (Zapper)",
                 polyBtn: "Audit Positions (Polymarket)",
-                mathTitle: "<span class='font-style: italic text-gold-gradient'>High-Water Mark</span> Structure.",
+                mathTitle: "The Absolute Alliance: <span class='font-style: italic text-gold-gradient'>High-Water Mark.</span>",
                 mathBadge: "No Profit = No Management Fee",
-                mathDesc: "Our 40% Performance Fee is ONLY executed if the portfolio breaches its previous All-Time High.",
+                mathDesc: "The conventional financial industry robs you with hidden fees. We shattered that system. If your portfolio doesn't print a new All-Time High, we don't get paid. We bleed with you.",
                 calcTitle: "Yield Simulator",
                 opsLabel: "Operational Expense (15%)",
                 memberLabel: "L.P Share (60%)",
@@ -879,7 +896,7 @@
             // 3. META BROWSER PIXEL TRACKING (Event: Lead)
             if(typeof fbq === 'function') {
                 fbq('track', 'Lead', {
-                    content_name: 'Apex V7 Allocation Request'
+                    content_name: 'Axiom Quant Allocation Request'
                 });
             }
 
@@ -925,11 +942,7 @@
 
         // --- Init All & SMART LANGUAGE AUTO-DETECT ---
         function initLanguage() {
-            // Deteksi bahasa utama dari browser/IP pengguna
             const browserLang = navigator.language || navigator.userLanguage;
-            
-            // Jika browser menggunakan bahasa Indonesia (id, id-ID), gunakan bahasa Indonesia.
-            // Selain itu, jadikan Bahasa Inggris sebagai default untuk Whales Internasional.
             if (browserLang.toLowerCase().startsWith('id')) {
                 setLang('id');
             } else {
@@ -941,9 +954,7 @@
             Chart.defaults.font.family = '"JetBrains Mono", monospace';
             Chart.defaults.color = '#9ca3af';
             
-            // Jalankan deteksi bahasa secara cerdas
             initLanguage();
-
             initQuantCanvas();
             initEdgeChart();
             initProbabilityTree();
