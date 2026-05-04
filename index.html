@@ -235,14 +235,20 @@
                         Algorithmic <span class="font-style: italic text-gold-gradient">Probability</span><br>Execution on Polymarket.
                     </h1>
                     
-                    <p class="text-gray-400 font-sans text-lg sm:text-xl font-light max-w-2xl mb-12 leading-relaxed" id="t-hero-desc">
+                    <p class="text-gray-400 font-sans text-lg sm:text-xl font-light max-w-2xl mb-10 leading-relaxed" id="t-hero-desc">
                         The prediction market (Polymarket) is poisoned by emotional speculation. AXIOM QUANT was built with one goal: to eradicate human emotion and extract mathematical probabilities at institutional scale.
                     </p>
                     
                     <div class="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                        <button onclick="scrollToPage(5)" class="btn-gold text-sm sm:text-base w-full sm:w-auto" id="t-cta">
-                            Request Pool Allocation
-                        </button>
+                        <div class="w-full sm:w-auto flex flex-col gap-3">
+                            <button onclick="scrollToPage(5)" class="btn-gold text-sm sm:text-base w-full" id="t-cta">
+                                Request Pool Allocation
+                            </button>
+                            <!-- INFRASTRUCTURE TECH STACK -->
+                            <div class="text-[9px] font-mono text-gray-500 text-center tracking-widest uppercase" id="t-hero-tech">
+                                Infra: Polygon // Polymarket // Claude-Opus
+                            </div>
+                        </div>
                         
                         <!-- Premium Metric Card -->
                         <div class="premium-card !p-4 !rounded-xl flex items-center gap-6 border-l-4 border-l-gold">
@@ -335,8 +341,8 @@
                         <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-6 border border-gold/20">
                             <svg class="w-6 h-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
                         </div>
-                        <h3 class="font-serif text-2xl mb-4 text-white" id="t-edge-subtitle">Algorithmic Pool</h3>
-                        <p class="font-sans text-gray-400 text-sm leading-relaxed mb-8" id="t-edge-logic">Collective capital is deployed within an exclusive smart pool connected directly to Polymarket smart contracts. We automate institutional models.</p>
+                        <h3 class="font-serif text-2xl mb-4 text-white" id="t-edge-subtitle">Strict Slippage Cap.</h3>
+                        <p class="font-sans text-gray-400 text-sm leading-relaxed mb-8" id="t-edge-logic">Algorithmic alpha decays at scale. To prevent severe slippage and protect win-rates, we strictly cap Batch 05 allocation at $500,000. Once filled, doors close indefinitely.</p>
                         
                         <div class="space-y-4">
                             <div class="data-panel flex justify-between items-center !p-4 !rounded-xl">
@@ -372,16 +378,16 @@
                         <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-gray-400 text-[10px] font-mono mb-6 uppercase tracking-widest w-max">
                             <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span> On-Chain Audit
                         </div>
-                        <h2 class="font-serif text-4xl md:text-5xl font-normal mb-6 text-white" id="t-trans-title">We Don't Ask For Trust. We Prove It.</h2>
-                        <p class="font-sans text-gray-400 text-sm md:text-base mb-10 leading-relaxed" id="t-trans-desc">No smoke, no mirrors. You can verify liquid balances and active trading positions in real-time directly on the blockchain.</p>
+                        <h2 class="font-serif text-4xl md:text-5xl font-normal mb-6 text-white" id="t-trans-title">Kami Tidak Meminta Kepercayaan. Kami Membuktikannya.</h2>
+                        <p class="font-sans text-gray-400 text-sm md:text-base mb-10 leading-relaxed" id="t-trans-desc">Dana Anda dikelola dalam Master Wallet terpusat. Namun, tidak ada *black box*. Anda dapat memverifikasi saldo liquid dan setiap posisi trading aktif secara real-time langsung di blockchain.</p>
                         
                         <div class="flex flex-col gap-4">
                             <a href="https://zapper.xyz/id/account/0xad85c2f3942561afa448cbbd5811a5f7e2e3c6bd" target="_blank" class="btn-outline text-center text-sm font-sans flex items-center justify-center gap-2" id="t-zapper-btn">
-                                Verify Wallet (Zapper)
+                                Verifikasi Master Wallet (Zapper)
                                 <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
                             </a>
                             <a href="https://polymarket.com/@berkah-karya" target="_blank" class="btn-outline text-center text-sm font-sans !border-white/10 !text-gray-400 hover:!text-white hover:!bg-white/5 flex items-center justify-center gap-2" id="t-poly-btn">
-                                Audit Positions (Polymarket)
+                                Audit Posisi (Polymarket)
                             </a>
                         </div>
                     </div>
@@ -464,37 +470,41 @@
         <section class="snap-page" id="page-5">
             <div class="max-w-[700px] w-full mx-auto px-4 text-center fade-in-up">
                 
-                <div class="premium-card !p-8 md:!p-16 relative overflow-hidden">
+                <div class="premium-card !p-8 md:!p-16 relative overflow-hidden text-left">
                     <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-gold/10 blur-[80px] pointer-events-none rounded-full"></div>
 
-                    <h2 class="font-serif text-4xl md:text-5xl font-normal mb-4 text-white relative z-10" id="t-sub-title">Polymarket <span class="font-style: italic text-gold-gradient">Pool Allocation.</span></h2>
-                    <p class="font-sans text-gray-400 text-sm md:text-base mb-8 max-w-sm mx-auto relative z-10" id="t-sub-close">Pool access is strictly limited to protect the AI's win-rate. Submit the form to enter the review queue.</p>
+                    <h2 class="font-serif text-3xl md:text-4xl font-normal mb-6 text-white relative z-10 text-center" id="t-sub-title">Alokasi <span class="font-style: italic text-gold-gradient">Polymarket Pool.</span></h2>
                     
-                    <div class="font-mono text-[10px] md:text-xs text-gold mb-10 border border-gold/30 rounded-lg bg-gold/5 inline-block px-5 py-2.5 relative z-10 shadow-[0_0_15px_rgba(212,175,55,0.1)]" id="t-sub-scarcity">
+                    <!-- THE MAFIA OFFER SUMMARY -->
+                    <div class="data-panel !p-6 mb-8 relative z-10 border-l-4 border-l-gold">
+                        <ul class="space-y-3 font-sans text-sm md:text-base text-gray-300" id="t-mafia-offer">
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Dana dikelola dalam Master Wallet terpusat.</li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Anda mendapatkan porsi profit 60%.</li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Kami melakukan 100% analisis & eksekusi.</li>
+                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Jika profit gagal menembus ATH baru, kami bekerja gratis.</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="font-mono text-[10px] md:text-xs text-gold mb-8 border border-gold/30 rounded-lg bg-gold/5 block px-5 py-2.5 relative z-10 shadow-[0_0_15px_rgba(212,175,55,0.1)] text-center" id="t-sub-scarcity">
                         BATCH 05 CAPACITY: 88% FILLED [EST. 13 SLOTS REMAINING]
                     </div>
                     
                     <form action="https://formspree.io/f/xnjwprgp" method="POST" id="leadForm" class="flex flex-col gap-4 w-full relative z-10">
                         <input type="text" name="name" id="nameInput" required placeholder="NAMA_ALIAS" class="w-full data-panel !p-4 font-mono text-sm text-white focus:outline-none focus:border-gold/50 transition-colors">
                         <input type="email" name="email" id="emailInput" required placeholder="EMAIL_KONTAK" class="w-full data-panel !p-4 font-mono text-sm text-white focus:outline-none focus:border-gold/50 transition-colors">
-                        <button type="submit" id="t-sub-btn" class="w-full btn-gold text-sm md:text-base tracking-widest uppercase mt-4">[ SUBMIT APPLICATION ]</button>
+                        <button type="submit" id="t-sub-btn" class="w-full btn-gold text-sm md:text-base tracking-widest uppercase mt-2">[ SUBMIT APPLICATION ]</button>
                     </form>
                     
-                    <p class="mt-8 font-mono text-[9px] uppercase text-gray-500 tracking-wider relative z-10" id="t-sub-spam">Process encrypted. Routed to secure lobby (Telegram) upon verification.</p>
+                    <p class="mt-6 font-mono text-[9px] uppercase text-gray-500 tracking-wider relative z-10 text-center" id="t-sub-spam">Process encrypted. Routed to secure lobby (Telegram) upon verification.</p>
                 </div>
 
-                <div class="mt-12 opacity-40 hover:opacity-100 transition-opacity">
+                <div class="mt-8 opacity-40 hover:opacity-100 transition-opacity text-center">
                     <p class="font-mono text-[8px] tracking-[0.2em] text-white">AXIOM_ENGINE // QUANT_CORE_V9 // SECURE_CONNECTION</p>
                 </div>
             </div>
         </section>
 
     </main>
-
-    <footer class="py-10 bg-[#020202] text-gray-600 text-center font-mono text-[9px] tracking-widest uppercase border-t border-white/5 px-6">
-        <p class="mb-2">AXIOM_ENGINE // QUANT_CORE_V9 // INSTITUTIONAL_GRADE</p>
-        <p class="opacity-50 lowercase tracking-normal text-[10px]">Semua investasi mengandung risiko. Informasi ini bukan saran keuangan.</p>
-    </footer>
 
     <!-- Scripts -->
     <script>
@@ -506,6 +516,7 @@
                 heroTag: "Polymarket Predictive Fund",
                 heroTitle: "Eksekusi <span class='font-style: italic text-gold-gradient'>Probabilitas</span><br>Algoritmik di Polymarket.",
                 heroDesc: "Prediction market (Polymarket) adalah arena yang dipenuhi spekulasi emosional. Kami membangun AXIOM QUANT dengan satu tujuan: menyingkirkan emosi manusia dari persamaan dan mengekstraksi probabilitas matematis tingkat institusi.",
+                heroTech: "INFRA: POLYGON // POLYMARKET // CLAUDE-OPUS",
                 cta: "Request Pool Allocation",
                 terminalPre: "The Genesis Engine",
                 terminalTitle: "Real-Time AI Execution",
@@ -514,11 +525,11 @@
                 winRate: "Target Win Rate",
                 edgeTitle: "The Cold Truth: Manusia Didesain Untuk Kalah.",
                 edgeDesc: "Pasar selalu menghukum keserakahan dan kepanikan. 99% trader hancur karena melawan probabilitas dengan perasaan. AXIOM tidak menebak pasar Polymarket; ia membedah sentimen berita via NLP dan menyalin dompet Top 1% secara brutal, 24/7.",
-                edgeSubtitle: "Algorithmic Pool",
-                edgeLogic: "Alokasi dana kolektif dikelola dalam smart pool eksklusif yang terhubung langsung ke smart contract Polymarket. Kami mengotomatisasi model institusional.",
+                edgeSubtitle: "Strict Slippage Cap.",
+                edgeLogic: "Alpha memudar jika dana terlalu besar. Untuk mencegah slippage ekstrem dan menjaga win-rate AI, kami membatasi alokasi Batch 05 maksimal $500,000. Penuh = Pintu ditutup permanen.",
                 transTitle: "Kami Tidak Meminta Kepercayaan. Kami Membuktikannya.",
-                transDesc: "Tidak ada *smoke and mirrors*. Anda dapat memverifikasi saldo liquid dan setiap posisi trading aktif secara real-time langsung di blockchain.",
-                zapperBtn: "Verifikasi Wallet (Zapper)",
+                transDesc: "Dana Anda dikelola dalam Master Wallet terpusat. Namun, tidak ada *black box*. Anda dapat memverifikasi saldo liquid dan setiap posisi trading aktif secara real-time langsung di blockchain.",
+                zapperBtn: "Verifikasi Master Wallet (Zapper)",
                 polyBtn: "Audit Posisi (Polymarket)",
                 mathTitle: "Aliansi Paripurna: <span class='font-style: italic text-gold-gradient'>High-Water Mark.</span>",
                 mathBadge: "No Profit = No Management Fee",
@@ -528,9 +539,10 @@
                 memberLabel: "L.P Share (60%)",
                 systemLabel: "Performance Fee (40%)",
                 subTitle: "Alokasi <span class='font-style: italic text-gold-gradient'>Polymarket Pool.</span>",
+                subClose: "Akses pool sangat dibatasi. Silakan isi form di bawah untuk masuk ke antrean peninjauan.",
+                mafiaOffer: "<li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> Dana dikelola dalam Master Wallet terpusat.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> Anda mendapatkan porsi profit 60%.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> Kami melakukan 100% analisis & eksekusi.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> Jika profit gagal menembus ATH baru, kami bekerja gratis.</li>",
                 subScarcity: "BATCH 05 CAPACITY: 88% FILLED [EST. 13 SLOTS REMAINING]",
                 subScarcityUrgent: "BATCH 05 CAPACITY: 92% FILLED [EST. 11 SLOTS REMAINING]",
-                subClose: "Akses pool sangat dibatasi untuk menjaga win-rate AI. Silakan isi form di bawah untuk masuk ke antrean peninjauan.",
                 subBtn: "[ SUBMIT APPLICATION ]",
                 subSpam: "Proses dienkripsi. Dialihkan ke secure lobby (Telegram) setelah verifikasi."
             },
@@ -539,6 +551,7 @@
                 heroTag: "Polymarket Predictive Fund",
                 heroTitle: "Algorithmic <span class='font-style: italic text-gold-gradient'>Probability</span><br>Execution on Polymarket.",
                 heroDesc: "The prediction market (Polymarket) is poisoned by emotional speculation. AXIOM QUANT was built with one goal: to eradicate human emotion and extract mathematical probabilities at institutional scale.",
+                heroTech: "INFRA: POLYGON // POLYMARKET // CLAUDE-OPUS",
                 cta: "Request Pool Allocation",
                 terminalPre: "The Genesis Engine",
                 terminalTitle: "Real-Time AI Execution",
@@ -547,11 +560,11 @@
                 winRate: "Target Win Rate",
                 edgeTitle: "The Cold Truth: Humans Are Wired to Lose.",
                 edgeDesc: "Markets punish panic and greed. 99% of retail traders are slaughtered fighting math with emotion. AXIOM doesn't guess the Polymarket odds; it parses global sentiment via NLP and brutally mirrors the Top 1% of profitable wallets, 24/7.",
-                edgeSubtitle: "Algorithmic Pool",
-                edgeLogic: "Collective capital is deployed within an exclusive smart pool connected directly to Polymarket smart contracts. We automate institutional models.",
+                edgeSubtitle: "Strict Slippage Cap.",
+                edgeLogic: "Algorithmic alpha decays at scale. To prevent severe slippage and protect win-rates, we strictly cap Batch 05 allocation at $500,000. Once filled, doors close indefinitely.",
                 transTitle: "We Don't Ask For Trust. We Prove It.",
-                transDesc: "No smoke, no mirrors. You can verify liquid balances and active trading positions in real-time directly on the blockchain.",
-                zapperBtn: "Verify Wallet (Zapper)",
+                transDesc: "Your funds are managed in a centralized Master Wallet. However, there are no black boxes. You can verify liquid balances and active trading positions in real-time directly on the blockchain.",
+                zapperBtn: "Verify Master Wallet (Zapper)",
                 polyBtn: "Audit Positions (Polymarket)",
                 mathTitle: "The Absolute Alliance: <span class='font-style: italic text-gold-gradient'>High-Water Mark.</span>",
                 mathBadge: "No Profit = No Management Fee",
@@ -561,9 +574,10 @@
                 memberLabel: "L.P Share (60%)",
                 systemLabel: "Performance Fee (40%)",
                 subTitle: "Polymarket <span class='font-style: italic text-gold-gradient'>Pool Allocation.</span>",
+                subClose: "Pool access is strictly limited. Submit the form to enter the institutional review queue.",
+                mafiaOffer: "<li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> Capital managed in a centralized Master Wallet.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> You take 60% of the net profit.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> We do 100% of the execution work.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> If we don't beat the previous ATH, we work for free.</li>",
                 subScarcity: "BATCH 05 CAPACITY: 88% FILLED [EST. 13 SLOTS REMAINING]",
                 subScarcityUrgent: "BATCH 05 CAPACITY: 92% FILLED [EST. 11 SLOTS REMAINING]",
-                subClose: "Pool access is strictly limited to protect the AI's win-rate. Submit the form to enter the review queue.",
                 subBtn: "[ SUBMIT APPLICATION ]",
                 subSpam: "Process encrypted. Routed to secure lobby (Telegram) upon verification."
             }
