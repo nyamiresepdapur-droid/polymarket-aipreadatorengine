@@ -15,6 +15,23 @@
     <!-- Sophisticated Fonts: Playfair for Elegance, Inter for Readability, JetBrains for Data -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;700;800&display=swap" rel="stylesheet">
     
+    <!-- ========================================== -->
+    <!-- META PIXEL SCRIPT -->
+    <!-- ========================================== -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '771021905629860');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=771021905629860&ev=PageView&noscript=1"/></noscript>
+
     <script>
         tailwind.config = {
             darkMode: 'class', 
@@ -99,7 +116,7 @@
             transform: translateY(-2px);
         }
 
-        /* Inner Panel for Data (Terminal Vibe inside the Premium Card) */
+        /* Inner Panel for Data */
         .data-panel {
             background: rgba(0, 0, 0, 0.4);
             border-radius: 1rem;
@@ -151,7 +168,7 @@
         .fade-in-up { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
         .snap-page.is-visible .fade-in-up { opacity: 1; transform: translateY(0); }
 
-        /* Page Indicators (Right Side) */
+        /* Page Indicators */
         .page-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 150; }
         @media (max-width: 768px) { .page-dots { display: none; } }
         .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: all 0.3s ease; position: relative; cursor: pointer; }
@@ -203,11 +220,8 @@
     <!-- MAIN BOOK CONTAINER (Scroll Snapping) -->
     <main class="snap-container" id="snapContainer">
 
-        <!-- ========================================================================= -->
-        <!-- PAGE 1: COVER (Hero Section)                                              -->
-        <!-- ========================================================================= -->
+        <!-- PAGE 1: COVER -->
         <section class="snap-page is-visible" id="page-0">
-            <!-- Subtle Canvas Background -->
             <canvas id="quantCanvas" class="absolute inset-0 w-full h-full opacity-30 pointer-events-none mix-blend-screen"></canvas>
 
             <div class="max-w-[1000px] w-full mx-auto px-6 relative z-10 flex flex-col justify-center">
@@ -250,9 +264,7 @@
             </div>
         </section>
 
-        <!-- ========================================================================= -->
-        <!-- PAGE 2: AI ENGINE (Bento Box Terminal)                                    -->
-        <!-- ========================================================================= -->
+        <!-- PAGE 2: AI ENGINE (Bento Box Terminal) -->
         <section class="snap-page" id="page-1">
             <div class="max-w-[1200px] w-full mx-auto px-4 fade-in-up">
                 
@@ -261,10 +273,7 @@
                     <h3 class="font-serif text-3xl md:text-5xl text-white">Real-Time AI Execution</h3>
                 </div>
 
-                <!-- BENTO BOX GRID -->
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-[65vh] min-h-[500px]">
-                    
-                    <!-- BENTO 1: TRACKING STREAM -->
                     <div class="premium-card lg:col-span-4 flex flex-col !p-5">
                         <div class="flex justify-between items-center mb-4">
                             <div class="flex items-center gap-2">
@@ -285,9 +294,7 @@
                         </div>
                     </div>
 
-                    <!-- BENTO 2: PROBABILITY MATRIX & METRICS -->
                     <div class="premium-card lg:col-span-8 flex flex-col !p-0 overflow-hidden relative">
-                        <!-- Top Metrics Bar -->
                         <div class="absolute top-0 w-full p-5 flex justify-between items-start z-20 bg-gradient-to-b from-black/80 to-transparent">
                             <div>
                                 <span class="text-[9px] text-gray-400 uppercase tracking-widest block mb-1">Portfolio Value</span>
@@ -299,12 +306,10 @@
                             </div>
                         </div>
                         
-                        <!-- Canvas Visualizer -->
                         <div class="flex-grow relative w-full h-full bg-[#050505]">
                             <canvas id="probabilityCanvas" class="absolute inset-0 w-full h-full z-10"></canvas>
                         </div>
 
-                        <!-- Bottom Tag -->
                         <div class="absolute bottom-5 left-5 z-20">
                             <span class="font-mono text-[9px] text-gray-500 uppercase tracking-widest border border-white/10 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2">
                                 <span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>
@@ -312,14 +317,11 @@
                             </span>
                         </div>
                     </div>
-
                 </div>
             </div>
         </section>
 
-        <!-- ========================================================================= -->
-        <!-- PAGE 3: THE THESIS (Human vs AI)                                          -->
-        <!-- ========================================================================= -->
+        <!-- PAGE 3: THE THESIS -->
         <section class="snap-page" id="page-2">
             <div class="max-w-[1000px] w-full mx-auto px-4 fade-in-up">
                 
@@ -329,7 +331,6 @@
                 </div>
 
                 <div class="premium-card grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden !p-0">
-                    <!-- Text Info -->
                     <div class="p-8 md:p-12 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/5 bg-white/[0.01]">
                         <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-6 border border-gold/20">
                             <svg class="w-6 h-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
@@ -349,7 +350,6 @@
                         </div>
                     </div>
                     
-                    <!-- Chart -->
                     <div class="p-6 md:p-8 flex flex-col">
                         <div class="flex justify-between items-center mb-6">
                             <span class="font-sans text-sm font-semibold tracking-wide text-gray-300 uppercase">Performance Sim</span>
@@ -363,9 +363,7 @@
             </div>
         </section>
 
-        <!-- ========================================================================= -->
-        <!-- PAGE 4: TRANSPARENCY (Audit)                                              -->
-        <!-- ========================================================================= -->
+        <!-- PAGE 4: TRANSPARENCY (Audit) -->
         <section class="snap-page" id="page-3">
             <div class="max-w-[1000px] w-full mx-auto px-4 fade-in-up">
                 
@@ -402,13 +400,10 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
 
-        <!-- ========================================================================= -->
-        <!-- PAGE 5: FEE STRUCTURE (The Math)                                          -->
-        <!-- ========================================================================= -->
+        <!-- PAGE 5: FEE STRUCTURE (The Math) -->
         <section class="snap-page" id="page-4">
             <div class="max-w-[1000px] w-full mx-auto px-4 fade-in-up">
                 
@@ -465,14 +460,11 @@
             </div>
         </section>
 
-        <!-- ========================================================================= -->
-        <!-- PAGE 6: APPLICATION (The Close)                                           -->
-        <!-- ========================================================================= -->
+        <!-- PAGE 6: APPLICATION (The Close) -->
         <section class="snap-page" id="page-5">
             <div class="max-w-[700px] w-full mx-auto px-4 text-center fade-in-up">
                 
                 <div class="premium-card !p-8 md:!p-16 relative overflow-hidden">
-                    <!-- Subtle Glow -->
                     <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-gold/10 blur-[80px] pointer-events-none rounded-full"></div>
 
                     <h2 class="font-serif text-4xl md:text-5xl font-normal mb-4 text-white relative z-10" id="t-sub-title">Aplikasi <span class="font-style: italic text-gold-gradient">Alokasi.</span></h2>
@@ -503,7 +495,6 @@
     <script>
         let isUrgentFomo = false;
         
-        // --- MULTILINGUAL DICTIONARY ---
         const dict = {
             id: {
                 navStatus: "Sistem Online",
@@ -586,7 +577,6 @@
             pages[index].scrollIntoView({ behavior: 'smooth' });
         }
 
-        // Add click events to dots
         dots.forEach(dot => {
             dot.addEventListener('click', (e) => {
                 const index = parseInt(e.target.getAttribute('data-index'));
@@ -594,20 +584,16 @@
             });
         });
 
-        // Intersection Observer for Current Page & Animations
         const pageObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    // Animation triggers
                     entry.target.classList.add('is-visible');
                     
-                    // Update Dots
                     const id = entry.target.id;
                     const index = parseInt(id.split('-')[1]);
                     dots.forEach(d => d.classList.remove('active'));
                     if(dots[index]) dots[index].classList.add('active');
 
-                    // Number Count Ups
                     const counters = entry.target.querySelectorAll('.count-up');
                     counters.forEach(counter => {
                         if(!counter.classList.contains('counted')) {
@@ -617,7 +603,7 @@
                     });
                 }
             });
-        }, { threshold: 0.5 }); // 50% of the page needs to be visible
+        }, { threshold: 0.5 }); 
 
         pages.forEach(page => pageObserver.observe(page));
 
@@ -680,7 +666,6 @@
             tradeIndex++;
         }
 
-        // Updated AI Narrative Logs
         const consoleLogs = [
             "[CLAUDE_AI] ANALYZING POLYMARKET NEWS FEED...",
             "[SYNC] MIRRORING TOP 1% WALLETS...",
@@ -869,16 +854,77 @@
             });
         }, 3000);
 
-        // --- Form Submit ---
-        document.getElementById('leadForm')?.addEventListener('submit', function(e) {
+        // --- HASHING UTILITY UNTUK CAPI ---
+        async function hashData(string) {
+            const msgBuffer = new TextEncoder().encode(string.trim().toLowerCase());
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+        }
+
+        // --- Form Submit DENGAN META PIXEL & CAPI ---
+        document.getElementById('leadForm')?.addEventListener('submit', async function(e) {
             e.preventDefault(); 
+
+            // 1. Ambil Data Form
+            const emailValue = document.getElementById('emailInput').value;
+            
+            // 2. Animasi UI Tombol
             const btn = document.getElementById('t-sub-btn');
             btn.disabled = true;
             btn.className = "w-full border border-gold/50 text-gold bg-gold/5 font-sans font-medium py-3 rounded-lg text-sm tracking-widest uppercase mt-4";
             let dots = 0;
             const seq = setInterval(() => { dots = (dots + 1) % 4; btn.innerText = "> INITIATING TRANSFER" + ".".repeat(dots); }, 500);
+
+            // 3. META BROWSER PIXEL TRACKING (Event: Lead)
+            if(typeof fbq === 'function') {
+                fbq('track', 'Lead', {
+                    content_name: 'Apex V7 Allocation Request'
+                });
+            }
+
+            // 4. META CONVERSIONS API (CAPI) TRACKING
+            // Peringatan Keamanan: Menyimpan Token CAPI di frontend HTML sebenarnya berisiko terekspos ke publik.
+            // Namun script di bawah ini tetap disiapkan agar berjalan secara fungsional seperti yang diminta.
+            const pixelId = '771021905629860';
+            const capiToken = 'EAAJxIW8ZC3KsBRdFoMlPQSuwZCL3wrhK3FYMGF12Hakrphy2hFFOo4O081P7VRQZAWZAyPstEaiZBUUo5PH1DhHXn870MeOQundNufjg8r2lWC6YCrU6WwS7RYJ9OXzRfUqu4Fd30Yvcp9qWuF52syzLDjz1ZBwkncCbhAh9ZC0XizZBtg867t9wQaMEW4nr9vxAewZDZD';
+
+            try {
+                // Enkripsi email menggunakan SHA-256 (Syarat mutlak dari Meta API)
+                const hashedEmail = await hashData(emailValue);
+                const eventId = 'lead_' + new Date().getTime();
+
+                const capiPayload = {
+                    "data": [
+                        {
+                            "event_name": "Lead",
+                            "event_time": Math.floor(Date.now() / 1000),
+                            "action_source": "website",
+                            "event_id": eventId,
+                            "event_source_url": window.location.href,
+                            "user_data": {
+                                "em": [hashedEmail],
+                                "client_user_agent": navigator.userAgent
+                            }
+                        }
+                    ]
+                };
+
+                // Kirim data ke server Meta Graph API
+                await fetch(`https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${capiToken}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(capiPayload)
+                });
+            } catch(error) {
+                console.log("CAPI tracking error, continuing to redirect.");
+            }
             
-            setTimeout(() => { clearInterval(seq); window.location.href = "https://t.me/alwayscuanbos"; }, 2000);
+            // 5. Eksekusi Redirect Utama (Membawa ke Telegram)
+            setTimeout(() => { 
+                clearInterval(seq); 
+                window.location.href = "https://t.me/alwayscuanbos"; 
+            }, 2000);
         });
 
         // --- Init All ---
