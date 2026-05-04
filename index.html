@@ -96,8 +96,7 @@
             width: 100%; 
             max-width: 800px; 
             margin: auto; 
-            height: 400px; 
-            @apply border-4 border-black dark:border-white p-6 bg-white dark:bg-black;
+            @apply border-4 border-black dark:border-white p-4 md:p-6 bg-white dark:bg-black;
         }
 
         .fade-in-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
@@ -117,20 +116,20 @@
         @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
         
         .brutalist-card { 
-            @apply border-4 border-black dark:border-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] dark:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] bg-white dark:bg-black p-8; 
+            @apply border-4 border-black dark:border-white shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] md:dark:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] bg-white dark:bg-black p-6 md:p-8; 
         }
 
         .btn-apex { 
-            @apply bg-black text-white dark:bg-white dark:text-black font-mono font-black py-6 px-12 text-2xl hover:bg-accent hover:text-white dark:hover:bg-accent dark:hover:text-white transition-all transform active:translate-y-2 border-4 border-black dark:border-white uppercase text-center cursor-pointer; 
+            @apply bg-black text-white dark:bg-white dark:text-black font-mono font-black py-4 md:py-6 px-8 md:px-12 text-lg sm:text-xl md:text-2xl hover:bg-accent hover:text-white dark:hover:bg-accent dark:hover:text-white transition-all transform active:translate-y-2 border-4 border-black dark:border-white uppercase text-center cursor-pointer; 
         }
         
         /* Custom Input Styling */
         input[type=range] { @apply appearance-none bg-transparent w-full cursor-pointer; }
         input[type=range]::-webkit-slider-runnable-track { @apply bg-black dark:bg-white h-2; }
-        input[type=range]::-webkit-slider-thumb { @apply appearance-none bg-accent h-10 w-10 border-4 border-black dark:border-white -mt-4; }
+        input[type=range]::-webkit-slider-thumb { @apply appearance-none bg-accent h-8 w-8 md:h-10 md:w-10 border-4 border-black dark:border-white -mt-3 md:-mt-4; }
 
         .activity-toast { 
-            @apply bg-black text-white dark:bg-white dark:text-black p-4 border-4 border-terminal font-mono text-[11px] mb-4 shadow-2xl translate-x-full transition-transform duration-500 ease-out; 
+            @apply bg-black text-white dark:bg-white dark:text-black p-4 border-4 border-terminal font-mono text-[10px] md:text-[11px] mb-4 shadow-2xl translate-x-full transition-transform duration-500 ease-out pointer-events-auto; 
         }
         .activity-toast.show { @apply translate-x-0; }
 
@@ -182,16 +181,17 @@
 
     <div class="fixed inset-0 grid-bg pointer-events-none"></div>
 
-    <div id="activity-container" class="fixed bottom-10 right-10 z-[200] w-80 pointer-events-none"></div>
+    <!-- Notification container fluid positioning -->
+    <div id="activity-container" class="fixed bottom-24 md:bottom-10 right-4 md:right-10 z-[200] w-[calc(100%-2rem)] md:w-80 pointer-events-none"></div>
 
     <!-- Header -->
     <header class="fixed top-0 w-full bg-white dark:bg-black z-[100] border-b-4 border-black dark:border-white">
-        <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="font-mono font-black tracking-tighter text-2xl text-black dark:text-white">POLY_POOL // APEX_V7</div>
-            <div class="flex items-center gap-8">
-                <div class="flex border-4 border-black dark:border-white p-1 font-mono text-xs font-black bg-white dark:bg-black">
-                    <button id="btn-id" class="px-4 py-1 bg-black text-white dark:bg-white dark:text-black border-2 border-transparent" onclick="setLang('id')">ID</button>
-                    <button id="btn-en" class="px-4 py-1 text-black dark:text-white opacity-40 hover:opacity-100" onclick="setLang('en')">EN</button>
+        <div class="max-w-[1400px] mx-auto px-4 md:px-6 h-16 md:h-20 flex items-center justify-between">
+            <div class="font-mono font-black tracking-tighter text-lg md:text-2xl text-black dark:text-white">POLY_POOL // APEX_V7</div>
+            <div class="flex items-center gap-4 md:gap-8">
+                <div class="flex border-2 md:border-4 border-black dark:border-white p-1 font-mono text-[10px] md:text-xs font-black bg-white dark:bg-black">
+                    <button id="btn-id" class="px-2 md:px-4 py-1 bg-black text-white dark:bg-white dark:text-black border-2 border-transparent" onclick="setLang('id')">ID</button>
+                    <button id="btn-en" class="px-2 md:px-4 py-1 text-black dark:text-white opacity-40 hover:opacity-100" onclick="setLang('en')">EN</button>
                 </div>
                 <div class="hidden lg:flex items-center gap-3 font-mono text-xs font-black text-black dark:text-white">
                     <span class="w-3 h-3 bg-terminal animate-pulse"></span>
@@ -203,43 +203,44 @@
 
     <main class="relative">
         <!-- SECTION 1: HERO -->
-        <section id="hero" class="min-h-screen flex flex-col justify-center px-6 pt-32 pb-20 max-w-[1400px] mx-auto bg-white dark:bg-black">
+        <section id="hero" class="min-h-screen flex flex-col justify-center px-4 md:px-6 pt-28 md:pt-32 pb-16 md:pb-20 max-w-[1400px] mx-auto bg-white dark:bg-black">
             <div class="max-w-6xl fade-in-up">
-                <div class="inline-block px-4 py-2 bg-accent text-white text-xs font-mono font-black mb-12 uppercase tracking-widest border-4 border-black dark:border-white">
+                <div class="inline-block px-3 md:px-4 py-2 bg-accent text-white text-[10px] md:text-xs font-mono font-black mb-8 md:mb-12 uppercase tracking-widest border-2 md:border-4 border-black dark:border-white">
                     Initial Deployment: Phase 01
                 </div>
-                <!-- FIXED CONTRAST FOR HERO TITLE -->
-                <h1 class="brutalist-text text-7xl md:text-9xl lg:text-[11rem] font-black mb-12 tracking-tighter text-black dark:text-white" id="t-hero-title">
+                <!-- FULLY FLUID RESPONSIVE HERO TITLE -->
+                <h1 class="brutalist-text text-5xl sm:text-7xl md:text-8xl lg:text-9xl xl:text-[11rem] font-black mb-8 md:mb-12 tracking-tighter text-black dark:text-white" id="t-hero-title">
                     Skalakan Aset Lo,<br><span class="text-accent glitch" data-text="Dikelola Full AI.">Dikelola Full AI.</span><br>Tanpa Analisa, Entry, Pantau.
                 </h1>
-                <p class="text-2xl md:text-4xl text-black dark:text-white font-bold max-w-4xl mb-16 leading-tight" id="t-hero-desc">
+                <p class="text-lg sm:text-xl md:text-3xl lg:text-4xl text-black dark:text-white font-bold max-w-4xl mb-12 md:mb-16 leading-tight" id="t-hero-desc">
                     Selamat datang di Polymarket AI Trading Pool. Solusi buat kamu yang capek trading sendiri. Tanpa perlu analisa rumit, tanpa entry manual, dan tanpa pantau market tiap hari. Biarkan sistem AI kami mengeksekusi probabilitas untuk hasil yang stabil.
                 </p>
-                <div class="flex flex-col md:flex-row gap-10 items-start md:items-center">
-                    <div class="flex flex-col items-start gap-4">
-                        <a href="#subscribe" class="btn-apex w-full md:w-auto" id="t-cta" onclick="trackCtaClick()">
+                <div class="flex flex-col xl:flex-row gap-8 xl:gap-10 items-start xl:items-center">
+                    <div class="flex flex-col items-start gap-4 w-full xl:w-auto">
+                        <a href="#subscribe" class="btn-apex w-full sm:w-auto" id="t-cta" onclick="trackCtaClick()">
                             [JOIN TRADING POOL]
                         </a>
                         <!-- TRUST SIGNAL -->
-                        <div class="font-bold text-lg text-accent animate-pulse" id="t-hero-trust">
+                        <div class="font-bold text-sm md:text-lg text-accent animate-pulse" id="t-hero-trust">
                             Sistem sudah berjalan dan bisa dipantau real-time.
                         </div>
                     </div>
-                    <div class="font-mono text-sm space-y-3 text-black dark:text-white uppercase font-black">
-                        <div class="flex gap-4">
-                            <span class="opacity-50">Ledger:</span>
-                            <span class="underline decoration-accent decoration-4">0xad85...c6bd</span>
+                    <!-- RESPONSIVE INFO GRID -->
+                    <div class="font-mono text-xs sm:text-sm space-y-3 text-black dark:text-white uppercase font-black w-full flex flex-col flex-wrap">
+                        <div class="flex gap-4 items-center flex-wrap">
+                            <span class="opacity-50 whitespace-nowrap">Ledger:</span>
+                            <span class="underline decoration-accent decoration-2 md:decoration-4 break-all">0xad85...c6bd</span>
                         </div>
                         <!-- NEW: AUM METRIC (SOCIAL PROOF) -->
-                        <div class="flex gap-4 items-center">
-                            <span class="opacity-50">Live_AUM:</span>
-                            <a href="https://polymarket.com/@berkah-karya" target="_blank" class="bg-black text-white dark:bg-white dark:text-black px-3 py-1 border-2 border-accent hover:bg-accent hover:text-white dark:hover:bg-accent dark:hover:text-white transition-colors cursor-pointer flex items-center gap-2" id="t-hero-aum-container" title="Klik untuk lihat porto Polymarket">
-                                <span class="w-2 h-2 rounded-full bg-terminal animate-pulse"></span>
+                        <div class="flex gap-4 items-center flex-wrap">
+                            <span class="opacity-50 whitespace-nowrap">Live_AUM:</span>
+                            <a href="https://polymarket.com/@berkah-karya" target="_blank" class="bg-black text-white dark:bg-white dark:text-black px-3 py-1 border-2 border-accent hover:bg-accent hover:text-white dark:hover:bg-accent dark:hover:text-white transition-colors cursor-pointer flex items-center gap-2 whitespace-nowrap" id="t-hero-aum-container" title="Klik untuk lihat porto Polymarket">
+                                <span class="w-2 h-2 rounded-full bg-terminal animate-pulse shrink-0"></span>
                                 $<span id="t-hero-aum-val" class="font-mono transition-colors duration-300">5,250.00</span> USDC ↗
                             </a>
                         </div>
-                        <div class="flex gap-4">
-                            <span class="opacity-50">Pulse:</span>
+                        <div class="flex gap-4 items-center flex-wrap">
+                            <span class="opacity-50 whitespace-nowrap">Pulse:</span>
                             <span class="text-terminal">Online // Epoch_04</span>
                         </div>
                     </div>
@@ -248,34 +249,34 @@
         </section>
 
         <!-- SECTION 2: THE EDGE -->
-        <section id="edge" class="py-40 border-t-4 border-black dark:border-white bg-white dark:bg-black">
-            <div class="max-w-[1400px] mx-auto px-6">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+        <section id="edge" class="py-24 md:py-40 border-t-4 border-black dark:border-white bg-white dark:bg-black">
+            <div class="max-w-[1400px] mx-auto px-4 md:px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
                     <div class="lg:col-span-5 fade-in-up">
-                        <h2 class="brutalist-text text-6xl md:text-8xl font-black mb-12 text-black dark:text-white" id="t-edge-title">Trading Manual<br><span class="text-accent">Bikin Capek.</span></h2>
-                        <div class="space-y-8 text-xl font-bold text-black dark:text-white" id="t-edge-desc">
+                        <h2 class="brutalist-text text-5xl sm:text-6xl md:text-8xl font-black mb-8 md:mb-12 text-black dark:text-white" id="t-edge-title">Trading Manual<br><span class="text-accent">Bikin Capek.</span></h2>
+                        <div class="space-y-6 md:space-y-8 text-lg md:text-xl font-bold text-black dark:text-white" id="t-edge-desc">
                             <p class="opacity-80 border-l-4 border-accent pl-4">Masalahnya bukan di market… tapi di konsistensi keputusan. Trading butuh waktu, fokus, dan mental. Biarkan AI kami yang bekerja 24/7 secara objektif tanpa melibatkan perasaan.</p>
                             <div class="brutalist-card border-accent">
                                 <span class="text-accent font-black uppercase tracking-widest block mb-4">Logic_Unit:</span>
-                                <p class="font-mono text-sm leading-relaxed text-black dark:text-white" id="t-edge-logic">Ini adalah sistem fund management / trading pool. Dana member digabung dalam smart pool eksklusif dan dijalankan sepenuhnya oleh algoritma AI.</p>
+                                <p class="font-mono text-xs sm:text-sm leading-relaxed text-black dark:text-white" id="t-edge-logic">Ini adalah sistem fund management / trading pool. Dana member digabung dalam smart pool eksklusif dan dijalankan sepenuhnya oleh algoritma AI.</p>
                             </div>
                         </div>
                     </div>
                     
                     <div class="lg:col-span-7 fade-in-up">
-                        <div class="chart-container shadow-2xl overflow-hidden">
+                        <div class="chart-container shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] md:shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
                             <div class="scanline"></div>
-                            <div class="flex justify-between items-center mb-6 font-mono text-[10px] font-black uppercase text-black dark:text-white">
+                            <div class="flex justify-between items-center mb-6 font-mono text-[8px] sm:text-[10px] font-black uppercase text-black dark:text-white flex-wrap gap-2">
                                 <span>Performa_Engine</span>
                                 <span class="text-accent">Epoch_Simulation_30</span>
                             </div>
-                            <div class="h-[300px]"><canvas id="edgeChart"></canvas></div>
+                            <div class="h-[250px] md:h-[300px]"><canvas id="edgeChart"></canvas></div>
                         </div>
-                        <div class="mt-8 grid grid-cols-2 gap-4 font-mono text-xs font-black uppercase">
-                            <div class="p-4 border-4 border-black dark:border-white bg-black text-white dark:bg-white dark:text-black text-center">
+                        <div class="mt-6 md:mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4 font-mono text-[10px] sm:text-xs font-black uppercase">
+                            <div class="p-4 border-2 md:border-4 border-black dark:border-white bg-black text-white dark:bg-white dark:text-black text-center">
                                 AI CALCULATION: <span class="text-terminal count-up" data-target="422" data-prefix="+" data-suffix="%">+0%</span>
                             </div>
-                            <div class="p-4 border-4 border-black dark:border-white text-center text-black dark:text-white bg-white dark:bg-black">
+                            <div class="p-4 border-2 md:border-4 border-black dark:border-white text-center text-black dark:text-white bg-white dark:bg-black">
                                 HUMAN BIAS: <span class="text-accent count-up" data-target="-12.4" data-prefix="" data-suffix="%">0%</span>
                             </div>
                         </div>
@@ -285,21 +286,21 @@
         </section>
 
         <!-- SECTION 3: TRANSAPRENCY -->
-        <section id="transparency" class="py-40 bg-black text-white overflow-hidden relative border-t-4 border-white">
-            <div class="max-w-[1400px] mx-auto px-6 relative z-10 text-white">
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
+        <section id="transparency" class="py-24 md:py-40 bg-black text-white overflow-hidden relative border-t-4 border-white">
+            <div class="max-w-[1400px] mx-auto px-4 md:px-6 relative z-10 text-white">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20">
                     <div class="lg:col-span-5 fade-in-up">
-                        <h2 class="brutalist-text text-6xl md:text-8xl font-black mb-12 text-white" id="t-trans-title">100%<br>Transparan.</h2>
-                        <p class="text-2xl mb-8 font-bold leading-tight text-white" id="t-trans-desc">Klik untuk lihat saldo wallet secara real-time dan cek posisi trading aktif kapan saja. Semua bisa divalidasi, bukan sekadar klaim.</p>
+                        <h2 class="brutalist-text text-5xl sm:text-6xl md:text-8xl font-black mb-8 md:mb-12 text-white" id="t-trans-title">100%<br>Transparan.</h2>
+                        <p class="text-lg md:text-2xl mb-8 font-bold leading-tight text-white" id="t-trans-desc">Klik untuk lihat saldo wallet secara real-time dan cek posisi trading aktif kapan saja. Semua bisa divalidasi, bukan sekadar klaim.</p>
                         
-                        <div class="flex flex-col gap-4 mb-12">
-                            <a href="https://zapper.xyz/id/account/0xad85c2f3942561afa448cbbd5811a5f7e2e3c6bd" target="_blank" class="terminal-btn inline-block bg-white text-black font-mono font-black text-lg md:text-xl px-10 py-6 hover:bg-terminal hover:text-black hover:border-terminal transition-all border-4 border-white text-center" id="t-zapper-btn">[CEK WALLET REAL-TIME]</a>
-                            <a href="https://polymarket.com/@berkah-karya" target="_blank" class="terminal-btn inline-block bg-transparent text-white font-mono font-black text-lg md:text-xl px-10 py-6 hover:bg-white hover:text-black transition-all border-4 border-white text-center" id="t-poly-btn">[CEK POSISI TRADING]</a>
+                        <div class="flex flex-col gap-4 mb-8 md:mb-12">
+                            <a href="https://zapper.xyz/id/account/0xad85c2f3942561afa448cbbd5811a5f7e2e3c6bd" target="_blank" class="terminal-btn inline-block bg-white text-black font-mono font-black text-sm sm:text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 hover:bg-terminal hover:text-black hover:border-terminal transition-all border-4 border-white text-center break-words" id="t-zapper-btn">[CEK WALLET REAL-TIME]</a>
+                            <a href="https://polymarket.com/@berkah-karya" target="_blank" class="terminal-btn inline-block bg-transparent text-white font-mono font-black text-sm sm:text-lg md:text-xl px-6 md:px-10 py-4 md:py-6 hover:bg-white hover:text-black transition-all border-4 border-white text-center break-words" id="t-poly-btn">[CEK POSISI TRADING]</a>
                         </div>
                     </div>
                     <div class="lg:col-span-7 fade-in-up">
-                        <div class="bg-black border-4 border-white h-[500px] flex flex-col p-8 font-mono text-xs shadow-[0_0_80px_rgba(255,255,255,0.15)]">
-                            <div class="flex justify-between items-center mb-8 pb-4 border-b-4 border-white/20">
+                        <div class="bg-black border-4 border-white h-[350px] md:h-[500px] flex flex-col p-4 md:p-8 font-mono text-[10px] md:text-xs shadow-[0_0_40px_rgba(255,255,255,0.1)] md:shadow-[0_0_80px_rgba(255,255,255,0.15)]">
+                            <div class="flex justify-between items-center mb-6 md:mb-8 pb-4 border-b-2 md:border-b-4 border-white/20 flex-wrap gap-2">
                                 <span class="font-black uppercase tracking-widest text-white">Live_Sync_Ledger</span>
                                 <span class="text-terminal animate-pulse font-black uppercase tracking-widest">● Streaming_Data</span>
                             </div>
@@ -311,103 +312,103 @@
         </section>
 
         <!-- SECTION 4: THE MATH -->
-        <section id="math" class="py-40 border-t-4 border-black dark:border-white bg-white dark:bg-black">
-            <div class="max-w-[1400px] mx-auto px-6">
-                <div class="mb-32 fade-in-up text-center">
-                    <h2 class="brutalist-text text-7xl md:text-9xl font-black mb-12 text-black dark:text-white" id="t-math-title">Profit Sharing<br><span class="text-accent">High-Water Mark.</span></h2>
+        <section id="math" class="py-24 md:py-40 border-t-4 border-black dark:border-white bg-white dark:bg-black">
+            <div class="max-w-[1400px] mx-auto px-4 md:px-6">
+                <div class="mb-20 md:mb-32 fade-in-up text-center">
+                    <h2 class="brutalist-text text-5xl sm:text-7xl md:text-9xl font-black mb-8 md:mb-12 text-black dark:text-white" id="t-math-title">Profit Sharing<br><span class="text-accent">High-Water Mark.</span></h2>
                     
                     <!-- NEW: NO PROFIT NO FEE BADGE -->
-                    <div class="inline-block px-6 py-3 bg-black text-white dark:bg-white dark:text-black font-mono font-black text-xl md:text-2xl mb-8 uppercase tracking-widest border-4 border-accent shadow-[6px_6px_0px_0px_rgba(255,0,0,1)] transform -rotate-1" id="t-math-badge">
+                    <div class="inline-block px-4 md:px-6 py-2 md:py-3 bg-black text-white dark:bg-white dark:text-black font-mono font-black text-base sm:text-xl md:text-2xl mb-8 uppercase tracking-widest border-2 md:border-4 border-accent shadow-[4px_4px_0px_0px_rgba(255,0,0,1)] md:shadow-[6px_6px_0px_0px_rgba(255,0,0,1)] transform -rotate-1" id="t-math-badge">
                         NO PROFIT = NO MGT FEE.
                     </div>
 
-                    <p class="text-2xl md:text-3xl font-black text-black dark:text-white uppercase tracking-tighter max-w-4xl mx-auto opacity-80 leading-tight" id="t-math-desc">Biaya operasional (API AI/Gas) ditanggung proporsional oleh pool. Namun, <span class="text-accent">Performance Fee 40% Management HANYA ditarik</span> jika nilai dompet mencetak rekor All-Time High baru.</p>
+                    <p class="text-lg sm:text-2xl md:text-3xl font-black text-black dark:text-white uppercase tracking-tighter max-w-4xl mx-auto opacity-80 leading-tight" id="t-math-desc">Biaya operasional (API AI/Gas) ditanggung proporsional oleh pool. Namun, <span class="text-accent">Performance Fee 40% Management HANYA ditarik</span> jika nilai dompet mencetak rekor All-Time High baru.</p>
                 </div>
 
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
                     <div class="fade-in-up brutalist-card">
-                        <h3 class="font-mono font-black text-2xl mb-12 uppercase border-b-4 border-black dark:border-white pb-4 text-black dark:text-white" id="t-calc-title">Yield Simulator</h3>
-                        <div class="mb-16">
-                            <label class="block text-xs font-mono font-black mb-6 uppercase tracking-widest text-black dark:text-white">Simulasi Net Profit (USD)</label>
-                            <div class="py-4">
+                        <h3 class="font-mono font-black text-xl md:text-2xl mb-8 md:mb-12 uppercase border-b-2 md:border-b-4 border-black dark:border-white pb-4 text-black dark:text-white" id="t-calc-title">Yield Simulator</h3>
+                        <div class="mb-12 md:mb-16">
+                            <label class="block text-[10px] md:text-xs font-mono font-black mb-4 md:mb-6 uppercase tracking-widest text-black dark:text-white">Simulasi Net Profit (USD)</label>
+                            <div class="py-2 md:py-4">
                                 <input type="range" id="profitInput" min="5000" max="250000" step="5000" value="50000" class="w-full h-8">
                             </div>
-                            <div class="mt-4 text-7xl md:text-8xl font-mono font-black text-black dark:text-white" id="profitDisplay">$50,000</div>
+                            <div class="mt-4 text-5xl sm:text-7xl md:text-8xl font-mono font-black text-black dark:text-white" id="profitDisplay">$50,000</div>
                         </div>
                         
                         <!-- REDESIGNED: CUSTOM LEGEND DENGAN INDIKATOR WARNA UNTUK CHART -->
-                        <div class="space-y-4 font-mono font-black uppercase">
+                        <div class="space-y-3 md:space-y-4 font-mono font-black uppercase text-[10px] sm:text-xs md:text-base">
                             <!-- OPS -->
-                            <div class="flex justify-between items-center p-4 md:p-6 border-4 border-black dark:border-white bg-gray-200 dark:bg-zinc-800 text-black dark:text-white">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-4 h-4 bg-gray-400 dark:bg-gray-500 border-2 border-black dark:border-white"></div>
+                            <div class="flex justify-between items-center p-3 md:p-6 border-2 md:border-4 border-black dark:border-white bg-gray-200 dark:bg-zinc-800 text-black dark:text-white flex-wrap gap-2">
+                                <div class="flex items-center gap-2 md:gap-3">
+                                    <div class="w-3 h-3 md:w-4 md:h-4 shrink-0 bg-gray-400 dark:bg-gray-500 border-2 border-black dark:border-white"></div>
                                     <span id="t-ops-label">Operasional (15%)</span>
                                 </div>
                                 <span id="valOps"></span>
                             </div>
                             <!-- MEMBER -->
-                            <div class="flex justify-between items-center p-4 md:p-6 bg-accent text-white border-4 border-black dark:border-white">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-4 h-4 bg-accent border-2 border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"></div>
+                            <div class="flex justify-between items-center p-3 md:p-6 bg-accent text-white border-2 md:border-4 border-black dark:border-white flex-wrap gap-2">
+                                <div class="flex items-center gap-2 md:gap-3">
+                                    <div class="w-3 h-3 md:w-4 md:h-4 shrink-0 bg-accent border-2 border-white shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]"></div>
                                     <span id="t-member-label">Porsi Member (60%)</span>
                                 </div>
                                 <span id="valMember"></span>
                             </div>
                             <!-- SYSTEM -->
-                            <div class="flex justify-between items-center p-4 md:p-6 border-4 border-black dark:border-white bg-black text-white dark:bg-white dark:text-black">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-4 h-4 bg-black dark:bg-white border-2 border-white dark:border-black"></div>
+                            <div class="flex justify-between items-center p-3 md:p-6 border-2 md:border-4 border-black dark:border-white bg-black text-white dark:bg-white dark:text-black flex-wrap gap-2">
+                                <div class="flex items-center gap-2 md:gap-3">
+                                    <div class="w-3 h-3 md:w-4 md:h-4 shrink-0 bg-black dark:bg-white border-2 border-white dark:border-black"></div>
                                     <span id="t-system-label">System Fee (40%)</span>
                                 </div>
                                 <span id="valSystem"></span>
                             </div>
                         </div>
                     </div>
-                    <div class="fade-in-up flex flex-col items-center">
-                        <div class="chart-container border-4 border-black dark:border-white bg-white dark:bg-black !h-[350px] md:!h-[450px] flex items-center justify-center">
+                    <div class="fade-in-up flex flex-col items-center w-full">
+                        <div class="chart-container border-2 md:border-4 border-black dark:border-white bg-white dark:bg-black !h-[280px] sm:!h-[350px] md:!h-[450px] flex items-center justify-center w-full">
                             <!-- Canvas Chart Area (No default legend anymore) -->
                             <canvas id="mathChart"></canvas>
                         </div>
-                        <p class="mt-10 font-mono text-xs uppercase font-black tracking-widest text-black dark:text-white opacity-40 text-center">Interactive Split Logic<br><span class="lowercase tracking-normal opacity-70">(Arahkan cursor ke diagram)</span></p>
+                        <p class="mt-6 md:mt-10 font-mono text-[10px] md:text-xs uppercase font-black tracking-widest text-black dark:text-white opacity-40 text-center px-4">Interactive Split Logic<br><span class="lowercase tracking-normal opacity-70">(Arahkan cursor ke diagram)</span></p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- SECTION: TESTIMONIALS -->
-        <section id="testimonials" class="py-40 bg-zinc-100 dark:bg-black border-t-4 border-black dark:border-white">
-            <div class="max-w-[1400px] mx-auto px-6">
-                <h2 class="brutalist-text text-6xl md:text-8xl font-black mb-24 text-center text-black dark:text-white">Elite Network.</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+        <section id="testimonials" class="py-24 md:py-40 bg-zinc-100 dark:bg-black border-t-4 border-black dark:border-white">
+            <div class="max-w-[1400px] mx-auto px-4 md:px-6">
+                <h2 class="brutalist-text text-5xl sm:text-6xl md:text-8xl font-black mb-16 md:mb-24 text-center text-black dark:text-white">Elite Network.</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                     
                     <!-- TESTIMONIAL 1 -->
                     <div class="brutalist-card border-accent relative overflow-hidden group fade-in-up">
-                        <div class="absolute top-0 right-0 bg-accent text-white font-mono text-[10px] px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0x4604...fd60</div>
+                        <div class="absolute top-0 right-0 bg-accent text-white font-mono text-[8px] md:text-[10px] px-2 md:px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0x4604...fd60</div>
                         <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 bg-black dark:bg-white border-2 border-accent flex items-center justify-center font-mono font-black text-accent dark:text-black text-sm shadow-[4px_4px_0px_0px_rgba(255,0,0,1)]">0x</div>
-                            <div class="font-mono text-sm font-black uppercase text-accent tracking-widest">0x7A...2b9E</div>
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-black dark:bg-white border-2 border-accent flex items-center justify-center font-mono font-black text-accent dark:text-black text-xs md:text-sm shadow-[4px_4px_0px_0px_rgba(255,0,0,1)]">0x</div>
+                            <div class="font-mono text-xs md:text-sm font-black uppercase text-accent tracking-widest">0x7A...2b9E</div>
                         </div>
-                        <p class="text-xl font-bold mb-8 italic text-black dark:text-white relative z-10" id="t-testi-1">"Sistemnya jalan sendiri tanpa harus gue pantau tiap hari. Jauh lebih tenang daripada trading manual, dan transparansi dompet di Zapper bikin nyaman."</p>
+                        <p class="text-base sm:text-lg md:text-xl font-bold mb-4 md:mb-8 italic text-black dark:text-white relative z-10" id="t-testi-1">"Sistemnya jalan sendiri tanpa harus gue pantau tiap hari. Jauh lebih tenang daripada trading manual, dan transparansi dompet di Zapper bikin nyaman."</p>
                     </div>
 
                     <!-- TESTIMONIAL 2 -->
                     <div class="brutalist-card border-black dark:border-white relative overflow-hidden group fade-in-up" style="transition-delay: 100ms;">
-                        <div class="absolute top-0 right-0 bg-black dark:bg-white text-white dark:text-black font-mono text-[10px] px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0xab45...ae10</div>
+                        <div class="absolute top-0 right-0 bg-black dark:bg-white text-white dark:text-black font-mono text-[8px] md:text-[10px] px-2 md:px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0xab45...ae10</div>
                         <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 bg-white dark:bg-black border-2 border-black dark:border-white flex items-center justify-center font-mono font-black text-black dark:text-white text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">0x</div>
-                            <div class="font-mono text-sm font-black uppercase tracking-widest text-black dark:text-white">0x2D...8f4C</div>
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-white dark:bg-black border-2 border-black dark:border-white flex items-center justify-center font-mono font-black text-black dark:text-white text-xs md:text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">0x</div>
+                            <div class="font-mono text-xs md:text-sm font-black uppercase tracking-widest text-black dark:text-white">0x2D...8f4C</div>
                         </div>
-                        <p class="text-xl font-bold mb-8 italic text-black dark:text-white relative z-10" id="t-testi-2">"Sistem High-Water Mark ini fair banget. Pengelolanya beneran cuma dapet fee kalau porto gue naik ngelewatin puncak profit sebelumnya."</p>
+                        <p class="text-base sm:text-lg md:text-xl font-bold mb-4 md:mb-8 italic text-black dark:text-white relative z-10" id="t-testi-2">"Sistem High-Water Mark ini fair banget. Pengelolanya beneran cuma dapet fee kalau porto gue naik ngelewatin puncak profit sebelumnya."</p>
                     </div>
 
                     <!-- TESTIMONIAL 3 -->
                     <div class="brutalist-card border-terminal relative overflow-hidden group fade-in-up" style="transition-delay: 200ms;">
-                        <div class="absolute top-0 right-0 bg-terminal text-black font-mono text-[10px] px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0x0e6e...41f0</div>
+                        <div class="absolute top-0 right-0 bg-terminal text-black font-mono text-[8px] md:text-[10px] px-2 md:px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0x0e6e...41f0</div>
                         <div class="flex items-center gap-4 mb-6">
-                            <div class="w-12 h-12 bg-black dark:bg-white border-2 border-terminal flex items-center justify-center font-mono font-black text-terminal dark:text-black text-sm shadow-[4px_4px_0px_0px_rgba(0,255,65,1)]">0x</div>
-                            <div class="font-mono text-sm font-black uppercase text-terminal tracking-widest">0x4F...9a2B</div>
+                            <div class="w-10 h-10 md:w-12 md:h-12 bg-black dark:bg-white border-2 border-terminal flex items-center justify-center font-mono font-black text-terminal dark:text-black text-xs md:text-sm shadow-[4px_4px_0px_0px_rgba(0,255,65,1)]">0x</div>
+                            <div class="font-mono text-xs md:text-sm font-black uppercase text-terminal tracking-widest">0x4F...9a2B</div>
                         </div>
-                        <p class="text-xl font-bold mb-8 italic text-black dark:text-white relative z-10" id="t-testi-3">"Awalnya ragu, tapi karena sistem transparansi on-chain nya jelas, gue berani masukin modal lumayan. Udah jalan sebulan dan performa algoritma AI-nya stabil banget."</p>
+                        <p class="text-base sm:text-lg md:text-xl font-bold mb-4 md:mb-8 italic text-black dark:text-white relative z-10" id="t-testi-3">"Awalnya ragu, tapi karena sistem transparansi on-chain nya jelas, gue berani masukin modal lumayan. Udah jalan sebulan dan performa algoritma AI-nya stabil banget."</p>
                     </div>
 
                 </div>
@@ -415,82 +416,82 @@
         </section>
 
         <!-- SECTION: FAQ (NEW) -->
-        <section id="faq" class="py-40 bg-white dark:bg-black border-t-4 border-black dark:border-white">
-            <div class="max-w-[1000px] mx-auto px-6">
-                <h2 class="brutalist-text text-5xl md:text-7xl font-black mb-16 text-center text-black dark:text-white" id="t-faq-title">F.A.Q</h2>
-                <div class="space-y-6">
-                    <details class="brutalist-card cursor-pointer group" open>
-                        <summary class="font-mono font-black text-xl text-black dark:text-white flex justify-between items-center" id="t-faq-q1">
-                            Q: Gimana cara depositnya?
-                            <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-3xl inline-block">+</span>
+        <section id="faq" class="py-24 md:py-40 bg-white dark:bg-black border-t-4 border-black dark:border-white">
+            <div class="max-w-[1000px] mx-auto px-4 md:px-6">
+                <h2 class="brutalist-text text-5xl sm:text-6xl md:text-7xl font-black mb-12 md:mb-16 text-center text-black dark:text-white" id="t-faq-title">F.A.Q</h2>
+                <div class="space-y-4 md:space-y-6">
+                    <details class="brutalist-card cursor-pointer group p-5 md:p-8" open>
+                        <summary class="font-mono font-black text-lg sm:text-xl text-black dark:text-white flex justify-between items-start md:items-center gap-4" id="t-faq-q1">
+                            <span>Q: Gimana cara depositnya?</span>
+                            <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-2xl md:text-3xl inline-block shrink-0">+</span>
                         </summary>
-                        <p class="mt-6 font-bold text-lg text-black dark:text-white opacity-80" id="t-faq-a1">A: Deposit menggunakan USDC di jaringan Polygon (MATIC). Instruksi transfer ke smart contract pool akan diberikan setelah email kamu lolos antrean batch.</p>
+                        <p class="mt-4 md:mt-6 font-bold text-base md:text-lg text-black dark:text-white opacity-80" id="t-faq-a1">A: Deposit menggunakan USDC di jaringan Polygon (MATIC). Instruksi transfer ke smart contract pool akan diberikan setelah email kamu lolos antrean batch.</p>
                     </details>
-                    <details class="brutalist-card cursor-pointer group">
-                        <summary class="font-mono font-black text-xl text-black dark:text-white flex justify-between items-center" id="t-faq-q2">
-                            Q: Siapa yang pegang dana (private key)?
-                            <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-3xl inline-block">+</span>
+                    <details class="brutalist-card cursor-pointer group p-5 md:p-8">
+                        <summary class="font-mono font-black text-lg sm:text-xl text-black dark:text-white flex justify-between items-start md:items-center gap-4" id="t-faq-q2">
+                            <span>Q: Siapa yang pegang dana (private key)?</span>
+                            <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-2xl md:text-3xl inline-block shrink-0">+</span>
                         </summary>
-                        <p class="mt-6 font-bold text-lg text-black dark:text-white opacity-80" id="t-faq-a2">A: Dana dikunci dalam wallet Gnosis Safe (Multi-sig) yang terhubung langsung dengan Polymarket. Kami hanya mengeksekusi logika trading, tidak bisa membawa lari dana (Rugpull-proof).</p>
+                        <p class="mt-4 md:mt-6 font-bold text-base md:text-lg text-black dark:text-white opacity-80" id="t-faq-a2">A: Dana dikunci dalam wallet Gnosis Safe (Multi-sig) yang terhubung langsung dengan Polymarket. Kami hanya mengeksekusi logika trading, tidak bisa membawa lari dana (Rugpull-proof).</p>
                     </details>
-                    <details class="brutalist-card cursor-pointer group">
-                        <summary class="font-mono font-black text-xl text-black dark:text-white flex justify-between items-center" id="t-faq-q3">
-                            Q: Berapa target persentase profitnya?
-                            <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-3xl inline-block">+</span>
+                    <details class="brutalist-card cursor-pointer group p-5 md:p-8">
+                        <summary class="font-mono font-black text-lg sm:text-xl text-black dark:text-white flex justify-between items-start md:items-center gap-4" id="t-faq-q3">
+                            <span>Q: Berapa target persentase profitnya?</span>
+                            <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-2xl md:text-3xl inline-block shrink-0">+</span>
                         </summary>
-                        <p class="mt-6 font-bold text-lg text-black dark:text-white opacity-80" id="t-faq-a3">A: Tidak ada fixed return. AI mengeksploitasi inefisiensi pasar di Polymarket. Secara historis (backtest), algoritma kami menargetkan anomali dengan potensi yield 10-25% per siklus tanpa compounding, tapi hasil nyata selalu berfluktuasi.</p>
+                        <p class="mt-4 md:mt-6 font-bold text-base md:text-lg text-black dark:text-white opacity-80" id="t-faq-a3">A: Tidak ada fixed return. AI mengeksploitasi inefisiensi pasar di Polymarket. Secara historis (backtest), algoritma kami menargetkan anomali dengan potensi yield 10-25% per siklus tanpa compounding, tapi hasil nyata selalu berfluktuasi.</p>
                     </details>
                 </div>
             </div>
         </section>
 
         <!-- SECTION: SUBSCRIBE / LEAD GEN -->
-        <section id="subscribe" class="py-40 bg-zinc-100 dark:bg-black border-t-4 border-black dark:border-white">
-            <div class="max-w-[1000px] mx-auto px-6 text-center">
+        <section id="subscribe" class="py-24 md:py-40 bg-zinc-100 dark:bg-black border-t-4 border-black dark:border-white">
+            <div class="max-w-[1000px] mx-auto px-4 md:px-6 text-center">
                 <div class="fade-in-up">
-                    <h2 class="brutalist-text text-5xl md:text-7xl font-black mb-8 text-black dark:text-white" id="t-sub-title">Whitelist <span class="text-accent">Akses.</span></h2>
+                    <h2 class="brutalist-text text-5xl sm:text-6xl md:text-7xl font-black mb-8 text-black dark:text-white" id="t-sub-title">Whitelist <span class="text-accent">Akses.</span></h2>
                     
                     <!-- SCARCITY VISUAL (UPGRADED TO EXCLUSIVE NARRATIVE) -->
-                    <div class="font-mono text-sm md:text-base font-black text-accent mb-12 border-2 border-accent inline-block px-6 py-3 bg-accent/10 transition-all duration-300" id="t-sub-scarcity">
+                    <div class="font-mono text-xs sm:text-sm md:text-base font-black text-accent mb-8 md:mb-12 border-2 border-accent inline-block px-4 py-3 md:px-6 bg-accent/10 transition-all duration-300 mx-auto w-full max-w-lg break-words" id="t-sub-scarcity">
                         ⚠️ BATCH 05: SELEKSI KETAT [SISA 13 SLOT]<br>
-                        <span class="text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white">(Akses bukan jaminan. Kami membatasi pool untuk menjaga win-rate AI)</span>
+                        <span class="text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white block mt-1">(Akses bukan jaminan. Kami membatasi pool untuk menjaga win-rate AI)</span>
                     </div>
 
                     <!-- EMOTIONAL CLOSE & MINI PROOF -->
-                    <p class="text-2xl md:text-3xl font-black mb-6 text-black dark:text-white leading-tight" id="t-sub-close">
+                    <p class="text-xl sm:text-2xl md:text-3xl font-black mb-6 text-black dark:text-white leading-tight px-2" id="t-sub-close">
                         Bukan untuk semua orang.<br>
                         <span class="text-accent">Isi form untuk masuk antrean evaluasi sistem.</span>
                     </p>
                     
-                    <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base font-mono mb-12 text-black dark:text-white" id="t-sub-proof">
-                        <span class="border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">⏱️ Active: 4 Cycles</span>
-                        <span class="border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">👥 Pool: 142 Members</span>
+                    <div class="flex flex-wrap justify-center gap-3 md:gap-4 text-xs sm:text-sm md:text-base font-mono mb-10 md:mb-12 text-black dark:text-white">
+                        <span class="border-2 border-black dark:border-white px-3 md:px-4 py-2 bg-white dark:bg-black font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] md:dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">⏱️ Active: 4 Cycles</span>
+                        <span class="border-2 border-black dark:border-white px-3 md:px-4 py-2 bg-white dark:bg-black font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] md:dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">👥 Pool: 142 Members</span>
                     </div>
                     
                     <!-- CTA FORM WITH AJAX TERMINAL LOGIC -->
                     <form action="https://formspree.io/f/xnjwprgp" method="POST" id="leadForm" class="flex flex-col gap-4 max-w-4xl mx-auto w-full">
                         <div class="flex flex-col md:flex-row gap-4 w-full">
-                            <input type="text" name="name" id="nameInput" required placeholder="NAMA_ALIAS" class="w-full md:w-1/2 bg-white dark:bg-zinc-900 border-4 border-black dark:border-white p-6 font-mono text-lg text-black dark:text-white focus:outline-none focus:border-accent dark:focus:border-accent transition-colors">
-                            <input type="email" name="email" id="emailInput" required placeholder="EMAIL@DOMAIN.COM" class="w-full md:w-1/2 bg-white dark:bg-zinc-900 border-4 border-black dark:border-white p-6 font-mono text-lg text-black dark:text-white focus:outline-none focus:border-accent dark:focus:border-accent transition-colors">
+                            <input type="text" name="name" id="nameInput" required placeholder="NAMA_ALIAS" class="w-full md:w-1/2 bg-white dark:bg-zinc-900 border-2 md:border-4 border-black dark:border-white p-4 md:p-6 font-mono text-base md:text-lg text-black dark:text-white focus:outline-none focus:border-accent dark:focus:border-accent transition-colors">
+                            <input type="email" name="email" id="emailInput" required placeholder="EMAIL@DOMAIN.COM" class="w-full md:w-1/2 bg-white dark:bg-zinc-900 border-2 md:border-4 border-black dark:border-white p-4 md:p-6 font-mono text-base md:text-lg text-black dark:text-white focus:outline-none focus:border-accent dark:focus:border-accent transition-colors">
                         </div>
-                        <button type="submit" id="t-sub-btn" class="w-full bg-accent text-white font-mono font-black py-6 px-12 text-xl md:text-2xl border-4 border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all transform active:translate-y-2 uppercase text-center cursor-pointer mt-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]">[KIRIM PENGAJUAN AKSES]</button>
+                        <button type="submit" id="t-sub-btn" class="w-full bg-accent text-white font-mono font-black py-4 md:py-6 px-6 md:px-12 text-lg sm:text-xl md:text-2xl border-2 md:border-4 border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all transform active:translate-y-2 uppercase text-center cursor-pointer mt-2 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)] md:dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)] break-words">[KIRIM PENGAJUAN AKSES]</button>
                     </form>
-                    <p class="mt-6 font-mono text-xs uppercase font-black text-black dark:text-white opacity-60" id="t-sub-spam">Setelah submit, Anda akan diarahkan ke secure channel (Telegram).</p>
+                    <p class="mt-6 font-mono text-[10px] sm:text-xs uppercase font-black text-black dark:text-white opacity-60 px-4" id="t-sub-spam">Setelah submit, Anda akan diarahkan ke secure channel (Telegram).</p>
                 </div>
             </div>
         </section>
 
         <!-- SECTION 5: RULES -->
-        <section id="rules" class="py-40 bg-black text-white border-t-4 border-white">
-            <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20">
+        <section id="rules" class="py-24 md:py-40 bg-black text-white border-t-4 border-white">
+            <div class="max-w-[1400px] mx-auto px-4 md:px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
                 <div class="fade-in-up">
-                    <h2 class="brutalist-text text-6xl md:text-8xl font-black mb-12" id="t-rules-title">Aturan &<br>Risiko.</h2>
-                    <p class="text-3xl font-black mb-12 uppercase tracking-tighter text-white" id="t-rules-desc">Likuiditas yang stabil penting untuk eksekusi AI.</p>
-                    <p class="text-xl font-bold mb-12 border-l-8 border-accent pl-6 text-white" id="t-rules-detail">Setor dan Tarik (Withdraw) hanya diproses pada tanggal 1-10 setiap bulannya untuk menjaga performa trading.</p>
+                    <h2 class="brutalist-text text-5xl sm:text-6xl md:text-8xl font-black mb-8 md:mb-12" id="t-rules-title">Aturan &<br>Risiko.</h2>
+                    <p class="text-xl sm:text-2xl md:text-3xl font-black mb-8 md:mb-12 uppercase tracking-tighter text-white" id="t-rules-desc">Likuiditas yang stabil penting untuk eksekusi AI.</p>
+                    <p class="text-lg sm:text-xl md:text-2xl font-bold mb-8 md:mb-12 border-l-4 md:border-l-8 border-accent pl-4 md:pl-6 text-white" id="t-rules-detail">Setor dan Tarik (Withdraw) hanya diproses pada tanggal 1-10 setiap bulannya untuk menjaga performa trading.</p>
                 </div>
-                <div class="fade-in-up bg-accent p-8 brutalist-card text-white border-white shadow-none">
-                    <h3 class="brutalist-text text-xl font-black mb-6 text-white">RESIKO<br><span class="text-lg opacity-80 tracking-normal font-mono text-white">Cold Truth</span></h3>
-                    <div class="space-y-4 text-sm font-black leading-tight uppercase tracking-tighter text-white" id="t-disclaim-body">
+                <div class="fade-in-up bg-accent p-6 md:p-8 brutalist-card text-white border-white shadow-none">
+                    <h3 class="brutalist-text text-lg sm:text-xl font-black mb-4 md:mb-6 text-white">RESIKO<br><span class="text-base md:text-lg opacity-80 tracking-normal font-mono text-white">Cold Truth</span></h3>
+                    <div class="space-y-4 text-xs sm:text-sm font-black leading-tight uppercase tracking-tighter text-white" id="t-disclaim-body">
                         <p>Semua investasi memiliki risiko. Walaupun AI mengeksploitasi data probabilitas, kerugian tetap bisa terjadi.</p>
                         <p>Gunakan selalu uang dingin (dana yang siap diresikokan) demi ketenangan pikiran.</p>
                     </div>
@@ -499,13 +500,13 @@
         </section>
     </main>
 
-    <footer class="py-20 bg-black text-white text-center font-mono text-[10px] font-black tracking-[0.6em] uppercase border-t-4 border-white/10 pb-32 md:pb-20">
+    <footer class="py-16 md:py-20 bg-black text-white text-center font-mono text-[8px] sm:text-[10px] font-black tracking-[0.3em] sm:tracking-[0.6em] uppercase border-t-4 border-white/10 pb-32 md:pb-20 px-4">
         POLY_POOL // APEX_CORE // VER_7.0 // NO_EMOTION_ONLY_MATH
     </footer>
         
     <!-- MOBILE STICKY CTA -->
-    <div id="mobile-cta" class="fixed bottom-0 left-0 w-full z-[150] md:hidden transform translate-y-full transition-transform duration-300">
-        <a href="#subscribe" class="block w-full bg-accent text-white font-mono font-black text-center py-5 border-t-4 border-black text-xl" id="t-mobile-cta">
+    <div id="mobile-cta" class="fixed bottom-0 left-0 w-full z-[150] md:hidden transform translate-y-full transition-transform duration-300 shadow-[0_-8px_20px_rgba(0,0,0,0.5)]">
+        <a href="#subscribe" class="block w-full bg-accent text-white font-mono font-black text-center py-5 border-t-4 border-black text-lg" id="t-mobile-cta">
             [KIRIM PENGAJUAN AKSES]
         </a>
     </div>
@@ -540,17 +541,17 @@
                 testi2: "\"Sistem High-Water Mark ini fair banget. Pengelolanya beneran cuma dapet fee kalau porto gue naik ngelewatin puncak profit sebelumnya.\"",
                 testi3: "\"Awalnya ragu, tapi karena sistem transparansi on-chain nya jelas, gue berani masukin modal lumayan. Udah jalan sebulan dan performa algoritma AI-nya stabil banget.\"",
                 faqTitle: "F.A.Q",
-                faqQ1: "Q: Gimana cara depositnya?",
+                faqQ1: "<span>Q: Gimana cara depositnya?</span>",
                 faqA1: "A: Deposit menggunakan USDC di jaringan Polygon (MATIC). Instruksi transfer ke smart contract pool akan diberikan setelah email kamu lolos antrean batch.",
-                faqQ2: "Q: Siapa yang pegang dana (private key)?",
+                faqQ2: "<span>Q: Siapa yang pegang dana (private key)?</span>",
                 faqA2: "A: Dana dikunci dalam wallet Gnosis Safe (Multi-sig) yang terhubung langsung dengan Polymarket. Kami hanya mengeksekusi logika trading, tidak bisa membawa lari dana (Rugpull-proof).",
-                faqQ3: "Q: Berapa target persentase profitnya?",
+                faqQ3: "<span>Q: Berapa target persentase profitnya?</span>",
                 faqA3: "A: Tidak ada fixed return. AI mengeksploitasi inefisiensi pasar di Polymarket. Secara historis (backtest), algoritma kami menargetkan anomali dengan potensi yield 10-25% per siklus tanpa compounding, tapi hasil nyata selalu berfluktuasi.",
                 subTitle: "Whitelist <span class='text-accent'>Akses.</span>",
-                subScarcity: "⚠️ BATCH 05: SELEKSI KETAT [SISA 13 SLOT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white'>(Akses bukan jaminan. Kami membatasi pool untuk menjaga win-rate AI)</span>",
-                subScarcityUrgent: "⚠️ BATCH 05: SELEKSI KETAT [SISA 11 SLOT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white'>(Akses bukan jaminan. Kami membatasi pool untuk menjaga win-rate AI)</span>",
+                subScarcity: "⚠️ BATCH 05: SELEKSI KETAT [SISA 13 SLOT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white block mt-1'>(Akses bukan jaminan. Kami membatasi pool untuk menjaga win-rate AI)</span>",
+                subScarcityUrgent: "⚠️ BATCH 05: SELEKSI KETAT [SISA 11 SLOT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white block mt-1'>(Akses bukan jaminan. Kami membatasi pool untuk menjaga win-rate AI)</span>",
                 subClose: "Bukan untuk semua orang.<br><span class='text-accent'>Isi form untuk masuk antrean evaluasi sistem.</span>",
-                subProof: "<span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>⏱️ Active: 4 Cycles</span><span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>👥 Pool: 142 Members</span>",
+                subProof: "<span class='border-2 border-black dark:border-white px-3 md:px-4 py-2 bg-white dark:bg-black font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] md:dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>⏱️ Active: 4 Cycles</span><span class='border-2 border-black dark:border-white px-3 md:px-4 py-2 bg-white dark:bg-black font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] md:dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>👥 Pool: 142 Members</span>",
                 subBtn: "[KIRIM PENGAJUAN AKSES]",
                 subSpam: "Setelah submit, Anda akan diarahkan ke secure channel (Telegram).",
                 rulesTitle: "Aturan &<br>Risiko.",
@@ -583,17 +584,17 @@
                 testi2: "\"The High-Water Mark system is very fair. The managers only get a fee if my portfolio goes past its previous profit peak.\"",
                 testi3: "\"Hesitant at first, but the on-chain transparency gave me confidence to deploy serious capital. It's been a month and the AI algorithm's performance is incredibly stable.\"",
                 faqTitle: "F.A.Q",
-                faqQ1: "Q: How do I deposit?",
+                faqQ1: "<span>Q: How do I deposit?</span>",
                 faqA1: "A: Deposits use USDC on the Polygon (MATIC) network. Transfer instructions to the smart contract pool will be provided once your email clears the batch queue.",
-                faqQ2: "Q: Who holds the funds (private keys)?",
+                faqQ2: "<span>Q: Who holds the funds (private keys)?</span>",
                 faqA2: "A: Funds are locked in a Gnosis Safe (Multi-sig) wallet connected directly to Polymarket. We only execute trading logic and cannot run away with the funds (Rugpull-proof).",
-                faqQ3: "Q: What is the target profit percentage?",
+                faqQ3: "<span>Q: What is the target profit percentage?</span>",
                 faqA3: "A: There is no fixed return. The AI exploits market inefficiencies on Polymarket. Historically, our algorithm targets anomalies with potential yields of 10-25% per cycle, but actual results fluctuate.",
                 subTitle: "Whitelist <span class='text-accent'>Access.</span>",
-                subScarcity: "⚠️ BATCH 05: STRICT SELECTION [13 SLOTS LEFT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white'>(Access is not guaranteed. We cap the pool to protect AI win-rates)</span>",
-                subScarcityUrgent: "⚠️ BATCH 05: STRICT SELECTION [11 SLOTS LEFT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white'>(Access is not guaranteed. We cap the pool to protect AI win-rates)</span>",
+                subScarcity: "⚠️ BATCH 05: STRICT SELECTION [13 SLOTS LEFT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white block mt-1'>(Access is not guaranteed. We cap the pool to protect AI win-rates)</span>",
+                subScarcityUrgent: "⚠️ BATCH 05: STRICT SELECTION [11 SLOTS LEFT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white block mt-1'>(Access is not guaranteed. We cap the pool to protect AI win-rates)</span>",
                 subClose: "Not for everyone.<br><span class='text-accent'>Submit your alias to enter the system evaluation queue.</span>",
-                subProof: "<span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>⏱️ Active: 4 Cycles</span><span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>👥 Pool: 142 Members</span>",
+                subProof: "<span class='border-2 border-black dark:border-white px-3 md:px-4 py-2 bg-white dark:bg-black font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] md:dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>⏱️ Active: 4 Cycles</span><span class='border-2 border-black dark:border-white px-3 md:px-4 py-2 bg-white dark:bg-black font-bold shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] md:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[2px_2px_0px_0px_rgba(255,255,255,1)] md:dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>👥 Pool: 142 Members</span>",
                 subBtn: "[SUBMIT ACCESS REQUEST]",
                 subSpam: "Upon submission, you will be routed to our secure channel (Telegram).",
                 rulesTitle: "Rules &<br>Risks.",
@@ -622,14 +623,14 @@
                 if (el) {
                     // khusus handling question mark dan nested tags tanpa merusak logic Brutalist
                     if(key.startsWith('faqQ')) {
-                        el.innerHTML = content[key] + ' <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-3xl inline-block">+</span>';
+                        el.innerHTML = content[key] + ' <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-2xl md:text-3xl inline-block shrink-0">+</span>';
                     } else {
                         el.innerHTML = content[key];
                     }
                 }
             });
-            document.getElementById('btn-id').className = lang === 'id' ? 'px-4 py-1 bg-black text-white dark:bg-white dark:text-black transition-all border-2 border-transparent' : 'px-4 py-1 text-black dark:text-white opacity-40 border-2 border-transparent';
-            document.getElementById('btn-en').className = lang === 'en' ? 'px-4 py-1 bg-black text-white dark:bg-white dark:text-black transition-all border-2 border-transparent' : 'px-4 py-1 text-black dark:text-white opacity-40 border-2 border-transparent';
+            document.getElementById('btn-id').className = lang === 'id' ? 'px-2 md:px-4 py-1 bg-black text-white dark:bg-white dark:text-black transition-all border-2 border-transparent' : 'px-2 md:px-4 py-1 text-black dark:text-white opacity-40 border-2 border-transparent';
+            document.getElementById('btn-en').className = lang === 'en' ? 'px-2 md:px-4 py-1 bg-black text-white dark:bg-white dark:text-black transition-all border-2 border-transparent' : 'px-2 md:px-4 py-1 text-black dark:text-white opacity-40 border-2 border-transparent';
             
             if (mathChart) mathChart.destroy();
             if (edgeChart) edgeChart.destroy();
@@ -787,7 +788,7 @@
                             isDark ? '#FFFFFF' : '#000000', // System
                             isDark ? '#6B7280' : '#9CA3AF' // Ops (Gray)
                         ], 
-                        borderWidth: 8,
+                        borderWidth: 6,
                         borderColor: isDark ? '#000000' : '#FFFFFF',
                         hoverOffset: 10
                     }] 
@@ -798,7 +799,7 @@
                     cutout: '75%', 
                     animation: { animateScale: true, animateRotate: true, duration: 2000 },
                     layout: {
-                        padding: 20
+                        padding: 10
                     },
                     plugins: { 
                         legend: { 
@@ -869,7 +870,7 @@
         // Typewriter effect function
         function typeWriterLog(element, text, i = 0) {
             if (i === 0) {
-                element.innerHTML = `<span class="opacity-40">[${new Date().toLocaleTimeString('en-US', { hour12: false })}]</span> <span class="text-terminal">Pulse:</span> <span class="type-content typewriter-cursor"></span>`;
+                element.innerHTML = `<span class="opacity-40">[${new Date().toLocaleTimeString('en-US', { hour12: false })}]</span> <span class="text-terminal block sm:inline">Pulse:</span> <span class="type-content typewriter-cursor break-all"></span>`;
             }
             const typeContent = element.querySelector('.type-content');
             if (typeContent && i < text.length) {
@@ -883,7 +884,7 @@
         function addLog() {
             const msg = logs[Math.floor(Math.random() * logs.length)];
             const div = document.createElement('div');
-            div.className = "mb-4 font-mono";
+            div.className = "mb-4 font-mono text-[10px] md:text-xs";
             ledger.prepend(div);
             typeWriterLog(div, msg);
             
@@ -963,7 +964,7 @@
                 // Lock the form
                 submitBtn.disabled = true;
                 submitBtn.classList.remove('bg-accent', 'hover:bg-black', 'text-white', 'hover:text-white', 'dark:hover:bg-white', 'dark:hover:text-black');
-                submitBtn.classList.add('bg-black', 'text-terminal', 'border-terminal', 'hover:bg-black', 'hover:text-terminal');
+                submitBtn.classList.add('bg-black', 'text-terminal', 'border-terminal', 'hover:bg-black', 'hover:text-terminal', 'text-xs', 'md:text-lg');
                 document.getElementById('nameInput').disabled = true;
                 document.getElementById('emailInput').disabled = true;
 
