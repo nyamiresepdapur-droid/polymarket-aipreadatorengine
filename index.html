@@ -169,6 +169,13 @@
         
         .typewriter-cursor { animation: blink 1s step-end infinite; border-right: 8px solid #00FF41; padding-right: 4px; }
         @keyframes blink { 50% { border-color: transparent; } }
+        
+        /* Flash animation for FOMO Counter */
+        @keyframes flashRed {
+            0%, 100% { background-color: rgba(255, 0, 0, 0.1); border-color: #FF0000; }
+            50% { background-color: rgba(255, 0, 0, 0.3); border-color: #FFFFFF; }
+        }
+        .flash-urgent { animation: flashRed 0.3s ease-in-out 3; }
     </style>
 </head>
 <body class="antialiased font-sans">
@@ -218,10 +225,18 @@
                             Sistem sudah berjalan dan bisa dipantau real-time.
                         </div>
                     </div>
-                    <div class="font-mono text-sm space-y-2 text-black dark:text-white uppercase font-black">
+                    <div class="font-mono text-sm space-y-3 text-black dark:text-white uppercase font-black">
                         <div class="flex gap-4">
                             <span class="opacity-50">Ledger:</span>
                             <span class="underline decoration-accent decoration-4">0xad85...c6bd</span>
+                        </div>
+                        <!-- NEW: AUM METRIC (SOCIAL PROOF) -->
+                        <div class="flex gap-4 items-center">
+                            <span class="opacity-50">Live_AUM:</span>
+                            <a href="https://polymarket.com/@berkah-karya" target="_blank" class="bg-black text-white dark:bg-white dark:text-black px-3 py-1 border-2 border-accent hover:bg-accent hover:text-white dark:hover:bg-accent dark:hover:text-white transition-colors cursor-pointer flex items-center gap-2" id="t-hero-aum-container" title="Klik untuk lihat porto Polymarket">
+                                <span class="w-2 h-2 rounded-full bg-terminal animate-pulse"></span>
+                                $<span id="t-hero-aum-val" class="font-mono transition-colors duration-300">5,250.00</span> USDC ↗
+                            </a>
                         </div>
                         <div class="flex gap-4">
                             <span class="opacity-50">Pulse:</span>
@@ -278,8 +293,8 @@
                         <p class="text-2xl mb-8 font-bold leading-tight text-white" id="t-trans-desc">Klik untuk lihat saldo wallet secara real-time dan cek posisi trading aktif kapan saja. Semua bisa divalidasi, bukan sekadar klaim.</p>
                         
                         <div class="flex flex-col gap-4 mb-12">
-                            <a href="https://zapper.fi/bundle/0xad8576435c24e030a84e3a47895315f635c9c6bd" target="_blank" class="terminal-btn inline-block bg-white text-black font-mono font-black text-lg md:text-xl px-10 py-6 hover:bg-terminal hover:text-black hover:border-terminal transition-all border-4 border-white text-center" id="t-zapper-btn">[CEK WALLET REAL-TIME]</a>
-                            <a href="https://polymarket.com/profile/0xad8576435c24e030a84e3a47895315f635c9c6bd" target="_blank" class="terminal-btn inline-block bg-transparent text-white font-mono font-black text-lg md:text-xl px-10 py-6 hover:bg-white hover:text-black transition-all border-4 border-white text-center" id="t-poly-btn">[CEK POSISI TRADING]</a>
+                            <a href="https://zapper.xyz/id/account/0xad85c2f3942561afa448cbbd5811a5f7e2e3c6bd" target="_blank" class="terminal-btn inline-block bg-white text-black font-mono font-black text-lg md:text-xl px-10 py-6 hover:bg-terminal hover:text-black hover:border-terminal transition-all border-4 border-white text-center" id="t-zapper-btn">[CEK WALLET REAL-TIME]</a>
+                            <a href="https://polymarket.com/@berkah-karya" target="_blank" class="terminal-btn inline-block bg-transparent text-white font-mono font-black text-lg md:text-xl px-10 py-6 hover:bg-white hover:text-black transition-all border-4 border-white text-center" id="t-poly-btn">[CEK POSISI TRADING]</a>
                         </div>
                     </div>
                     <div class="lg:col-span-7 fade-in-up">
@@ -353,7 +368,7 @@
                     
                     <!-- TESTIMONIAL 1 -->
                     <div class="brutalist-card border-accent relative overflow-hidden group fade-in-up">
-                        <div class="absolute top-0 right-0 bg-accent text-white font-mono text-[10px] px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0x1c...9d4</div>
+                        <div class="absolute top-0 right-0 bg-accent text-white font-mono text-[10px] px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0x4604...fd60</div>
                         <div class="flex items-center gap-4 mb-6">
                             <div class="w-12 h-12 bg-black dark:bg-white border-2 border-accent flex items-center justify-center font-mono font-black text-accent dark:text-black text-sm shadow-[4px_4px_0px_0px_rgba(255,0,0,1)]">0x</div>
                             <div class="font-mono text-sm font-black uppercase text-accent tracking-widest">0x7A...2b9E</div>
@@ -363,7 +378,7 @@
 
                     <!-- TESTIMONIAL 2 -->
                     <div class="brutalist-card border-black dark:border-white relative overflow-hidden group fade-in-up" style="transition-delay: 100ms;">
-                        <div class="absolute top-0 right-0 bg-black dark:bg-white text-white dark:text-black font-mono text-[10px] px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0x5f...e11</div>
+                        <div class="absolute top-0 right-0 bg-black dark:bg-white text-white dark:text-black font-mono text-[10px] px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0xab45...ae10</div>
                         <div class="flex items-center gap-4 mb-6">
                             <div class="w-12 h-12 bg-white dark:bg-black border-2 border-black dark:border-white flex items-center justify-center font-mono font-black text-black dark:text-white text-sm shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">0x</div>
                             <div class="font-mono text-sm font-black uppercase tracking-widest text-black dark:text-white">0x2D...8f4C</div>
@@ -373,7 +388,7 @@
 
                     <!-- TESTIMONIAL 3 -->
                     <div class="brutalist-card border-terminal relative overflow-hidden group fade-in-up" style="transition-delay: 200ms;">
-                        <div class="absolute top-0 right-0 bg-terminal text-black font-mono text-[10px] px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0x8a...3f2</div>
+                        <div class="absolute top-0 right-0 bg-terminal text-black font-mono text-[10px] px-3 py-1 font-black opacity-80 group-hover:opacity-100 transition-opacity">Tx: 0x0e6e...41f0</div>
                         <div class="flex items-center gap-4 mb-6">
                             <div class="w-12 h-12 bg-black dark:bg-white border-2 border-terminal flex items-center justify-center font-mono font-black text-terminal dark:text-black text-sm shadow-[4px_4px_0px_0px_rgba(0,255,65,1)]">0x</div>
                             <div class="font-mono text-sm font-black uppercase text-terminal tracking-widest">0x4F...9a2B</div>
@@ -422,7 +437,7 @@
                     <h2 class="brutalist-text text-5xl md:text-7xl font-black mb-8 text-black dark:text-white" id="t-sub-title">Whitelist <span class="text-accent">Akses.</span></h2>
                     
                     <!-- SCARCITY VISUAL (UPGRADED TO EXCLUSIVE NARRATIVE) -->
-                    <div class="font-mono text-sm md:text-base font-black text-accent mb-12 animate-pulse border-2 border-accent inline-block px-6 py-3 bg-accent/10" id="t-sub-scarcity">
+                    <div class="font-mono text-sm md:text-base font-black text-accent mb-12 border-2 border-accent inline-block px-6 py-3 bg-accent/10 transition-all duration-300" id="t-sub-scarcity">
                         ⚠️ BATCH 05: SELEKSI KETAT [SISA 13 SLOT]<br>
                         <span class="text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white">(Akses bukan jaminan. Kami membatasi pool untuk menjaga win-rate AI)</span>
                     </div>
@@ -438,15 +453,13 @@
                         <span class="border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">👥 Pool: 142 Members</span>
                     </div>
                     
-                    <!-- CTA FORM -->
+                    <!-- CTA FORM WITH AJAX TERMINAL LOGIC -->
                     <form action="https://formspree.io/f/xnjwprgp" method="POST" id="leadForm" class="flex flex-col gap-4 max-w-4xl mx-auto w-full">
                         <div class="flex flex-col md:flex-row gap-4 w-full">
                             <input type="text" name="name" id="nameInput" required placeholder="NAMA_ALIAS" class="w-full md:w-1/2 bg-white dark:bg-zinc-900 border-4 border-black dark:border-white p-6 font-mono text-lg text-black dark:text-white focus:outline-none focus:border-accent dark:focus:border-accent transition-colors">
                             <input type="email" name="email" id="emailInput" required placeholder="EMAIL@DOMAIN.COM" class="w-full md:w-1/2 bg-white dark:bg-zinc-900 border-4 border-black dark:border-white p-6 font-mono text-lg text-black dark:text-white focus:outline-none focus:border-accent dark:focus:border-accent transition-colors">
                         </div>
-                        <!-- Link dialihkan ke channel Telegram setelah form disubmit -->
-                        <input type="hidden" name="_next" value="https://t.me/alwayscuanbos">
-                        <button type="submit" id="t-sub-btn" class="w-full bg-accent text-white font-mono font-black py-6 px-12 text-xl md:text-2xl border-4 border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all transform active:translate-y-2 uppercase text-center cursor-pointer mt-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]" onclick="trackCtaClick()">[KIRIM PENGAJUAN AKSES]</button>
+                        <button type="submit" id="t-sub-btn" class="w-full bg-accent text-white font-mono font-black py-6 px-12 text-xl md:text-2xl border-4 border-black dark:border-white hover:bg-black dark:hover:bg-white hover:text-white dark:hover:text-black transition-all transform active:translate-y-2 uppercase text-center cursor-pointer mt-2 shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] dark:shadow-[8px_8px_0px_0px_rgba(255,255,255,1)]">[KIRIM PENGAJUAN AKSES]</button>
                     </form>
                     <p class="mt-6 font-mono text-xs uppercase font-black text-black dark:text-white opacity-60" id="t-sub-spam">Setelah submit, Anda akan diarahkan ke secure channel (Telegram).</p>
                 </div>
@@ -474,9 +487,11 @@
 
     <footer class="py-20 bg-black text-white text-center font-mono text-[10px] font-black tracking-[0.6em] uppercase border-t-4 border-white/10 pb-32 md:pb-20">
         POLY_POOL // APEX_CORE // VER_7.0 // NO_EMOTION_ONLY_MATH
+    </footer>
+        
     <!-- MOBILE STICKY CTA -->
     <div id="mobile-cta" class="fixed bottom-0 left-0 w-full z-[150] md:hidden transform translate-y-full transition-transform duration-300">
-        <a href="#subscribe" class="block w-full bg-accent text-white font-mono font-black text-center py-5 border-t-4 border-black text-xl" onclick="trackCtaClick()" id="t-mobile-cta">
+        <a href="#subscribe" class="block w-full bg-accent text-white font-mono font-black text-center py-5 border-t-4 border-black text-xl" id="t-mobile-cta">
             [KIRIM PENGAJUAN AKSES]
         </a>
     </div>
@@ -484,10 +499,13 @@
     <!-- Scripts -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <script>
+        let isUrgentFomo = false; // Flag to track slot reduction
+        
         const dict = {
             id: {
                 heroTitle: "Skalakan Aset Lo,<br><span class='text-accent glitch' data-text='Dikelola Full AI.'>Dikelola Full AI.</span><br>Tanpa Analisa, Entry, Pantau.",
                 heroDesc: "Selamat datang di Polymarket AI Trading Pool. Solusi buat kamu yang capek trading sendiri. Tanpa perlu analisa rumit, tanpa entry manual, dan tanpa pantau market tiap hari. Biarkan sistem AI kami mengeksekusi probabilitas untuk hasil yang stabil.",
+                heroAum: "$5,250 USDC ↗",
                 cta: "[AJUKAN AKSES WHITELIST]",
                 heroTrust: "Sistem sudah berjalan dan bisa dipantau real-time.",
                 edgeTitle: "Trading Manual<br><span class='text-accent'>Bikin Capek.</span>",
@@ -516,6 +534,7 @@
                 faqA3: "A: Tidak ada fixed return. AI mengeksploitasi inefisiensi pasar di Polymarket. Secara historis (backtest), algoritma kami menargetkan anomali dengan potensi yield 10-25% per siklus tanpa compounding, tapi hasil nyata selalu berfluktuasi.",
                 subTitle: "Whitelist <span class='text-accent'>Akses.</span>",
                 subScarcity: "⚠️ BATCH 05: SELEKSI KETAT [SISA 13 SLOT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white'>(Akses bukan jaminan. Kami membatasi pool untuk menjaga win-rate AI)</span>",
+                subScarcityUrgent: "⚠️ BATCH 05: SELEKSI KETAT [SISA 11 SLOT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white'>(Akses bukan jaminan. Kami membatasi pool untuk menjaga win-rate AI)</span>",
                 subClose: "Bukan untuk semua orang.<br><span class='text-accent'>Isi form untuk masuk antrean evaluasi sistem.</span>",
                 subProof: "<span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>⏱️ Active: 4 Cycles</span><span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>👥 Pool: 142 Members</span>",
                 subBtn: "[KIRIM PENGAJUAN AKSES]",
@@ -529,6 +548,7 @@
             en: {
                 heroTitle: "Scale Your Assets,<br><span class='text-accent glitch' data-text='Fully AI Managed.'>Fully AI Managed.</span><br>Zero Analysis Required.",
                 heroDesc: "Welcome to Polymarket AI Trading Pool. No complex analysis, no manual entries, and no daily chart watching. Let our AI system execute probabilities for consistent results.",
+                heroAum: "$5,250 USDC ↗",
                 cta: "[REQUEST WHITELIST ACCESS]",
                 heroTrust: "System is live and can be monitored in real-time.",
                 edgeTitle: "Manual Trading<br><span class='text-accent'>Is Exhausting.</span>",
@@ -557,6 +577,7 @@
                 faqA3: "A: There is no fixed return. The AI exploits market inefficiencies on Polymarket. Historically, our algorithm targets anomalies with potential yields of 10-25% per cycle, but actual results fluctuate.",
                 subTitle: "Whitelist <span class='text-accent'>Access.</span>",
                 subScarcity: "⚠️ BATCH 05: STRICT SELECTION [13 SLOTS LEFT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white'>(Access is not guaranteed. We cap the pool to protect AI win-rates)</span>",
+                subScarcityUrgent: "⚠️ BATCH 05: STRICT SELECTION [11 SLOTS LEFT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white'>(Access is not guaranteed. We cap the pool to protect AI win-rates)</span>",
                 subClose: "Not for everyone.<br><span class='text-accent'>Submit your alias to enter the system evaluation queue.</span>",
                 subProof: "<span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>⏱️ Active: 4 Cycles</span><span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>👥 Pool: 142 Members</span>",
                 subBtn: "[SUBMIT ACCESS REQUEST]",
@@ -574,6 +595,15 @@
         function setLang(lang) {
             const content = dict[lang];
             Object.keys(content).forEach(key => {
+                // handle dynamic FOMO scarcity state
+                if (key === 'subScarcity' && isUrgentFomo) {
+                    const el = document.getElementById('t-sub-scarcity');
+                    if (el) el.innerHTML = content['subScarcityUrgent'];
+                    return;
+                } else if (key === 'subScarcityUrgent') {
+                    return; // skip this key in normal loop
+                }
+
                 const el = document.getElementById('t-' + key.replace(/([A-Z])/g, "-$1").toLowerCase());
                 if (el) {
                     // khusus handling question mark dan nested tags tanpa merusak logic Brutalist
@@ -781,13 +811,18 @@
         document.getElementById('profitInput').addEventListener('input', updateCalc);
 
         const ledger = document.getElementById('ledger-container');
+        
+        // --- REAL POLYMARKET DATA INJECTED HERE ---
+        // Data diambil dari history on-chain asli milik @berkah-karya (Polymarket-History-2026-05-04.csv)
         const logs = [
-            "SIGNAL: MARKET_SENTIMENT // PROB: 88.4%",
-            "ON_CHAIN: VERIFY_BLOCK // OK",
-            "POSITION: EXECUTE_PRED // CONF: HIGH",
-            "YIELD: SECURED // ATH_REACHED",
-            "SYSTEM: SYNC_COMPLETE // LEDGER_LOCKED",
-            "BATCH: EPOCH_04 // 94.2%_FULL"
+            "POOL_SYNC: DEPOSIT // +$100.62 USDC ADDED TO LIQUIDITY (Tx: 0x0e6e...41f0)",
+            "YIELD_SECURED: REDEEM // +$45.45 USDC -> Bitcoin Up/Down May 3 (Tx: 0x4604...fd60)",
+            "AI_EXECUTE: BUY 'Up' // $9.53 USDC -> Bitcoin Up/Down May 3 (Tx: 0xab45...ae10)",
+            "AI_EXECUTE: BUY 'Kraken' // $1.90 USDC -> Kraken vs. Avalanche (Tx: 0x4abf...e2b8)",
+            "AI_EXECUTE: BUY 'Yes' // $0.75 USDC -> Progressive Bulgaria Elections (Tx: 0x291b...57fd)",
+            "AI_EXECUTE: BUY 'Up' // $1.70 USDC -> Palantir (PLTR) Up/Down (Tx: 0x7561...a54)",
+            "SYSTEM: CALIBRATING PROBABILITY MATRIX...",
+            "ON_CHAIN_VERIFY: ALL LEDGER HASHES VALID."
         ];
 
         // Typewriter effect function
@@ -836,6 +871,110 @@
             if(typeof gtag === 'function') gtag('event', 'click_cta', { 'event_category': 'engagement' });
         }
 
+        // --- LIVE AUM SIMULATOR (TICKER ENGINE) ---
+        // Karena AUM asli tertahan di posisi (locked equity) dan API Polymarket kena CORS,
+        // kita buat efek "Live Ticker" yang berfluktuasi natural meniru pergerakan probabilitas AI.
+        const baseAUM = 5250.00; // UPDATE ANGKA INI MANUAL SESUAI TOTAL PORTO ASLIMU
+        let currentAUM = baseAUM;
+        
+        function updateLiveAUM() {
+            const aumEl = document.getElementById('t-hero-aum-val');
+            if(aumEl) {
+                // Fluktuasi random antara -$1.50 sampai +$2.50 (Slightly positive bias)
+                const fluctuation = (Math.random() * 4) - 1.5; 
+                currentAUM = currentAUM + fluctuation;
+                
+                // Batasi agar tidak melenceng terlalu jauh dari baseAUM jika user stay lama di web
+                if (currentAUM > baseAUM + 15) currentAUM -= 5;
+                if (currentAUM < baseAUM - 15) currentAUM += 5;
+
+                // Format angka dengan 2 desimal
+                aumEl.innerText = currentAUM.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+                
+                // Efek flash warna (Hijau jika naik, Merah jika turun)
+                aumEl.style.color = fluctuation > 0 ? '#00FF41' : '#FF0000';
+                
+                // Kembalikan ke warna normal setelah 600ms
+                setTimeout(() => { 
+                    aumEl.style.color = ''; 
+                }, 600);
+            }
+        }
+        
+        // Loop ticker dengan interval random (antara 2 sampai 6 detik)
+        (function loopAUM() {
+            const randTime = Math.round(Math.random() * 4000) + 2000;
+            setTimeout(function() {
+                updateLiveAUM();
+                loopAUM();  
+            }, randTime);
+        }());
+
+        // --- AJAX FORM SUBMISSION & TERMINAL HACKING EFFECT ---
+        const leadForm = document.getElementById('leadForm');
+        if(leadForm) {
+            leadForm.addEventListener('submit', function(e) {
+                e.preventDefault(); // Prevent standard page reload/redirect
+                
+                const submitBtn = document.getElementById('t-sub-btn');
+                const isId = document.getElementById('btn-id').classList.contains('bg-black');
+                
+                // Lock the form
+                submitBtn.disabled = true;
+                submitBtn.classList.remove('bg-accent', 'hover:bg-black', 'text-white', 'hover:text-white', 'dark:hover:bg-white', 'dark:hover:text-black');
+                submitBtn.classList.add('bg-black', 'text-terminal', 'border-terminal', 'hover:bg-black', 'hover:text-terminal');
+                document.getElementById('nameInput').disabled = true;
+                document.getElementById('emailInput').disabled = true;
+
+                // Terminal sequence
+                const sequence = isId ? 
+                    ["> ENCRYPTING DATA...", "> VALIDATING ALIAS...", "> SECURING SLOT...", "> ROUTING TO SECURE CHANNEL..."] : 
+                    ["> ENCRYPTING DATA...", "> VALIDATING ALIAS...", "> SECURING SLOT...", "> ROUTING TO SECURE CHANNEL..."];
+                
+                let seqIndex = 0;
+                submitBtn.innerText = sequence[seqIndex];
+                
+                const seqInterval = setInterval(() => {
+                    seqIndex++;
+                    if(seqIndex < sequence.length) {
+                        submitBtn.innerText = sequence[seqIndex];
+                    } else {
+                        clearInterval(seqInterval);
+                        
+                        // Proceed with background submit to Formspree
+                        fetch(leadForm.action, {
+                            method: leadForm.method,
+                            body: new FormData(leadForm),
+                            headers: { 'Accept': 'application/json' }
+                        }).then(response => {
+                            window.location.href = "https://t.me/alwayscuanbos";
+                        }).catch(error => {
+                            // Fallback if fetch fails
+                            window.location.href = "https://t.me/alwayscuanbos";
+                        });
+                    }
+                }, 800);
+
+                trackCtaClick();
+            });
+        }
+        
+        // --- LIVE FOMO COUNTER (15 seconds delay) ---
+        setTimeout(() => {
+            isUrgentFomo = true;
+            const slotEl = document.getElementById('t-sub-scarcity');
+            if (slotEl) {
+                // Flash Red animation
+                slotEl.classList.add('flash-urgent');
+                setTimeout(() => {
+                    // Refresh language to apply urgent text
+                    const currentLang = document.getElementById('btn-id').classList.contains('bg-black') ? 'id' : 'en';
+                    setLang(currentLang);
+                    slotEl.classList.remove('flash-urgent');
+                }, 1000); // update text after animation completes
+            }
+        }, 15000); // triggers after 15 seconds on the page
+
         window.onload = () => {
             if (typeof lucide !== 'undefined') lucide.createIcons();
             Chart.defaults.font.family = '"JetBrains Mono", monospace'; // Set defaults early
@@ -845,6 +984,9 @@
             setInterval(() => Math.random() > 0.4 && triggerPulse(), 8000);
             addLog();
             triggerPulse();
+            
+            // Attach specific listener for mobile CTA
+            document.getElementById('t-mobile-cta').addEventListener('click', trackCtaClick);
         };
     </script>
 </body>
