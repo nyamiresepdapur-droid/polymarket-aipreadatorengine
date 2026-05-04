@@ -1,0 +1,766 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>POLYMARKET AI // APEX V7</title>
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="POLYMARKET AI // APEX V7 - Trading Pool">
+    <meta property="og:description" content="Mulai $100, Dana Lo Dikelola AI — Tanpa Perlu Trading Sendiri. Sistem sudah berjalan dan bisa dipantau real-time.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1642104704074-907c0698cbd9?q=80&w=1200&auto=format&fit=crop">
+    <meta property="og:url" content="https://your-domain.com">
+
+    <!-- ========================================== -->
+    <!-- ⚠️ TRACKING PIXELS & ANALYTICS SECTION ⚠️  -->
+    <!-- ========================================== -->
+    
+    <!-- Meta Pixel Code -->
+    <script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    // TODO: Ganti YOUR_META_PIXEL_ID dengan ID Pixel Meta kamu
+    fbq('init', 'YOUR_META_PIXEL_ID');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=YOUR_META_PIXEL_ID&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <!-- TikTok Pixel Code -->
+    <script>
+    !function (w, d, t) {
+      w.TiktokAnalyticsObject=t;var ttq=w[t]=w[t]||[];ttq.methods=["page","track","identify","instances","debug","on","off","once","ready","alias","group","enableCookie","disableCookie"];ttq.setAndDefer=function(t,e){t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}};for(var i=0;i<ttq.methods.length;i++)ttq.setAndDefer(ttq,ttq.methods[i]);ttq.instance=function(t){for(var e=ttq._i[t]||[],n=0;n<ttq.methods.length;n++)ttq.setAndDefer(e,ttq.methods[n]);return e};ttq.load=function(e,n){var i="https://analytics.tiktok.com/i18n/pixel/events.js";ttq._i=ttq._i||{},ttq._i[e]=[],ttq._i[e]._u=i,ttq._t=ttq._t||{},ttq._t[e]=+new Date,ttq._o=ttq._o||{},ttq._o[e]=n||{};var o=document.createElement("script");o.type="text/javascript",o.async=!0,o.src=i+"?sdkid="+e+"&lib="+t;var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(o,a)};
+      // TODO: Ganti YOUR_TIKTOK_PIXEL_ID dengan ID Pixel TikTok kamu
+      ttq.load('YOUR_TIKTOK_PIXEL_ID');
+      ttq.page();
+    }(window, document, 'ttq');
+    </script>
+    <!-- End TikTok Pixel Code -->
+
+    <!-- Google Analytics / Gtag -->
+    <!-- TODO: Ganti YOUR_GA_MEASUREMENT_ID dengan Measurement ID Google Analytics kamu -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_MEASUREMENT_ID"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      // TODO: Ganti YOUR_GA_MEASUREMENT_ID dengan Measurement ID Google Analytics kamu
+      gtag('config', 'YOUR_GA_MEASUREMENT_ID');
+    </script>
+    <!-- End Google Analytics -->
+    <!-- ========================================== -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=JetBrains+Mono:wght@400;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'media',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['"JetBrains Mono"', 'monospace'],
+                    },
+                    colors: {
+                        black: '#000000',
+                        white: '#FFFFFF',
+                        accent: '#FF0000',
+                        terminal: '#00FF41',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Base Reset & Absolute Contrast - Force visibility */
+        body { 
+            @apply bg-white text-black dark:bg-black dark:text-white transition-colors duration-300; 
+            overflow-x: hidden; 
+        }
+        
+        .brutalist-text { text-transform: uppercase; letter-spacing: -0.06em; line-height: 0.85; }
+        
+        .chart-container { 
+            position: relative; 
+            width: 100%; 
+            max-width: 800px; 
+            margin: auto; 
+            height: 400px; 
+            @apply border-4 border-black dark:border-white p-6 bg-white dark:bg-black;
+        }
+
+        .fade-in-up { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .fade-in-up.visible { opacity: 1; transform: translateY(0); }
+        
+        /* Grid Overlay */
+        .grid-bg {
+            background-image: radial-gradient(circle, currentColor 1px, transparent 1px);
+            background-size: 40px 40px;
+            @apply opacity-[0.2] dark:opacity-[0.25];
+        }
+
+        .scanline {
+            width: 100%; height: 6px; background: rgba(255, 0, 0, 0.25);
+            position: absolute; top: 0; z-index: 10; animation: scan 5s linear infinite;
+        }
+        @keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
+        
+        .brutalist-card { 
+            @apply border-4 border-black dark:border-white shadow-[12px_12px_0px_0px_rgba(0,0,0,1)] dark:shadow-[12px_12px_0px_0px_rgba(255,255,255,1)] bg-white dark:bg-black p-8; 
+        }
+
+        .btn-apex { 
+            @apply bg-black text-white dark:bg-white dark:text-black font-mono font-black py-6 px-12 text-2xl hover:bg-accent hover:text-white dark:hover:bg-accent dark:hover:text-white transition-all transform active:translate-y-2 border-4 border-black dark:border-white uppercase text-center cursor-pointer; 
+        }
+        
+        /* Custom Input Styling */
+        input[type=range] { @apply appearance-none bg-transparent w-full cursor-pointer; }
+        input[type=range]::-webkit-slider-runnable-track { @apply bg-black dark:bg-white h-2; }
+        input[type=range]::-webkit-slider-thumb { @apply appearance-none bg-accent h-10 w-10 border-4 border-black dark:border-white -mt-4; }
+
+        .activity-toast { 
+            @apply bg-black text-white dark:bg-white dark:text-black p-4 border-4 border-terminal font-mono text-[11px] mb-4 shadow-2xl translate-x-full transition-transform duration-500 ease-out; 
+        }
+        .activity-toast.show { @apply translate-x-0; }
+
+        /* Detail/Summary clean */
+        details > summary { list-style: none; }
+        details > summary::-webkit-details-marker { display: none; }
+    </style>
+</head>
+<body class="antialiased font-sans">
+
+    <div class="fixed inset-0 grid-bg pointer-events-none"></div>
+
+    <div id="activity-container" class="fixed bottom-10 right-10 z-[200] w-80 pointer-events-none"></div>
+
+    <!-- Header -->
+    <header class="fixed top-0 w-full bg-white dark:bg-black z-[100] border-b-4 border-black dark:border-white">
+        <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="font-mono font-black tracking-tighter text-2xl text-black dark:text-white">POLY_POOL // APEX_V7</div>
+            <div class="flex items-center gap-8">
+                <div class="flex border-4 border-black dark:border-white p-1 font-mono text-xs font-black bg-white dark:bg-black">
+                    <button id="btn-id" class="px-4 py-1 bg-black text-white dark:bg-white dark:text-black border-2 border-transparent" onclick="setLang('id')">ID</button>
+                    <button id="btn-en" class="px-4 py-1 text-black dark:text-white opacity-40 hover:opacity-100" onclick="setLang('en')">EN</button>
+                </div>
+                <div class="hidden lg:flex items-center gap-3 font-mono text-xs font-black text-black dark:text-white">
+                    <span class="w-3 h-3 bg-terminal animate-pulse"></span>
+                    <span class="tracking-widest uppercase">System_Active</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="relative">
+        <!-- SECTION 1: HERO -->
+        <section id="hero" class="min-h-screen flex flex-col justify-center px-6 pt-32 pb-20 max-w-[1400px] mx-auto bg-white dark:bg-black">
+            <div class="max-w-6xl fade-in-up">
+                <div class="inline-block px-4 py-2 bg-accent text-white text-xs font-mono font-black mb-12 uppercase tracking-widest border-4 border-black dark:border-white">
+                    Initial Deployment: Phase 01
+                </div>
+                <!-- FIXED CONTRAST FOR HERO TITLE -->
+                <h1 class="brutalist-text text-7xl md:text-9xl lg:text-[11rem] font-black mb-12 tracking-tighter text-black dark:text-white" id="t-hero-title">
+                    Mulai $100,<br><span class="text-accent">Dana Dikelola AI.</span><br>Tanpa Analisa, Entry, Pantau.
+                </h1>
+                <p class="text-2xl md:text-4xl text-black dark:text-white font-bold max-w-4xl mb-16 leading-tight" id="t-hero-desc">
+                    Selamat datang di Polymarket AI Trading Pool. Solusi buat kamu yang capek trading sendiri. Tanpa perlu analisa rumit, tanpa entry manual, dan tanpa pantau market tiap hari. Biarkan sistem AI kami mengeksekusi probabilitas untuk hasil yang stabil.
+                </p>
+                <div class="flex flex-col md:flex-row gap-10 items-start md:items-center">
+                    <div class="flex flex-col items-start gap-4">
+                        <a href="#subscribe" class="btn-apex w-full md:w-auto" id="t-cta" onclick="trackCtaClick()">
+                            [JOIN TRADING POOL]
+                        </a>
+                        <!-- TRUST SIGNAL -->
+                        <div class="font-bold text-lg text-accent animate-pulse" id="t-hero-trust">
+                            Sistem sudah berjalan dan bisa dipantau real-time.
+                        </div>
+                    </div>
+                    <div class="font-mono text-sm space-y-2 text-black dark:text-white uppercase font-black">
+                        <div class="flex gap-4">
+                            <span class="opacity-50">Ledger:</span>
+                            <span class="underline decoration-accent decoration-4">0xad85...c6bd</span>
+                        </div>
+                        <div class="flex gap-4">
+                            <span class="opacity-50">Pulse:</span>
+                            <span class="text-terminal">Online // Epoch_04</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 2: THE EDGE -->
+        <section id="edge" class="py-40 border-t-4 border-black dark:border-white bg-white dark:bg-black">
+            <div class="max-w-[1400px] mx-auto px-6">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-20 items-center">
+                    <div class="lg:col-span-5 fade-in-up">
+                        <h2 class="brutalist-text text-6xl md:text-8xl font-black mb-12 text-black dark:text-white" id="t-edge-title">Trading Manual<br><span class="text-accent">Bikin Capek.</span></h2>
+                        <div class="space-y-8 text-xl font-bold text-black dark:text-white" id="t-edge-desc">
+                            <p class="opacity-80 border-l-4 border-accent pl-4">Masalahnya bukan di market… tapi di konsistensi keputusan. Trading butuh waktu, fokus, dan mental. Biarkan AI kami yang bekerja 24/7 secara objektif tanpa melibatkan perasaan.</p>
+                            <div class="brutalist-card border-accent">
+                                <span class="text-accent font-black uppercase tracking-widest block mb-4">Logic_Unit:</span>
+                                <p class="font-mono text-sm leading-relaxed text-black dark:text-white" id="t-edge-logic">Ini adalah sistem fund management / trading pool. Dana member digabung mulai dari $100 dan dijalankan sepenuhnya oleh algoritma AI.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:col-span-7 fade-in-up">
+                        <div class="chart-container shadow-2xl overflow-hidden">
+                            <div class="scanline"></div>
+                            <div class="flex justify-between items-center mb-6 font-mono text-[10px] font-black uppercase text-black dark:text-white">
+                                <span>Performa_Engine</span>
+                                <span class="text-accent">Epoch_Simulation_30</span>
+                            </div>
+                            <div class="h-[300px]"><canvas id="edgeChart"></canvas></div>
+                        </div>
+                        <div class="mt-8 grid grid-cols-2 gap-4 font-mono text-xs font-black uppercase">
+                            <div class="p-4 border-4 border-black dark:border-white bg-black text-white dark:bg-white dark:text-black text-center">
+                                AI CALCULATION: +422%
+                            </div>
+                            <div class="p-4 border-4 border-black dark:border-white text-center text-black dark:text-white bg-white dark:bg-black">
+                                HUMAN BIAS: -12.4%
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: TRANSAPRENCY -->
+        <section id="transparency" class="py-40 bg-black text-white overflow-hidden relative border-t-4 border-white">
+            <div class="max-w-[1400px] mx-auto px-6 relative z-10 text-white">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-20">
+                    <div class="lg:col-span-5 fade-in-up">
+                        <h2 class="brutalist-text text-6xl md:text-8xl font-black mb-12 text-white" id="t-trans-title">100%<br>Transparan.</h2>
+                        <p class="text-2xl mb-8 font-bold leading-tight text-white" id="t-trans-desc">Klik untuk lihat saldo wallet secara real-time dan cek posisi trading aktif kapan saja. Semua bisa divalidasi, bukan sekadar klaim.</p>
+                        
+                        <div class="flex flex-col gap-4 mb-12">
+                            <a href="https://zapper.fi/bundle/0xad8576435c24e030a84e3a47895315f635c9c6bd" target="_blank" class="inline-block bg-white text-black font-mono font-black text-lg md:text-xl px-10 py-6 hover:bg-accent hover:text-white transition-all border-4 border-white text-center" id="t-zapper-btn">[CEK WALLET REAL-TIME]</a>
+                            <a href="https://polymarket.com/profile/0xad8576435c24e030a84e3a47895315f635c9c6bd" target="_blank" class="inline-block bg-transparent text-white font-mono font-black text-lg md:text-xl px-10 py-6 hover:bg-white hover:text-black transition-all border-4 border-white text-center" id="t-poly-btn">[CEK POSISI TRADING]</a>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-7 fade-in-up">
+                        <div class="bg-black border-4 border-white h-[500px] flex flex-col p-8 font-mono text-xs shadow-[0_0_80px_rgba(255,255,255,0.15)]">
+                            <div class="flex justify-between items-center mb-8 pb-4 border-b-4 border-white/20">
+                                <span class="font-black uppercase tracking-widest text-white">Live_Sync_Ledger</span>
+                                <span class="text-terminal animate-pulse font-black uppercase tracking-widest">● Streaming_Data</span>
+                            </div>
+                            <div id="ledger-container" class="space-y-4 overflow-hidden flex-grow text-white font-black"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 4: THE MATH -->
+        <section id="math" class="py-40 border-t-4 border-black dark:border-white bg-white dark:bg-black">
+            <div class="max-w-[1400px] mx-auto px-6">
+                <div class="mb-32 fade-in-up">
+                    <h2 class="brutalist-text text-7xl md:text-9xl font-black mb-12 text-center text-black dark:text-white" id="t-math-title">Profit Sharing<br><span class="text-accent">High-Water Mark.</span></h2>
+                    <p class="text-3xl text-center font-black text-black dark:text-white uppercase tracking-tighter max-w-4xl mx-auto opacity-80" id="t-math-desc">Sistem High-Water Mark: Fee management hanya kami ambil saat kamu mendapatkan profit, dan HANYA ketika nilai portofolio mencapai titik tertinggi baru (All-Time High).</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                    <div class="fade-in-up brutalist-card">
+                        <h3 class="font-mono font-black text-2xl mb-12 uppercase border-b-4 border-black dark:border-white pb-4 text-black dark:text-white" id="t-calc-title">Yield Simulator</h3>
+                        <div class="mb-16">
+                            <label class="block text-xs font-mono font-black mb-6 uppercase tracking-widest text-black dark:text-white">Simulasi Net Profit (USD)</label>
+                            <input type="range" id="profitInput" min="5000" max="250000" step="5000" value="50000">
+                            <div class="mt-8 text-7xl md:text-8xl font-mono font-black text-black dark:text-white" id="profitDisplay">$50,000</div>
+                        </div>
+                        <!-- FIXED CONTRAST FOR LABELS -->
+                        <div class="space-y-6 font-mono font-black uppercase">
+                            <div class="flex justify-between p-6 border-4 border-black dark:border-white bg-white dark:bg-black text-black dark:text-white">
+                                <span id="t-ops-label" class="text-black dark:text-white">Operasional (15%)</span>
+                                <span id="valOps" class="text-black dark:text-white"></span>
+                            </div>
+                            <div class="flex justify-between p-6 bg-accent text-white border-4 border-black dark:border-white">
+                                <span id="t-member-label" class="text-white">Porsi Member (60%)</span>
+                                <span id="valMember" class="text-white"></span>
+                            </div>
+                            <div class="flex justify-between p-6 border-4 border-black dark:border-white bg-white dark:bg-black text-black dark:text-white">
+                                <span id="t-system-label" class="text-black dark:text-white">System Fee (40%)</span>
+                                <span id="valSystem" class="text-black dark:text-white"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fade-in-up flex flex-col items-center">
+                        <div class="chart-container border-4 border-black dark:border-white bg-white dark:bg-black">
+                            <canvas id="mathChart"></canvas>
+                        </div>
+                        <p class="mt-10 font-mono text-xs uppercase font-black tracking-widest text-black dark:text-white opacity-40">Interactive Split Logic</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: TESTIMONIALS -->
+        <section id="testimonials" class="py-40 bg-zinc-100 dark:bg-black border-t-4 border-black dark:border-white">
+            <div class="max-w-[1400px] mx-auto px-6">
+                <h2 class="brutalist-text text-6xl md:text-8xl font-black mb-24 text-center text-black dark:text-white">Elite Network.</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                    <div class="brutalist-card border-terminal">
+                        <div class="flex gap-2 mb-6">
+                            <span class="w-3 h-3 bg-terminal"></span><span class="w-3 h-3 bg-terminal"></span>
+                        </div>
+                        <p class="text-xl font-bold mb-8 italic text-black dark:text-white" id="t-testi-1">"Sistemnya jalan sendiri tanpa harus gue pantau tiap hari. Jauh lebih tenang daripada trading manual, dan transparansi dompet di Zapper bikin nyaman."</p>
+                        <div class="font-mono text-xs font-black uppercase text-accent tracking-widest">Verified_Node: whale_jkt_01</div>
+                    </div>
+                    <div class="brutalist-card border-accent bg-black">
+                        <div class="flex gap-2 mb-6">
+                            <span class="w-3 h-3 bg-accent"></span><span class="w-3 h-3 bg-accent"></span>
+                        </div>
+                        <p class="text-xl font-bold mb-8 italic text-white" id="t-testi-2">"Sistem High-Water Mark ini fair banget. Pengelolanya beneran cuma dapet fee kalau porto gue naik ngelewatin puncak profit sebelumnya."</p>
+                        <div class="font-mono text-xs font-black uppercase text-white/50 tracking-widest">Verified_Node: hft_alpha_88</div>
+                    </div>
+                    <div class="brutalist-card border-terminal">
+                        <div class="flex gap-2 mb-6">
+                            <span class="w-3 h-3 bg-terminal"></span><span class="w-3 h-3 bg-terminal"></span>
+                        </div>
+                        <p class="text-xl font-bold mb-8 italic text-black dark:text-white" id="t-testi-3">"Awalnya ragu buat mulai, tapi karena minimal join bisa dari $100 jadi berani nyoba. Udah jalan sebulan dan performa algoritma AI-nya konsisten."</p>
+                        <div class="font-mono text-xs font-black uppercase text-accent tracking-widest">Verified_Node: quantum_predator</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: FAQ (NEW) -->
+        <section id="faq" class="py-40 bg-white dark:bg-black border-t-4 border-black dark:border-white">
+            <div class="max-w-[1000px] mx-auto px-6">
+                <h2 class="brutalist-text text-5xl md:text-7xl font-black mb-16 text-center text-black dark:text-white" id="t-faq-title">F.A.Q</h2>
+                <div class="space-y-6">
+                    <details class="brutalist-card cursor-pointer group" open>
+                        <summary class="font-mono font-black text-xl text-black dark:text-white flex justify-between items-center" id="t-faq-q1">
+                            Q: Gimana cara depositnya?
+                            <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-3xl inline-block">+</span>
+                        </summary>
+                        <p class="mt-6 font-bold text-lg text-black dark:text-white opacity-80" id="t-faq-a1">A: Deposit menggunakan USDC di jaringan Polygon (MATIC). Instruksi transfer ke smart contract pool akan diberikan setelah email kamu lolos antrean batch.</p>
+                    </details>
+                    <details class="brutalist-card cursor-pointer group">
+                        <summary class="font-mono font-black text-xl text-black dark:text-white flex justify-between items-center" id="t-faq-q2">
+                            Q: Siapa yang pegang dana (private key)?
+                            <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-3xl inline-block">+</span>
+                        </summary>
+                        <p class="mt-6 font-bold text-lg text-black dark:text-white opacity-80" id="t-faq-a2">A: Dana dikunci dalam wallet Gnosis Safe (Multi-sig) yang terhubung langsung dengan Polymarket. Kami hanya mengeksekusi logika trading, tidak bisa membawa lari dana (Rugpull-proof).</p>
+                    </details>
+                    <details class="brutalist-card cursor-pointer group">
+                        <summary class="font-mono font-black text-xl text-black dark:text-white flex justify-between items-center" id="t-faq-q3">
+                            Q: Berapa target persentase profitnya?
+                            <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-3xl inline-block">+</span>
+                        </summary>
+                        <p class="mt-6 font-bold text-lg text-black dark:text-white opacity-80" id="t-faq-a3">A: Tidak ada fixed return. AI mengeksploitasi inefisiensi pasar di Polymarket. Secara historis (backtest), algoritma kami menargetkan anomali dengan potensi yield 10-25% per siklus tanpa compounding, tapi hasil nyata selalu berfluktuasi.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: SUBSCRIBE / LEAD GEN -->
+        <section id="subscribe" class="py-40 bg-zinc-100 dark:bg-black border-t-4 border-black dark:border-white">
+            <div class="max-w-[1000px] mx-auto px-6 text-center">
+                <div class="fade-in-up">
+                    <h2 class="brutalist-text text-5xl md:text-7xl font-black mb-8 text-black dark:text-white" id="t-sub-title">Akses <span class="text-accent">Trading Pool.</span></h2>
+                    
+                    <!-- SCARCITY VISUAL (UPGRADED) -->
+                    <div class="font-mono text-sm md:text-base font-black text-accent mb-12 animate-pulse border-2 border-accent inline-block px-6 py-3 bg-accent/10" id="t-sub-scarcity">
+                        ⚠️ BATCH 05: 87% FULL [13 SLOTS LEFT]<br>
+                        <span class="text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white">(Dibatasi ketat untuk menjaga performa eksekusi AI)</span>
+                    </div>
+
+                    <!-- EMOTIONAL CLOSE & MINI PROOF (NEW) -->
+                    <p class="text-2xl md:text-3xl font-black mb-6 text-black dark:text-white leading-tight" id="t-sub-close">
+                        Gak semua orang cocok trading sendiri.<br>
+                        <span class="text-accent">Tapi semua orang bisa ikut sistem yang sudah jalan.</span>
+                    </p>
+                    
+                    <div class="flex flex-wrap justify-center gap-4 text-sm md:text-base font-mono mb-12 text-black dark:text-white" id="t-sub-proof">
+                        <span class="border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">⏱️ Active: 4 Cycles</span>
+                        <span class="border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]">👥 Pool: 142 Members</span>
+                    </div>
+                    
+                    <!-- CTA FORM -->
+                    <form id="leadForm" class="flex flex-col md:flex-row gap-4 justify-center items-center">
+                        <input type="email" id="emailInput" required placeholder="ENTER_YOUR_EMAIL@DOMAIN.COM" class="w-full md:w-2/3 bg-white dark:bg-zinc-900 border-4 border-black dark:border-white p-6 font-mono text-lg text-black dark:text-white focus:outline-none focus:border-accent dark:focus:border-accent transition-colors">
+                        <button type="submit" id="submitBtn" class="w-full md:w-auto btn-apex whitespace-nowrap min-w-[300px]">[GABUNG BATCH SEKARANG]</button>
+                    </form>
+                    <p class="mt-6 font-mono text-xs uppercase font-black text-black dark:text-white opacity-40" id="t-sub-spam">No spam. Only alpha.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 5: RULES -->
+        <section id="rules" class="py-40 bg-black text-white border-t-4 border-white">
+            <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20">
+                <div class="fade-in-up">
+                    <h2 class="brutalist-text text-6xl md:text-8xl font-black mb-12" id="t-rules-title">Aturan &<br>Risiko.</h2>
+                    <p class="text-3xl font-black mb-12 uppercase tracking-tighter text-white" id="t-rules-desc">Likuiditas yang stabil penting untuk eksekusi AI.</p>
+                    <p class="text-xl font-bold mb-12 border-l-8 border-accent pl-6 text-white" id="t-rules-detail">Setor dan Tarik (Withdraw) hanya diproses pada tanggal 1-10 setiap bulannya untuk menjaga performa trading.</p>
+                </div>
+                <div class="fade-in-up bg-accent p-8 brutalist-card text-white border-white shadow-none">
+                    <h3 class="brutalist-text text-xl font-black mb-6 text-white">RESIKO<br><span class="text-lg opacity-80 tracking-normal font-mono text-white">Cold Truth</span></h3>
+                    <div class="space-y-4 text-sm font-black leading-tight uppercase tracking-tighter text-white" id="t-disclaim-body">
+                        <p>Semua investasi memiliki risiko. Walaupun AI mengeksploitasi data probabilitas, kerugian tetap bisa terjadi.</p>
+                        <p>Gunakan selalu uang dingin (dana yang siap diresikokan) demi ketenangan pikiran.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="py-20 bg-black text-white text-center font-mono text-[10px] font-black tracking-[0.6em] uppercase border-t-4 border-white/10 pb-32 md:pb-20">
+        POLY_POOL // APEX_CORE // VER_7.0 // NO_EMOTION_ONLY_MATH
+    </footer>
+
+    <!-- MOBILE STICKY CTA (NEW) -->
+    <div id="mobile-cta" class="fixed bottom-0 left-0 w-full z-[150] md:hidden transform translate-y-full transition-transform duration-300">
+        <a href="#subscribe" class="block w-full bg-accent text-white font-mono font-black text-center py-5 border-t-4 border-black text-xl" onclick="trackCtaClick()" id="t-mobile-cta">
+            [GABUNG BATCH SEKARANG]
+        </a>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        const dict = {
+            id: {
+                heroTitle: "Mulai $100,<br><span class='text-accent'>Dana Dikelola AI.</span><br>Tanpa Analisa, Entry, Pantau.",
+                heroDesc: "Selamat datang di Polymarket AI Trading Pool. Solusi buat kamu yang capek trading sendiri. Tanpa perlu analisa rumit, tanpa entry manual, dan tanpa pantau market tiap hari. Biarkan sistem AI kami mengeksekusi probabilitas untuk hasil yang stabil.",
+                cta: "[JOIN TRADING POOL]",
+                heroTrust: "Sistem sudah berjalan dan bisa dipantau real-time.",
+                edgeTitle: "Trading Manual<br><span class='text-accent'>Bikin Capek.</span>",
+                edgeDesc: "<p class='opacity-80 border-l-4 border-accent pl-4'>Masalahnya bukan di market… tapi di konsistensi keputusan. Trading butuh waktu, fokus, dan mental. Biarkan AI kami yang bekerja 24/7 secara objektif tanpa melibatkan perasaan.</p>",
+                edgeLogic: "Ini adalah sistem fund management / trading pool. Dana member digabung mulai dari $100 dan dijalankan sepenuhnya oleh algoritma AI.",
+                transTitle: "100%<br>Transparan.",
+                transDesc: "Klik untuk lihat saldo wallet secara real-time dan cek posisi trading aktif kapan saja. Semua bisa divalidasi, bukan sekadar klaim.",
+                zapperBtn: "[CEK WALLET REAL-TIME]",
+                polyBtn: "[CEK POSISI TRADING]",
+                mathTitle: "Profit Sharing<br><span class='text-accent'>High-Water Mark.</span>",
+                mathDesc: "Sistem High-Water Mark: Fee management hanya kami ambil saat kamu mendapatkan profit, dan HANYA ketika nilai portofolio mencapai titik tertinggi baru (All-Time High).",
+                calcTitle: "Yield Simulator",
+                opsLabel: "Operasional (15%)",
+                memberLabel: "Porsi Member (60%)",
+                systemLabel: "System Fee (40%)",
+                testi1: "\"Sistemnya jalan sendiri tanpa harus gue pantau tiap hari. Jauh lebih tenang daripada trading manual, dan transparansi dompet di Zapper bikin nyaman.\"",
+                testi2: "\"Sistem High-Water Mark ini fair banget. Pengelolanya beneran cuma dapet fee kalau porto gue naik ngelewatin puncak profit sebelumnya.\"",
+                testi3: "\"Awalnya ragu buat mulai, tapi karena minimal join bisa dari $100 jadi berani nyoba. Udah jalan sebulan dan performa algoritma AI-nya konsisten.\"",
+                faqTitle: "F.A.Q",
+                faqQ1: "Q: Gimana cara depositnya?",
+                faqA1: "A: Deposit menggunakan USDC di jaringan Polygon (MATIC). Instruksi transfer ke smart contract pool akan diberikan setelah email kamu lolos antrean batch.",
+                faqQ2: "Q: Siapa yang pegang dana (private key)?",
+                faqA2: "A: Dana dikunci dalam wallet Gnosis Safe (Multi-sig) yang terhubung langsung dengan Polymarket. Kami hanya mengeksekusi logika trading, tidak bisa membawa lari dana (Rugpull-proof).",
+                faqQ3: "Q: Berapa target persentase profitnya?",
+                faqA3: "A: Tidak ada fixed return. AI mengeksploitasi inefisiensi pasar di Polymarket. Secara historis (backtest), algoritma kami menargetkan anomali dengan potensi yield 10-25% per siklus tanpa compounding, tapi hasil nyata selalu berfluktuasi.",
+                subTitle: "Akses <span class='text-accent'>Trading Pool.</span>",
+                subScarcity: "⚠️ BATCH 05: 87% FULL [13 SLOTS LEFT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white'>(Dibatasi ketat untuk menjaga performa eksekusi AI)</span>",
+                subClose: "Gak semua orang cocok trading sendiri.<br><span class='text-accent'>Tapi semua orang bisa ikut sistem yang sudah jalan.</span>",
+                subProof: "<span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>⏱️ Active: 4 Cycles</span><span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>👥 Pool: 142 Members</span>",
+                subBtn: "[GABUNG BATCH SEKARANG]",
+                subSpam: "No spam. Only alpha.",
+                rulesTitle: "Aturan &<br>Risiko.",
+                rulesDesc: "Likuiditas yang stabil penting untuk eksekusi AI.",
+                rulesDetail: "Setor dan Tarik (Withdraw) hanya diproses pada tanggal 1-10 setiap bulannya untuk menjaga performa trading.",
+                disclaimBody: "<p>Semua investasi memiliki risiko. Walaupun AI mengeksploitasi data probabilitas, kerugian tetap bisa terjadi.</p><p>Gunakan selalu uang dingin (dana yang siap diresikokan) demi ketenangan pikiran.</p>",
+                mobileCta: "[GABUNG BATCH SEKARANG]"
+            },
+            en: {
+                heroTitle: "Start at $100,<br><span class='text-accent'>AI Managed Funds.</span><br>Zero Analysis Required.",
+                heroDesc: "Welcome to Polymarket AI Trading Pool. No complex analysis, no manual entries, and no daily chart watching. Let our AI system execute probabilities for consistent results.",
+                cta: "[JOIN TRADING POOL]",
+                heroTrust: "System is live and can be monitored in real-time.",
+                edgeTitle: "Manual Trading<br><span class='text-accent'>Is Exhausting.</span>",
+                edgeDesc: "<p class='opacity-80 border-l-4 border-accent pl-4'>The issue isn't the market… it's decision consistency. Trading takes time, focus, and mental energy. Let our AI work objectively 24/7 without feelings.</p>",
+                edgeLogic: "This is a fund management / trading pool system. Member funds are combined starting from $100 and operated entirely by AI algorithms.",
+                transTitle: "100%<br>Transparent.",
+                transDesc: "Click to view real-time wallet balances and check active trading positions anytime. Everything is verifiable, not just claims.",
+                zapperBtn: "[CHECK LIVE WALLET]",
+                polyBtn: "[CHECK TRADING POSITIONS]",
+                mathTitle: "High-Water Mark<br><span class='text-accent'>Profit Sharing.</span>",
+                mathDesc: "High-Water Mark System: Management fees are only taken when you profit, and ONLY when the portfolio reaches a new All-Time High. Fair and transparent.",
+                calcTitle: "Yield Simulator",
+                opsLabel: "Operations (15%)",
+                memberLabel: "Member Share (60%)",
+                systemLabel: "System Fee (40%)",
+                testi1: "\"The system runs itself without me monitoring it every day. Much calmer than manual trading, and the wallet transparency on Zapper brings peace of mind.\"",
+                testi2: "\"The High-Water Mark system is very fair. The managers only get a fee if my portfolio goes past its previous profit peak.\"",
+                testi3: "\"Hesitant at first, but since the minimum to join is only $100, I gave it a try. It's been a month and the AI algorithm's performance is consistent.\"",
+                faqTitle: "F.A.Q",
+                faqQ1: "Q: How do I deposit?",
+                faqA1: "A: Deposits use USDC on the Polygon (MATIC) network. Transfer instructions to the smart contract pool will be provided once your email clears the batch queue.",
+                faqQ2: "Q: Who holds the funds (private keys)?",
+                faqA2: "A: Funds are locked in a Gnosis Safe (Multi-sig) wallet connected directly to Polymarket. We only execute trading logic and cannot run away with the funds (Rugpull-proof).",
+                faqQ3: "Q: What is the target profit percentage?",
+                faqA3: "A: There is no fixed return. The AI exploits market inefficiencies on Polymarket. Historically, our algorithm targets anomalies with potential yields of 10-25% per cycle, but actual results fluctuate.",
+                subTitle: "Trading Pool <span class='text-accent'>Access.</span>",
+                subScarcity: "⚠️ BATCH 05: 87% FULL [13 SLOTS LEFT]<br><span class='text-[10px] md:text-xs opacity-80 font-normal tracking-normal text-black dark:text-white'>(Strictly limited to maintain AI execution performance)</span>",
+                subClose: "Not everyone is cut out for manual trading.<br><span class='text-accent'>But anyone can join a proven, running system.</span>",
+                subProof: "<span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>⏱️ Active: 4 Cycles</span><span class='border-2 border-black dark:border-white px-4 py-2 bg-white dark:bg-black font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] dark:shadow-[4px_4px_0px_0px_rgba(255,255,255,1)]'>👥 Pool: 142 Members</span>",
+                subBtn: "[JOIN BATCH NOW]",
+                subSpam: "No spam. Only alpha.",
+                rulesTitle: "Rules &<br>Risks.",
+                rulesDesc: "Stable liquidity is crucial for AI execution.",
+                rulesDetail: "Deposit and Withdrawal (WD) are only processed on the 1st-10th of every month to maintain trading performance.",
+                disclaimBody: "<p>All investments carry risk. Although the AI exploits probability data, losses can still occur.</p><p>Always use disposable income (funds you can afford to lose) for peace of mind.</p>",
+                mobileCta: "[JOIN BATCH NOW]"
+            }
+        };
+
+        let edgeChart, mathChart;
+
+        function setLang(lang) {
+            const content = dict[lang];
+            Object.keys(content).forEach(key => {
+                const el = document.getElementById('t-' + key.replace(/([A-Z])/g, "-$1").toLowerCase());
+                if (el) {
+                    // khusus handling question mark dan nested tags tanpa merusak logic Brutalist
+                    if(key.startsWith('faqQ')) {
+                        el.innerHTML = content[key] + ' <span class="text-accent group-open:rotate-45 transition-transform duration-300 text-3xl inline-block">+</span>';
+                    } else {
+                        el.innerHTML = content[key];
+                    }
+                }
+            });
+            document.getElementById('btn-id').className = lang === 'id' ? 'px-4 py-1 bg-black text-white dark:bg-white dark:text-black transition-all border-2 border-transparent' : 'px-4 py-1 text-black dark:text-white opacity-40 border-2 border-transparent';
+            document.getElementById('btn-en').className = lang === 'en' ? 'px-4 py-1 bg-black text-white dark:bg-white dark:text-black transition-all border-2 border-transparent' : 'px-4 py-1 text-black dark:text-white opacity-40 border-2 border-transparent';
+            
+            if (mathChart) mathChart.destroy();
+            if (edgeChart) edgeChart.destroy();
+            initCharts();
+            if (window.lucide) lucide.createIcons();
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => entry.isIntersecting && entry.target.classList.add('visible'));
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in-up').forEach(el => observer.observe(el));
+
+        // Observer for Sticky Mobile CTA
+        const heroSection = document.getElementById('hero');
+        const mobileCta = document.getElementById('mobile-cta');
+        const mobileObserver = new IntersectionObserver((entries) => {
+            if(!entries[0].isIntersecting) {
+                mobileCta.classList.remove('translate-y-full');
+            } else {
+                mobileCta.classList.add('translate-y-full');
+            }
+        }, { threshold: 0.1 });
+        mobileObserver.observe(heroSection);
+
+        function getChartColors() {
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            return {
+                text: isDark ? '#FFFFFF' : '#000000',
+                grid: isDark ? 'rgba(255,255,255,0.2)' : 'rgba(0,0,0,0.2)',
+                bg: isDark ? 'rgba(255,255,255,0.3)' : 'rgba(0,0,0,0.3)'
+            };
+        }
+
+        function initCharts() {
+            const colors = getChartColors();
+            const isDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+            
+            Chart.defaults.font.family = '"JetBrains Mono", monospace';
+            Chart.defaults.font.weight = '800';
+
+            // Edge Chart
+            const ctxEdge = document.getElementById('edgeChart').getContext('2d');
+            const grad = ctxEdge.createLinearGradient(0, 0, 0, 350);
+            grad.addColorStop(0, colors.bg);
+            grad.addColorStop(1, 'rgba(0,0,0,0)');
+
+            edgeChart = new Chart(ctxEdge, {
+                type: 'line',
+                data: {
+                    labels: Array.from({length: 30}, (_, i) => i+1),
+                    datasets: [{ 
+                        label: 'AI_CORE', 
+                        data: [10, 9, 9.5, 9, 14, 13.5, 13, 13, 19, 18, 18, 25, 24, 24, 32, 31, 30, 45, 44, 55, 54, 60, 59, 65, 64, 75, 74, 82, 81, 95], 
+                        borderColor: colors.text, 
+                        borderWidth: 6,
+                        stepped: true, 
+                        pointRadius: 6,
+                        pointBackgroundColor: '#FF0000',
+                        fill: true,
+                        backgroundColor: grad
+                    },
+                    { 
+                        label: 'HUMAN_BIAS', 
+                        data: [10, 15, 8, 12, 14, 11, 13, 9, 7, 10, 5, 8, 12, 10, 9, 11, 8, 7, 10, 6, 8, 5, 9, 4, 7, 3, 6, 2, 5, 1], 
+                        borderColor: '#FF0000', 
+                        borderWidth: 4, 
+                        borderDash: [10, 5], 
+                        pointRadius: 0, 
+                        tension: 0.4 
+                    }]
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    plugins: { legend: { display: false } }, 
+                    scales: { 
+                        x: { grid: { color: colors.grid, lineWidth: 2 }, ticks: { color: colors.text } }, 
+                        y: { grid: { color: colors.grid, lineWidth: 2 }, ticks: { color: colors.text } } 
+                    } 
+                }
+            });
+
+            // Math Chart
+            const ctxMath = document.getElementById('mathChart').getContext('2d');
+            mathChart = new Chart(ctxMath, {
+                type: 'doughnut',
+                data: { 
+                    labels: ['MEMBER (60%)', 'SYSTEM (40%)', 'OPS (15%)'], 
+                    datasets: [{ 
+                        data: [60, 40, 15], 
+                        backgroundColor: ['#FF0000', colors.text, isDark ? '#555' : '#AAA'], 
+                        borderWidth: 10,
+                        borderColor: isDark ? '#000000' : '#FFFFFF'
+                    }] 
+                },
+                options: { 
+                    responsive: true, 
+                    maintainAspectRatio: false, 
+                    cutout: '80%', 
+                    plugins: { 
+                        legend: { 
+                            display: true, 
+                            position: 'bottom',
+                            labels: { color: colors.text, padding: 40, font: { size: 12 } }
+                        }
+                    } 
+                }
+            });
+        }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+            if (edgeChart) edgeChart.destroy();
+            if (mathChart) mathChart.destroy();
+            initCharts();
+        });
+
+        function updateCalc() {
+            const gross = parseInt(document.getElementById('profitInput').value);
+            const ops = gross * 0.15;
+            const net = gross - ops;
+            const member = net * 0.60;
+            const system = net * 0.40;
+            document.getElementById('profitDisplay').innerText = `$${gross.toLocaleString()}`;
+            document.getElementById('valOps').innerText = `$${ops.toLocaleString()}`;
+            document.getElementById('valMember').innerText = `$${member.toLocaleString()}`;
+            document.getElementById('valSystem').innerText = `$${system.toLocaleString()}`;
+            if(mathChart) {
+                mathChart.data.datasets[0].data = [member, system, ops];
+                mathChart.update();
+            }
+        }
+        document.getElementById('profitInput').addEventListener('input', updateCalc);
+
+        const ledger = document.getElementById('ledger-container');
+        const logs = [
+            "SIGNAL: MARKET_SENTIMENT // PROB: 88.4%",
+            "ON_CHAIN: VERIFY_BLOCK // OK",
+            "POSITION: EXECUTE_PRED // CONF: HIGH",
+            "YIELD: SECURED // ATH_REACHED",
+            "SYSTEM: SYNC_COMPLETE // LEDGER_LOCKED",
+            "BATCH: EPOCH_04 // 94.2%_FULL"
+        ];
+
+        function addLog() {
+            const time = new Date().toLocaleTimeString('en-US', { hour12: false });
+            const msg = logs[Math.floor(Math.random() * logs.length)];
+            const line = `<div class="mb-4 animate-slide-in"><span class="opacity-40">[${time}]</span> <span class="text-terminal">Pulse:</span> ${msg}</div>`;
+            ledger.innerHTML = line + ledger.innerHTML;
+            if(ledger.children.length > 12) ledger.lastElementChild.remove();
+        }
+
+        function triggerPulse() {
+            const container = document.getElementById('activity-container');
+            const toast = document.createElement('div');
+            toast.className = 'activity-toast';
+            toast.innerText = "System Pulse: " + logs[Math.floor(Math.random() * logs.length)];
+            container.appendChild(toast);
+            setTimeout(() => toast.classList.add('show'), 100);
+            setTimeout(() => { toast.classList.remove('show'); setTimeout(() => toast.remove(), 500); }, 5000);
+        }
+        
+        // --- EVENT TRACKING FUNCTION ---
+        function trackCtaClick() {
+            // Trigger Meta Pixel Event
+            if(typeof fbq === 'function') fbq('track', 'InitiateCheckout');
+            // Trigger TikTok Pixel Event
+            if(typeof ttq === 'function') ttq.track('ClickButton');
+            // Trigger Google Analytics Event
+            if(typeof gtag === 'function') gtag('event', 'click_cta', { 'event_category': 'engagement' });
+        }
+
+        // --- FORM SUBMIT HANDLING DENGAN LOADING STATE ---
+        document.getElementById('leadForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const emailInput = document.getElementById('emailInput');
+            const btn = document.getElementById('submitBtn');
+            const email = emailInput.value;
+            
+            if(email) {
+                // UI Loading State (Mensimulasikan input ke mainframe)
+                const originalText = btn.innerText;
+                btn.innerText = "[PROCESSING...]";
+                btn.disabled = true;
+                btn.classList.add('opacity-50', 'cursor-not-allowed');
+
+                // Jeda 1.5 detik agar terlihat lebih meyakinkan
+                setTimeout(() => {
+                    // Trigger Meta Lead Event
+                    if(typeof fbq === 'function') fbq('track', 'Lead');
+                    
+                    // Trigger TikTok Lead Event
+                    if(typeof ttq === 'function') ttq.track('SubmitForm');
+                    
+                    // Trigger Google Lead Event
+                    if(typeof gtag === 'function') gtag('event', 'generate_lead', { 
+                        'event_category': 'engagement', 
+                        'event_label': 'waitlist_signup' 
+                    });
+                    
+                    // Tampilkan notifikasi toast sukses
+                    const container = document.getElementById('activity-container');
+                    const toast = document.createElement('div');
+                    toast.className = 'activity-toast border-accent font-black'; 
+                    toast.innerText = "SUCCESS: EMAIL LOGGED IN MAINFRAME // WAIT FOR PROTOCOL";
+                    
+                    container.appendChild(toast);
+                    setTimeout(() => toast.classList.add('show'), 100);
+                    setTimeout(() => { 
+                        toast.classList.remove('show'); 
+                        setTimeout(() => toast.remove(), 500); 
+                    }, 5000);
+                    
+                    // Kembalikan UI ke normal
+                    this.reset();
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                    btn.classList.remove('opacity-50', 'cursor-not-allowed');
+                }, 1500);
+            }
+        });
+
+        window.onload = () => {
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+            initCharts();
+            updateCalc();
+            setInterval(addLog, 2500);
+            setInterval(() => Math.random() > 0.4 && triggerPulse(), 8000);
+            addLog();
+            triggerPulse();
+        };
+    </script>
+</body>
+</html>
