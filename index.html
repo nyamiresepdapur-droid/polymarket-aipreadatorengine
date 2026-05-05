@@ -1,987 +1,629 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AXIOM QUANT // Polymarket Predictive Fund</title>
-    
-    <meta property="og:title" content="AXIOM QUANT - Institutional-Grade Polymarket Fund">
-    <meta property="og:description" content="Alokasi pool eksklusif untuk eksekusi probabilitas algoritmik di Polymarket. Sepenuhnya dikelola AI dengan transparansi on-chain.">
-    <meta property="og:type" content="website">
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IZZUDDIN // AGI Trading Research — Hybrid ML Framework for Systematic Markets</title>
+<meta name="description" content="A peer-published hybrid ML framework for systematic trading. Live on-chain. DOI verified. Batch 05 — 88% allocated.">
+<meta property="og:title" content="IZZUDDIN // AGI Trading Research">
+<meta property="og:description" content="The market has been lying to you. Here's the math that proves it.">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="alternate" hreflang="id" href="?lang=id">
+<link rel="alternate" hreflang="en" href="?lang=en">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=JetBrains+Mono:wght@300;400;500&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1234567890123456');
+fbq('track', 'PageView');
+</script>
+<noscript></noscript></head><body style="font-family: 'Inter', sans-serif; background: #0a0a0a; color: #e8e6e1;" class="overflow-x-hidden"><img height="1" width="1" style="display:none" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg">
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    
-    <!-- Sophisticated Fonts: Playfair for Elegance, Inter for Readability, JetBrains for Data -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@300;400;700;800&display=swap" rel="stylesheet">
-    
-    <!-- ========================================== -->
-    <!-- META PIXEL SCRIPT -->
-    <!-- ========================================== -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '771021905629860');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=771021905629860&ev=PageView&noscript=1"/></noscript>
 
-    <script>
-        tailwind.config = {
-            darkMode: 'class', 
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['"Playfair Display"', 'serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
-                    },
-                    colors: {
-                        bgdark: '#030303',
-                        gold: '#D4AF37', 
-                        golddim: 'rgba(212, 175, 55, 0.15)',
-                        terminal: '#4ade80', /* Matrix Green for Data */
-                        danger: '#f43f5e',   /* Neon Red for Data */
-                        cyan: '#22d3ee',     /* Info Cyan for Data */
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body { 
-            background-color: #030303; 
-            color: #F3F4F6; 
-            overflow: hidden; 
-            -webkit-font-smoothing: antialiased;
-        }
 
-        /* ========================================================
-           THE BOOK: FULL SCREEN SNAP SCROLLING
-           ======================================================== */
-        .snap-container {
-            height: 100dvh;
-            overflow-y: auto;
-            scroll-snap-type: y mandatory;
-            scroll-behavior: smooth;
-        }
-        
-        .snap-page {
-            min-height: 100dvh;
-            width: 100%;
-            scroll-snap-align: start;
-            scroll-snap-stop: always;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 5rem 1rem 2rem 1rem; 
-        }
-        
-        /* Subtle Background Grid */
-        .grid-bg {
-            background-image: 
-                linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
-            background-size: 60px 60px;
-            mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-        }
+<!-- Grain overlay -->
+<div class="fixed inset-0 pointer-events-none opacity-[0.03] z-50" style="background-image: url('data:image/svg+xml;utf8,&lt;svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22200%22&gt;&lt;filter id=%22n%22&gt;&lt;feTurbulence baseFrequency=%220.9%22/&gt;&lt;/filter&gt;&lt;rect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23n)%22/&gt;&lt;/svg&gt;')"></div>
 
-        /* ========================================================
-           THE CARDS: PREMIUM BENTO BOX AESTHETICS
-           ======================================================== */
-        .premium-card {
-            background: rgba(15, 15, 15, 0.6);
-            backdrop-filter: blur(24px);
-            -webkit-backdrop-filter: blur(24px);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 1.5rem;
-            box-shadow: 
-                0 25px 50px -12px rgba(0, 0, 0, 0.8), 
-                inset 0 1px 0 rgba(255, 255, 255, 0.05);
-            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            overflow: hidden;
-        }
-        .premium-card:hover {
-            border: 1px solid rgba(212, 175, 55, 0.2); 
-            box-shadow: 0 30px 60px -10px rgba(0,0,0,0.9), inset 0 1px 0 rgba(212, 175, 55, 0.1);
-            transform: translateY(-2px);
-        }
+<!-- Top ticker -->
+<div class="border-b border-white/5 bg-black overflow-hidden" style="font-family: 'JetBrains Mono', monospace;">
+  <div class="flex items-center gap-8 py-2 px-6 text-xs whitespace-nowrap" style="animation: ticker 60s linear infinite;">
+    <span style="color:#f5a524;">● LIVE</span>
+    <span class="text-white/40">AUM $5,250.00</span>
+    <span class="text-white/20">/</span>
+    <span class="text-white/40">BATCH 05 — 88% ALLOCATED</span>
+    <span class="text-white/20">/</span>
+    <span class="text-white/40">WIN RATE TARGET 67.9%</span>
+    <span class="text-white/20">/</span>
+    <span class="text-white/40">DOI 10.5281/zenodo.16966978</span>
+    <span class="text-white/20">/</span>
+    <span style="color:#f5a524;">● POLYGON // POLYMARKET // CLAUDE-OPUS</span>
+    <span class="text-white/20">/</span>
+    <span class="text-white/40">ON-CHAIN VERIFIED</span>
+    <span class="text-white/20">/</span>
+    <span class="text-white/40">PEER-PUBLISHED RESEARCH</span>
+  </div>
+</div>
+<style>
+@keyframes ticker { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes pulse-amber { 0%,100%{opacity:1} 50%{opacity:0.4} }
+@keyframes scan { 0%{transform:translateY(-100%)} 100%{transform:translateY(100%)} }
+.amber-pulse { animation: pulse-amber 2s ease-in-out infinite; }
+.serif { font-family: 'Instrument Serif', serif; font-weight: 400; }
+.mono { font-family: 'JetBrains Mono', monospace; }
+.grid-bg { background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 60px 60px; }
+.amber { color: #f5a524; }
+.bg-amber { background: #f5a524; }
+.border-amber { border-color: #f5a524; }
+</style>
 
-        /* Inner Panel for Data */
-        .data-panel {
-            background: rgba(0, 0, 0, 0.4);
-            border-radius: 1rem;
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 1rem;
-        }
+<!-- NAV -->
+<nav class="sticky top-0 z-40 backdrop-blur-xl bg-black/70 border-b border-white/5">
+  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+    <div class="flex items-center gap-3">
+      <div class="w-7 h-7 border border-amber flex items-center justify-center" style="color:#f5a524;">
+        <span class="serif text-base">∞</span>
+      </div>
+      <span class="mono text-xs tracking-widest">IZZUDDIN<span class="text-white/30">/RESEARCH</span></span>
+    </div>
+    <div class="hidden md:flex items-center gap-8 mono text-xs text-white/50">
+      <a href="#problem" class="hover:text-white transition">01 / PROBLEM</a>
+      <a href="#paper" class="hover:text-white transition">02 / PAPER</a>
+      <a href="#mechanism" class="hover:text-white transition">03 / MECHANISM</a>
+      <a href="#numbers" class="hover:text-white transition">04 / NUMBERS</a>
+      <a href="#allocate" class="hover:text-white transition">05 / ALLOCATE</a>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="hidden sm:flex mono text-xs border border-white/10 rounded-sm overflow-hidden">
+        <button onclick="setLang('id')" id="btn-id" class="px-2.5 py-1 hover:bg-white/5">ID</button>
+        <button onclick="setLang('en')" id="btn-en" class="px-2.5 py-1 bg-white/5">EN</button>
+      </div>
+      <a href="#allocate" class="mono text-xs px-3 py-1.5 bg-amber text-black hover:bg-white transition">APPLY →</a>
+    </div>
+  </div>
+</nav>
 
-        /* Elegant Buttons */
-        .btn-gold { 
-            background: linear-gradient(135deg, #D4AF37 0%, #AA8C2C 100%);
-            color: #000; font-weight: 600; letter-spacing: 0.05em;
-            padding: 1rem 2.5rem; border-radius: 0.75rem; transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.2);
-            display: inline-flex; align-items: center; justify-content: center;
-        }
-        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4); }
-
-        .btn-outline {
-            background: rgba(255,255,255,0.02); color: #D4AF37; border: 1px solid rgba(212, 175, 55, 0.4);
-            font-weight: 500; padding: 1rem 2rem; border-radius: 0.75rem; transition: all 0.3s ease;
-        }
-        .btn-outline:hover { background: rgba(212, 175, 55, 0.1); border-color: #D4AF37; }
-
-        .text-gold-gradient {
-            background: linear-gradient(135deg, #F3E5AB 0%, #D4AF37 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-
-        /* Input Slider */
-        input[type=range] { @apply appearance-none bg-transparent w-full cursor-pointer; }
-        input[type=range]::-webkit-slider-runnable-track { background: rgba(255,255,255,0.1); height: 4px; border-radius: 2px; }
-        input[type=range]::-webkit-slider-thumb { 
-            @apply appearance-none h-6 w-6 rounded-full -mt-[10px]; 
-            background: #D4AF37; box-shadow: 0 0 10px rgba(212,175,55,0.5); 
-        }
-
-        .typewriter-cursor { animation: blink 1s step-end infinite; border-right: 2px solid #D4AF37; padding-right: 2px; }
-        @keyframes blink { 50% { border-color: transparent; } }
-
-        .flicker { animation: flicker 4s infinite; }
-        @keyframes flicker {
-            0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% { opacity: 1; }
-            20%, 21.999%, 63%, 63.999%, 65%, 69.999% { opacity: 0.5; }
-        }
-        .no-scrollbar::-webkit-scrollbar { display: none; }
-        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
-        /* Animations */
-        .fade-in-up { opacity: 0; transform: translateY(30px); transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
-        .snap-page.is-visible .fade-in-up { opacity: 1; transform: translateY(0); }
-
-        /* Page Indicators */
-        .page-dots { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 12px; z-index: 150; }
-        @media (max-width: 768px) { .page-dots { display: none; } }
-        .dot { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,0.2); transition: all 0.3s ease; position: relative; cursor: pointer; }
-        .dot.active { background: #D4AF37; transform: scale(1.5); box-shadow: 0 0 10px rgba(212,175,55,0.5); }
-        .dot::after {
-            content: attr(data-label); position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
-            font-family: 'Inter', sans-serif; font-size: 10px; text-transform: uppercase; letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.6); opacity: 0; pointer-events: none; transition: opacity 0.3s; white-space: nowrap;
-        }
-        .dot:hover::after, .dot.active::after { opacity: 1; }
-
-    </style>
-</head>
-<body class="dark selection:bg-gold selection:text-black">
-
-    <div class="grid-bg"></div>
-
-    <!-- Header / Navbar -->
-    <header class="fixed top-0 w-full bg-bgdark/60 backdrop-blur-xl z-[100] border-b border-white/5">
-        <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
-            <div class="font-serif font-semibold tracking-wide text-xl text-white flex items-center gap-3">
-                <span class="w-6 h-6 rounded-sm bg-gradient-to-br from-gold to-yellow-700 block shadow-[0_0_10px_rgba(212,175,55,0.3)]"></span>
-                AXIOM<span class="text-gray-500 font-sans text-sm font-normal relative -top-1">QUANT</span>
-            </div>
-            <div class="flex items-center gap-6">
-                <!-- Lang Switcher -->
-                <div class="flex bg-black/40 rounded-full p-1 border border-white/10 font-sans text-xs font-medium backdrop-blur-md">
-                    <button id="btn-id" class="px-4 py-1.5 rounded-full text-gray-400 hover:text-white transition-all shadow-sm" onclick="setLang('id')">ID</button>
-                    <button id="btn-en" class="px-4 py-1.5 rounded-full bg-white/10 text-white transition-all" onclick="setLang('en')">EN</button>
-                </div>
-                <div class="hidden md:flex items-center gap-2 font-mono text-[10px] text-gray-400 uppercase tracking-widest border border-white/10 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full">
-                    <span class="w-1.5 h-1.5 rounded-full bg-terminal animate-pulse shadow-[0_0_5px_#4ade80]"></span>
-                    <span id="t-nav-status">System Online</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Page Indicator Dots -->
-    <div class="page-dots" id="pageDots">
-        <div class="dot active" data-index="0" data-label="Prospectus"></div>
-        <div class="dot" data-index="1" data-label="AI Engine"></div>
-        <div class="dot" data-index="2" data-label="The Thesis"></div>
-        <div class="dot" data-index="3" data-label="Transparency"></div>
-        <div class="dot" data-index="4" data-label="Fee Structure"></div>
-        <div class="dot" data-index="5" data-label="Application"></div>
+<!-- HERO -->
+<section class="relative min-h-screen grid-bg border-b border-white/5 overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/80"></div>
+  <div class="absolute top-0 left-1/2 w-px h-full bg-gradient-to-b from-amber/40 via-amber/10 to-transparent" style="background:linear-gradient(180deg,rgba(245,165,36,0.4),transparent);"></div>
+  
+  <div class="relative max-w-7xl mx-auto px-6 pt-20 pb-32">
+    <div class="flex items-center gap-3 mb-12 mono text-xs">
+      <span class="w-1.5 h-1.5 bg-amber rounded-full amber-pulse"></span>
+      <span class="text-white/50">BATCH 05 / OPEN</span>
+      <span class="text-white/20">·</span>
+      <span class="text-white/50">88% ALLOCATED</span>
+      <span class="text-white/20">·</span>
+      <span style="color:#f5a524;">12 SLOTS REMAINING</span>
     </div>
 
-    <!-- MAIN BOOK CONTAINER (Scroll Snapping) -->
-    <main class="snap-container" id="snapContainer">
+    <h1 class="serif tracking-tight leading-[0.95] mb-8" style="font-size: clamp(2.75rem, 8vw, 7rem);" data-i18n="hero_title">
+      The market has been<br>
+      <span class="italic text-white/60">lying to you.</span><br>
+      Here's the math that <span class="amber italic">proves it.</span>
+    </h1>
 
-        <!-- PAGE 1: COVER -->
-        <section class="snap-page is-visible" id="page-0">
-            <canvas id="quantCanvas" class="absolute inset-0 w-full h-full opacity-30 pointer-events-none mix-blend-screen"></canvas>
+    <p class="text-base md:text-lg text-white/60 max-w-2xl mb-12 leading-relaxed" data-i18n="hero_sub">
+      A peer-published hybrid ML framework for systematic trading. Live on-chain. DOI verified. No black box, no promises — just walk-forward backtests from 2019 to 2024, and a wallet you can audit before you fund it.
+    </p>
 
-            <div class="max-w-[1000px] w-full mx-auto px-6 relative z-10 flex flex-col justify-center">
-                <div class="fade-in-up">
-                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-golddim border border-gold/30 text-gold text-[10px] sm:text-xs font-mono mb-8 uppercase tracking-widest backdrop-blur-md">
-                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                        <span id="t-hero-tag">Polymarket Predictive Fund</span>
-                    </div>
-                    
-                    <h1 class="font-serif text-5xl sm:text-7xl md:text-8xl font-normal mb-6 leading-[1.1]" id="t-hero-title">
-                        Algorithmic <span class="font-style: italic text-gold-gradient">Probability</span><br>Execution on Polymarket.
-                    </h1>
-                    
-                    <p class="text-gray-400 font-sans text-lg sm:text-xl font-light max-w-2xl mb-10 leading-relaxed" id="t-hero-desc">
-                        The prediction market (Polymarket) is poisoned by emotional speculation. AXIOM QUANT was built with one goal: to eradicate human emotion and extract mathematical probabilities at institutional scale.
-                    </p>
-                    
-                    <div class="flex flex-col sm:flex-row gap-6 items-start sm:items-center">
-                        <div class="w-full sm:w-auto flex flex-col gap-3">
-                            <button onclick="scrollToPage(5)" class="btn-gold text-sm sm:text-base w-full" id="t-cta">
-                                Request Pool Allocation
-                            </button>
-                            <!-- INFRASTRUCTURE TECH STACK -->
-                            <div class="text-[9px] font-mono text-gray-500 text-center tracking-widest uppercase" id="t-hero-tech">
-                                Infra: Polygon // Polymarket // Claude-Opus
-                            </div>
-                        </div>
-                        
-                        <!-- Premium Metric Card -->
-                        <div class="premium-card !p-4 !rounded-xl flex items-center gap-6 border-l-4 border-l-gold">
-                            <div class="flex flex-col">
-                                <span class="font-mono text-[10px] text-gray-500 uppercase tracking-widest mb-1">Live AUM</span>
-                                <a href="https://polymarket.com/@berkah-karya" target="_blank" class="font-mono text-base text-white hover:text-gold transition-colors flex items-center gap-2 group" title="Verify on Polymarket">
-                                    $<span class="live-aum-val transition-colors duration-300">5,250.00</span> 
-                                    <svg class="w-3 h-3 text-gray-500 group-hover:text-gold transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+    <div class="flex flex-col sm:flex-row gap-3 mb-20">
+      <a href="#allocate" class="group flex items-center justify-between gap-6 px-6 py-4 bg-amber text-black hover:bg-white transition">
+        <span class="mono text-xs tracking-widest">APPLY FOR ALLOCATION</span>
+        <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+      </a>
+      <a href="https://zenodo.org/records/16966978" target="_blank" class="group flex items-center justify-between gap-6 px-6 py-4 border border-white/15 hover:border-white/40 transition">
+        <span class="mono text-xs tracking-widest text-white/80">READ THE PAPER</span>
+        <iconify-icon icon="solar:document-text-linear" width="18" class="text-white/60"></iconify-icon>
+      </a>
+    </div>
+
+    <!-- Live data strip -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 border border-white/5">
+      <div class="bg-black p-5">
+        <div class="mono text-xs text-white/40 mb-2">LIVE AUM</div>
+        <div class="serif text-3xl tracking-tight">$5,250<span class="amber">.</span></div>
+      </div>
+      <div class="bg-black p-5">
+        <div class="mono text-xs text-white/40 mb-2">WIN RATE TARGET</div>
+        <div class="serif text-3xl tracking-tight">67.9<span class="text-white/40 text-xl">%</span></div>
+      </div>
+      <div class="bg-black p-5">
+        <div class="mono text-xs text-white/40 mb-2">BACKTEST WINDOW</div>
+        <div class="serif text-3xl tracking-tight">2019–24</div>
+      </div>
+      <div class="bg-black p-5">
+        <div class="mono text-xs text-white/40 mb-2">EXECUTION</div>
+        <div class="serif text-3xl tracking-tight">24<span class="amber">/</span>7</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- side rails -->
+  <div class="absolute left-6 top-1/2 -translate-y-1/2 hidden lg:block mono text-xs text-white/30 -rotate-90 origin-left">
+    POLYGON · POLYMARKET · CLAUDE-OPUS
+  </div>
+</section>
+
+<!-- 01 PROBLEM -->
+<section id="problem" class="border-b border-white/5 py-28">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-16">
+      <div class="lg:col-span-3">
+        <div class="mono text-xs text-white/40 mb-2">01 / THE PROBLEM</div>
+        <div class="amber mono text-xs">────────</div>
+      </div>
+      <div class="lg:col-span-9">
+        <h2 class="serif tracking-tight leading-tight mb-10" style="font-size: clamp(2rem,5vw,4rem);">
+          Every trader you know loses to the same three enemies.<br>
+          <span class="text-white/40 italic">Fear. Greed. Sleep.</span>
+        </h2>
+        <div class="grid md:grid-cols-3 gap-px bg-white/5 border border-white/5 mb-10">
+          <div class="bg-black p-8">
+            <div class="amber mono text-xs mb-4">I.</div>
+            <h3 class="serif text-2xl tracking-tight mb-3">Emotion taxes the math.</h3>
+            <p class="text-sm text-white/50 leading-relaxed">Studies show retail traders cut winners 2.3x faster than losers. The edge dies at the trigger finger.</p>
+          </div>
+          <div class="bg-black p-8">
+            <div class="amber mono text-xs mb-4">II.</div>
+            <h3 class="serif text-2xl tracking-tight mb-3">Sentiment moves before price.</h3>
+            <p class="text-sm text-white/50 leading-relaxed">By the time a chart confirms, 1,000 wallets have already rotated. Humans read news. Machines read intent.</p>
+          </div>
+          <div class="bg-black p-8">
+            <div class="amber mono text-xs mb-4">III.</div>
+            <h3 class="serif text-2xl tracking-tight mb-3">Markets don't sleep. You do.</h3>
+            <p class="text-sm text-white/50 leading-relaxed">Alpha is not extracted in business hours. It is harvested at 03:14 AM Sunday, when liquidity thins and conviction divides.</p>
+          </div>
+        </div>
+        <p class="serif italic text-2xl md:text-3xl tracking-tight text-white/70 max-w-3xl">
+          "What if the trader was never the bottleneck — only the human inside it?"
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 02 BREAKTHROUGH -->
+<section class="relative border-b border-white/5 py-28 overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-30"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-16">
+      <div class="lg:col-span-3">
+        <div class="mono text-xs text-white/40 mb-2">02 / THE BREAKTHROUGH</div>
+        <div class="amber mono text-xs">────────</div>
+      </div>
+      <div class="lg:col-span-9">
+        <div class="mono text-xs amber mb-6 tracking-widest">ONE MORE THING —</div>
+        <h2 class="serif tracking-tight leading-[0.95] mb-10" style="font-size: clamp(2.5rem,7vw,5.5rem);">
+          A trading engine that doesn't<br>
+          <span class="italic">flinch</span>, doesn't <span class="italic">hope</span>,<br>
+          and doesn't <span class="amber italic">sleep.</span>
+        </h2>
+        <p class="text-lg text-white/60 max-w-2xl leading-relaxed mb-12">
+          Four models, one consensus. LightGBM reads structure. LSTM reads memory. Transformers read attention. An LLM reads the world. They vote. The capital moves. You sleep.
+        </p>
+        <div class="border border-white/10 p-6 max-w-2xl">
+          <div class="mono text-xs text-white/40 mb-4">// SYSTEM SIGNATURE</div>
+          <pre class="mono text-xs text-white/70 leading-relaxed overflow-x-auto">engine.signal = consensus(
+  lgbm(ohlcv + microstructure),
+  lstm(temporal_memory),
+  transformer(cross_asset_attention),
+  llm(global_sentiment_parse)
+) → regime_switch → execute</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 03 PAPER -->
+<section id="paper" class="border-b border-white/5 py-28 bg-gradient-to-b from-black to-[#0d0a05]">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-16">
+      <div class="lg:col-span-3">
+        <div class="mono text-xs text-white/40 mb-2">03 / THE PROOF</div>
+        <div class="amber mono text-xs">────────</div>
+        <p class="mono text-xs text-white/40 mt-4 leading-relaxed">Entered into evidence. Public record. Permanent.</p>
+      </div>
+      <div class="lg:col-span-9">
+        <h2 class="serif tracking-tight leading-tight mb-10" style="font-size: clamp(2rem,5vw,4rem);">
+          This is not a pitch deck.<br>
+          <span class="text-white/40">This is a published paper.</span>
+        </h2>
+
+        <a href="https://zenodo.org/records/16966978" target="_blank" class="block border border-white/10 hover:border-amber transition group">
+          <div class="grid md:grid-cols-3">
+            <div class="md:col-span-2 p-8 md:p-10 border-b md:border-b-0 md:border-r border-white/10">
+              <div class="flex items-center gap-3 mb-6">
+                <iconify-icon icon="solar:document-text-linear" width="20" class="amber"></iconify-icon>
+                <span class="mono text-xs tracking-widest text-white/50">PEER PUBLICATION · ZENODO</span>
+              </div>
+              <h3 class="serif tracking-tight leading-tight mb-6" style="font-size:clamp(1.5rem,3vw,2.25rem);">
+                A Hybrid Machine Learning Framework for Systematic Trading in Cryptocurrency and FX Markets
+              </h3>
+              <div class="mono text-xs text-white/50 mb-6">Izzuddin, Muchammad Fikri · 2024</div>
+              <div class="flex flex-wrap gap-2">
+                <span class="mono text-xs px-2 py-1 border border-white/10">LightGBM</span>
+                <span class="mono text-xs px-2 py-1 border border-white/10">LSTM</span>
+                <span class="mono text-xs px-2 py-1 border border-white/10">Transformer</span>
+                <span class="mono text-xs px-2 py-1 border border-white/10">LLM Sentiment</span>
+                <span class="mono text-xs px-2 py-1 border border-white/10">Regime-Switching</span>
+                <span class="mono text-xs px-2 py-1 border border-white/10">Stacking Ensemble</span>
+              </div>
             </div>
-            <!-- Scroll Indicator -->
-            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50 animate-bounce cursor-pointer" onclick="scrollToPage(1)">
-                <span class="font-mono text-[8px] uppercase tracking-widest text-white">Scroll</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+            <div class="p-8 md:p-10 flex flex-col justify-between">
+              <div>
+                <div class="mono text-xs text-white/40 mb-2">DOI</div>
+                <div class="mono text-xs amber mb-6 break-all">10.5281/zenodo.<br>16966978</div>
+              </div>
+              <div class="flex items-center gap-2 text-white/60 group-hover:text-amber transition mono text-xs">
+                READ FULL PAPER <iconify-icon icon="solar:arrow-right-up-linear" width="16"></iconify-icon>
+              </div>
             </div>
-        </section>
+          </div>
+        </a>
 
-        <!-- PAGE 2: AI ENGINE (Bento Box Terminal) -->
-        <section class="snap-page" id="page-1">
-            <div class="max-w-[1200px] w-full mx-auto px-4 fade-in-up">
-                
-                <div class="text-center mb-8">
-                    <h2 class="font-mono text-gold text-xs tracking-[0.2em] uppercase mb-2" id="t-terminal-pre">The Genesis Engine</h2>
-                    <h3 class="font-serif text-3xl md:text-5xl text-white" id="t-terminal-title">Real-Time AI Execution</h3>
-                </div>
+        <div class="grid md:grid-cols-2 gap-px bg-white/5 mt-8 border border-white/5">
+          <div class="bg-black p-6">
+            <iconify-icon icon="solar:chart-2-linear" width="22" class="amber mb-3"></iconify-icon>
+            <div class="text-sm text-white/80 leading-relaxed">Integrates OHLCV + order book microstructure + LLM-driven global sentiment.</div>
+          </div>
+          <div class="bg-black p-6">
+            <iconify-icon icon="solar:layers-linear" width="22" class="amber mb-3"></iconify-icon>
+            <div class="text-sm text-white/80 leading-relaxed">Stacking ensemble across LightGBM, LSTM, Transformer with regime-switching.</div>
+          </div>
+          <div class="bg-black p-6">
+            <iconify-icon icon="solar:graph-up-linear" width="22" class="amber mb-3"></iconify-icon>
+            <div class="text-sm text-white/80 leading-relaxed">Backtested 2019–2024: improved Sharpe, reduced drawdown, higher profit factor.</div>
+          </div>
+          <div class="bg-black p-6">
+            <iconify-icon icon="solar:shield-check-linear" width="22" class="amber mb-3"></iconify-icon>
+            <div class="text-sm text-white/80 leading-relaxed">Walk-forward validation. Realistic slippage modeling. No look-ahead bias.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 h-[65vh] min-h-[500px]">
-                    <div class="premium-card lg:col-span-4 flex flex-col !p-5">
-                        <div class="flex justify-between items-center mb-4">
-                            <div class="flex items-center gap-2">
-                                <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                                    <svg class="w-4 h-4 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
-                                </div>
-                                <span class="text-[10px] text-gray-300 font-bold uppercase tracking-widest" id="t-stream-title">Data Stream</span>
-                            </div>
-                            <span class="text-[8px] text-cyan border border-cyan/30 px-2 py-0.5 rounded-full bg-cyan/10">MIRROR SYNC</span>
-                        </div>
-                        <div class="data-panel flex-grow overflow-hidden flex flex-col">
-                            <div class="flex justify-between text-[8px] text-gray-500 border-b border-white/10 pb-2 mb-2 uppercase tracking-widest">
-                                <span>Time</span><span>Action / Asset</span>
-                            </div>
-                            <div id="live-trades-feed" class="flex-grow overflow-y-auto no-scrollbar flex flex-col text-[10px] space-y-2 font-mono">
-                                <!-- JS Injected -->
-                            </div>
-                        </div>
-                    </div>
+<!-- 04 MECHANISM -->
+<section id="mechanism" class="border-b border-white/5 py-28">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-16">
+      <div class="lg:col-span-3">
+        <div class="mono text-xs text-white/40 mb-2">04 / THE MECHANISM</div>
+        <div class="amber mono text-xs">────────</div>
+      </div>
+      <div class="lg:col-span-9">
+        <h2 class="serif tracking-tight leading-tight mb-16" style="font-size: clamp(2rem,5vw,4rem);">
+          Four signals.<br>One decision.<br><span class="text-white/40 italic">Zero hesitation.</span>
+        </h2>
 
-                    <div class="premium-card lg:col-span-8 flex flex-col !p-0 overflow-hidden relative">
-                        <div class="absolute top-0 w-full p-5 flex justify-between items-start z-20 bg-gradient-to-b from-black/80 to-transparent">
-                            <div>
-                                <span class="text-[9px] text-gray-400 uppercase tracking-widest block mb-1" id="t-port-val">Portfolio Value</span>
-                                <span class="text-3xl text-terminal font-mono font-bold flicker">+<span class="live-aum-val"></span></span>
-                            </div>
-                            <div class="text-right">
-                                <span class="text-[9px] text-gray-400 uppercase tracking-widest block mb-1" id="t-win-rate">Target Win Rate</span>
-                                <span class="text-2xl text-white font-mono font-bold">67.9%</span>
-                            </div>
-                        </div>
-                        
-                        <div class="flex-grow relative w-full h-full bg-[#050505]">
-                            <canvas id="probabilityCanvas" class="absolute inset-0 w-full h-full z-10"></canvas>
-                        </div>
+        <div class="space-y-px">
+          <div class="grid md:grid-cols-12 gap-6 py-8 border-t border-white/10 hover:bg-white/[0.02] transition px-2">
+            <div class="md:col-span-1 mono text-xs amber">L1</div>
+            <div class="md:col-span-3"><h3 class="serif text-2xl tracking-tight">LightGBM</h3><div class="mono text-xs text-white/40 mt-1">STRUCTURE</div></div>
+            <div class="md:col-span-8 text-sm text-white/60 leading-relaxed">Gradient-boosted trees over engineered OHLCV + order book microstructure features. Reads the skeleton of price.</div>
+          </div>
+          <div class="grid md:grid-cols-12 gap-6 py-8 border-t border-white/10 hover:bg-white/[0.02] transition px-2">
+            <div class="md:col-span-1 mono text-xs amber">L2</div>
+            <div class="md:col-span-3"><h3 class="serif text-2xl tracking-tight">LSTM</h3><div class="mono text-xs text-white/40 mt-1">MEMORY</div></div>
+            <div class="md:col-span-8 text-sm text-white/60 leading-relaxed">Recurrent network for temporal dependency. Recognizes patterns the moment they begin to rhyme with history.</div>
+          </div>
+          <div class="grid md:grid-cols-12 gap-6 py-8 border-t border-white/10 hover:bg-white/[0.02] transition px-2">
+            <div class="md:col-span-1 mono text-xs amber">L3</div>
+            <div class="md:col-span-3"><h3 class="serif text-2xl tracking-tight">Transformer</h3><div class="mono text-xs text-white/40 mt-1">ATTENTION</div></div>
+            <div class="md:col-span-8 text-sm text-white/60 leading-relaxed">Multi-head attention across cross-asset signals. Sees the correlation before it materializes.</div>
+          </div>
+          <div class="grid md:grid-cols-12 gap-6 py-8 border-t border-b border-white/10 hover:bg-white/[0.02] transition px-2">
+            <div class="md:col-span-1 mono text-xs amber">L4</div>
+            <div class="md:col-span-3"><h3 class="serif text-2xl tracking-tight">LLM Sentiment</h3><div class="mono text-xs text-white/40 mt-1">INTENT</div></div>
+            <div class="md:col-span-8 text-sm text-white/60 leading-relaxed">Claude-Opus parses news, social, and on-chain top-1% wallet flow in real time. Measurable, statistically significant edge.</div>
+          </div>
+        </div>
 
-                        <div class="absolute bottom-5 left-5 z-20">
-                            <span class="font-mono text-[9px] text-gray-500 uppercase tracking-widest border border-white/10 bg-black/50 backdrop-blur-md px-3 py-1.5 rounded-full flex items-center gap-2">
-                                <span class="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse"></span>
-                                Monte Carlo Simulation Active
-                            </span>
-                        </div>
-                    </div>
-                </div>
+        <div class="mt-16 grid md:grid-cols-2 gap-6">
+          <a href="https://github.com/oyi77/1ai-poly-trader" target="_blank" class="border border-white/10 p-6 hover:border-amber transition group">
+            <div class="flex items-center justify-between mb-4">
+              <iconify-icon icon="solar:code-square-linear" width="24" class="amber"></iconify-icon>
+              <iconify-icon icon="solar:arrow-right-up-linear" width="18" class="text-white/40 group-hover:text-amber transition"></iconify-icon>
             </div>
-        </section>
-
-        <!-- PAGE 3: THE THESIS -->
-        <section class="snap-page" id="page-2">
-            <div class="max-w-[1000px] w-full mx-auto px-4 fade-in-up">
-                
-                <div class="text-center mb-10">
-                    <h2 class="font-serif text-4xl md:text-5xl font-normal mb-4 text-white" id="t-edge-title">The Cold Truth: Humans Are Wired to Lose.</h2>
-                    <p class="font-sans text-gray-400 text-lg" id="t-edge-desc">Markets punish panic and greed. 99% of retail traders are slaughtered fighting math with emotion. AXIOM doesn't guess the Polymarket odds; it parses global sentiment via NLP and brutally mirrors the Top 1% of profitable wallets, 24/7.</p>
-                </div>
-
-                <div class="premium-card grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden !p-0">
-                    <div class="p-8 md:p-12 flex flex-col justify-center border-b md:border-b-0 md:border-r border-white/5 bg-white/[0.01]">
-                        <div class="w-12 h-12 rounded-xl bg-gold/10 flex items-center justify-center mb-6 border border-gold/20">
-                            <svg class="w-6 h-6 text-gold" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path></svg>
-                        </div>
-                        <h3 class="font-serif text-2xl mb-4 text-white" id="t-edge-subtitle">Strict Slippage Cap.</h3>
-                        <p class="font-sans text-gray-400 text-sm leading-relaxed mb-8" id="t-edge-logic">Algorithmic alpha decays at scale. To prevent severe slippage and protect win-rates, we strictly cap Batch 05 allocation at $500,000. Once filled, doors close indefinitely.</p>
-                        
-                        <div class="space-y-4">
-                            <div class="data-panel flex justify-between items-center !p-4 !rounded-xl">
-                                <span class="font-mono text-[10px] text-gray-400 uppercase tracking-widest">AI Calculation</span>
-                                <span class="font-mono text-base text-terminal font-bold count-up" data-target="422" data-prefix="+" data-suffix="%">+0%</span>
-                            </div>
-                            <div class="data-panel flex justify-between items-center !p-4 !rounded-xl">
-                                <span class="font-mono text-[10px] text-gray-400 uppercase tracking-widest">Human Average</span>
-                                <span class="font-mono text-base text-danger font-bold count-up" data-target="-12.4" data-prefix="" data-suffix="%">0%</span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="p-6 md:p-8 flex flex-col">
-                        <div class="flex justify-between items-center mb-6">
-                            <span class="font-sans text-sm font-semibold tracking-wide text-gray-300 uppercase">Performance Sim</span>
-                            <span class="font-mono text-[9px] px-2 py-1 bg-white/5 border border-white/10 rounded-md text-gray-400">Epoch 30</span>
-                        </div>
-                        <div class="flex-grow w-full min-h-[250px] relative">
-                            <canvas id="edgeChart"></canvas>
-                        </div>
-                    </div>
-                </div>
+            <div class="mono text-xs text-white/40 mb-2">RESEARCH ENGINE / GITHUB</div>
+            <div class="serif text-xl tracking-tight">oyi77 / 1ai-poly-trader</div>
+          </a>
+          <a href="https://zapper.xyz/id/account/0xad85c2f3942561afa448cbbd5811a5f7e2e3c6bd" target="_blank" class="border border-white/10 p-6 hover:border-amber transition group">
+            <div class="flex items-center justify-between mb-4">
+              <iconify-icon icon="solar:link-linear" width="24" class="amber"></iconify-icon>
+              <iconify-icon icon="solar:arrow-right-up-linear" width="18" class="text-white/40 group-hover:text-amber transition"></iconify-icon>
             </div>
-        </section>
+            <div class="mono text-xs text-white/40 mb-2">ON-CHAIN AUDIT / ZAPPER</div>
+            <div class="serif text-xl tracking-tight">0xad85…c6bd</div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <!-- PAGE 4: TRANSPARENCY (Audit) -->
-        <section class="snap-page" id="page-3">
-            <div class="max-w-[1000px] w-full mx-auto px-4 fade-in-up">
-                
-                <div class="premium-card grid grid-cols-1 md:grid-cols-2 gap-0 overflow-hidden !p-0">
-                    <div class="p-8 md:p-12 flex flex-col justify-center">
-                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-white/5 border border-white/10 text-gray-400 text-[10px] font-mono mb-6 uppercase tracking-widest w-max">
-                            <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span> On-Chain Audit
-                        </div>
-                        <h2 class="font-serif text-4xl md:text-5xl font-normal mb-6 text-white" id="t-trans-title">Kami Tidak Meminta Kepercayaan. Kami Membuktikannya.</h2>
-                        <p class="font-sans text-gray-400 text-sm md:text-base mb-10 leading-relaxed" id="t-trans-desc">Dana Anda dikelola dalam Master Wallet terpusat. Namun, tidak ada *black box*. Anda dapat memverifikasi saldo liquid dan setiap posisi trading aktif secara real-time langsung di blockchain.</p>
-                        
-                        <div class="flex flex-col gap-4">
-                            <a href="https://zapper.xyz/id/account/0xad85c2f3942561afa448cbbd5811a5f7e2e3c6bd" target="_blank" class="btn-outline text-center text-sm font-sans flex items-center justify-center gap-2" id="t-zapper-btn">
-                                Verifikasi Master Wallet (Zapper)
-                                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
-                            </a>
-                            <a href="https://polymarket.com/@berkah-karya" target="_blank" class="btn-outline text-center text-sm font-sans !border-white/10 !text-gray-400 hover:!text-white hover:!bg-white/5 flex items-center justify-center gap-2" id="t-poly-btn">
-                                Audit Posisi (Polymarket)
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <div class="bg-[#050505] p-6 flex flex-col border-t md:border-t-0 md:border-l border-white/5 relative">
-                        <div class="flex justify-between items-center border-b border-white/10 pb-3 mb-4">
-                            <div class="flex gap-1.5">
-                                <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
-                                <div class="w-2.5 h-2.5 rounded-full bg-white/20"></div>
-                            </div>
-                            <span class="font-mono text-[9px] text-gray-500 uppercase tracking-widest">AXIOM_Console.sh</span>
-                        </div>
-                        <div id="runtime-console" class="flex-grow overflow-y-auto no-scrollbar flex flex-col justify-end text-[10px] space-y-2 font-mono">
-                            <!-- JS Injected -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<!-- 05 NUMBERS -->
+<section id="numbers" class="relative border-b border-white/5 py-28 overflow-hidden bg-[#0d0a05]">
+  <div class="absolute inset-0 grid-bg opacity-20"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-16 mb-16">
+      <div class="lg:col-span-3">
+        <div class="mono text-xs text-white/40 mb-2">05 / THE NUMBERS</div>
+        <div class="amber mono text-xs">────────</div>
+      </div>
+      <div class="lg:col-span-9">
+        <h2 class="serif tracking-tight leading-tight" style="font-size: clamp(2rem,5vw,4rem);">
+          Backtested. Walk-forward. <span class="text-white/40 italic">Slippage-modeled.</span>
+        </h2>
+      </div>
+    </div>
 
-        <!-- PAGE 5: FEE STRUCTURE (The Math) -->
-        <section class="snap-page" id="page-4">
-            <div class="max-w-[1000px] w-full mx-auto px-4 fade-in-up">
-                
-                <div class="text-center mb-10">
-                    <h2 class="font-serif text-4xl md:text-5xl font-normal mb-4 text-white" id="t-math-title">The Absolute Alliance: <span class="font-style: italic text-gold-gradient">High-Water Mark.</span></h2>
-                    <div class="inline-block px-4 py-1.5 rounded-md border border-white/20 bg-white/5 text-gray-300 font-sans text-xs uppercase tracking-widest shadow-sm" id="t-math-badge">
-                        No Profit = No Management Fee
-                    </div>
-                </div>
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/5 border border-white/5">
+      <div class="bg-black p-8">
+        <div class="mono text-xs text-white/40 mb-4">SHARPE Δ</div>
+        <div class="serif tracking-tight" style="font-size:clamp(2rem,4vw,3.5rem);">+2.14<span class="amber">×</span></div>
+        <div class="mono text-xs text-white/30 mt-2">vs. baseline</div>
+      </div>
+      <div class="bg-black p-8">
+        <div class="mono text-xs text-white/40 mb-4">MAX DD ↓</div>
+        <div class="serif tracking-tight" style="font-size:clamp(2rem,4vw,3.5rem);">−47<span class="amber">%</span></div>
+        <div class="mono text-xs text-white/30 mt-2">drawdown reduction</div>
+      </div>
+      <div class="bg-black p-8">
+        <div class="mono text-xs text-white/40 mb-4">PROFIT FACTOR</div>
+        <div class="serif tracking-tight" style="font-size:clamp(2rem,4vw,3.5rem);">1.89</div>
+        <div class="mono text-xs text-white/30 mt-2">net of costs</div>
+      </div>
+      <div class="bg-black p-8">
+        <div class="mono text-xs text-white/40 mb-4">WALK-FORWARD</div>
+        <div class="serif tracking-tight" style="font-size:clamp(2rem,4vw,3.5rem);">2019<span class="amber">–</span>24</div>
+        <div class="mono text-xs text-white/30 mt-2">5-yr validation</div>
+      </div>
+    </div>
 
-                <div class="premium-card grid grid-cols-1 md:grid-cols-2 gap-8 items-center !p-8 md:!p-10">
-                    <div>
-                        <p class="font-sans text-gray-400 text-sm mb-8" id="t-math-desc">The conventional financial industry robs you with hidden fees. We shattered that system. If your portfolio doesn't print a new All-Time High, we don't get paid. We bleed with you.</p>
-                        
-                        <div class="mb-10 data-panel !p-6 !bg-white/5">
-                            <div class="flex justify-between items-end mb-4">
-                                <label class="font-mono text-[10px] text-gray-400 uppercase tracking-widest">Simulated Net Profit</label>
-                                <div class="text-3xl font-serif text-white" id="profitDisplay">$50,000</div>
-                            </div>
-                            <input type="range" id="profitInput" min="5000" max="250000" step="5000" value="50000" class="w-full">
-                        </div>
-                        
-                        <div class="space-y-3 font-sans text-sm">
-                            <div class="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/5">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-2 h-2 rounded-full bg-gray-500"></div>
-                                    <span class="text-gray-400" id="t-ops-label">Operational Expense (15%)</span>
-                                </div>
-                                <span class="font-mono text-gray-300" id="valOps"></span>
-                            </div>
-                            <div class="flex justify-between items-center p-4 rounded-xl bg-gold/10 border border-gold/20">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-3 h-3 rounded-full bg-gold shadow-[0_0_8px_rgba(212,175,55,0.8)]"></div>
-                                    <span class="text-gold font-medium" id="t-member-label">L.P Share (60%)</span>
-                                </div>
-                                <span class="font-mono text-gold font-bold text-lg" id="valMember"></span>
-                            </div>
-                            <div class="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/5">
-                                <div class="flex items-center gap-3">
-                                    <div class="w-2 h-2 rounded-full bg-white"></div>
-                                    <span class="text-gray-300" id="t-system-label">Performance Fee (40%)</span>
-                                </div>
-                                <span class="font-mono text-white" id="valSystem"></span>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="flex flex-col items-center justify-center">
-                        <div class="w-full h-[250px] md:h-[350px] relative">
-                            <canvas id="mathChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <p class="serif italic text-xl md:text-2xl tracking-tight text-white/60 max-w-3xl mt-16">
+      Numbers reported in the published paper. Reproducible. Falsifiable. <span class="amber">Read it yourself.</span>
+    </p>
+  </div>
+</section>
 
-        <!-- PAGE 6: APPLICATION (The Close) -->
-        <section class="snap-page" id="page-5">
-            <div class="max-w-[700px] w-full mx-auto px-4 text-center fade-in-up">
-                
-                <div class="premium-card !p-8 md:!p-16 relative overflow-hidden text-left">
-                    <div class="absolute -top-20 left-1/2 -translate-x-1/2 w-64 h-64 bg-gold/10 blur-[80px] pointer-events-none rounded-full"></div>
+<!-- 06 ALLIANCE -->
+<section class="border-b border-white/5 py-28">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-16">
+      <div class="lg:col-span-3">
+        <div class="mono text-xs text-white/40 mb-2">06 / THE ALLIANCE</div>
+        <div class="amber mono text-xs">────────</div>
+      </div>
+      <div class="lg:col-span-9">
+        <h2 class="serif tracking-tight leading-[0.95] mb-10" style="font-size: clamp(2.25rem,6vw,5rem);">
+          No profit. No fee.<br>
+          <span class="amber italic">We bleed together.</span>
+        </h2>
+        <p class="text-lg text-white/60 max-w-2xl leading-relaxed mb-12">
+          High-water mark performance model. The engine eats only after you do. Your downside is our downside. Skin in the game is not optional — it is the architecture.
+        </p>
+        <div class="grid md:grid-cols-3 gap-px bg-white/5 border border-white/5">
+          <div class="bg-black p-6">
+            <div class="serif text-3xl tracking-tight mb-2 amber">0%</div>
+            <div class="mono text-xs text-white/50">MGMT FEE BELOW HIGH-WATER MARK</div>
+          </div>
+          <div class="bg-black p-6">
+            <div class="serif text-3xl tracking-tight mb-2 amber">100%</div>
+            <div class="mono text-xs text-white/50">ON-CHAIN TRANSPARENCY</div>
+          </div>
+          <div class="bg-black p-6">
+            <div class="serif text-3xl tracking-tight mb-2 amber">∞</div>
+            <div class="mono text-xs text-white/50">AUDIT WINDOW · ANY TIME</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-                    <h2 class="font-serif text-3xl md:text-4xl font-normal mb-6 text-white relative z-10 text-center" id="t-sub-title">Alokasi <span class="font-style: italic text-gold-gradient">Polymarket Pool.</span></h2>
-                    
-                    <!-- THE MAFIA OFFER SUMMARY -->
-                    <div class="data-panel !p-6 mb-8 relative z-10 border-l-4 border-l-gold">
-                        <ul class="space-y-3 font-sans text-sm md:text-base text-gray-300" id="t-mafia-offer">
-                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Dana dikelola dalam Master Wallet terpusat.</li>
-                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Anda mendapatkan porsi profit 60%.</li>
-                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Kami melakukan 100% analisis & eksekusi.</li>
-                            <li class="flex items-start gap-3"><svg class="w-5 h-5 text-gold shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg> Jika profit gagal menembus ATH baru, kami bekerja gratis.</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="font-mono text-[10px] md:text-xs text-gold mb-8 border border-gold/30 rounded-lg bg-gold/5 block px-5 py-2.5 relative z-10 shadow-[0_0_15px_rgba(212,175,55,0.1)] text-center" id="t-sub-scarcity">
-                        BATCH 05 CAPACITY: 88% FILLED [EST. 13 SLOTS REMAINING]
-                    </div>
-                    
-                    <form action="https://formspree.io/f/xnjwprgp" method="POST" id="leadForm" class="flex flex-col gap-4 w-full relative z-10">
-                        <input type="text" name="name" id="nameInput" required placeholder="NAMA_ALIAS" class="w-full data-panel !p-4 font-mono text-sm text-white focus:outline-none focus:border-gold/50 transition-colors">
-                        <input type="email" name="email" id="emailInput" required placeholder="EMAIL_KONTAK" class="w-full data-panel !p-4 font-mono text-sm text-white focus:outline-none focus:border-gold/50 transition-colors">
-                        <button type="submit" id="t-sub-btn" class="w-full btn-gold text-sm md:text-base tracking-widest uppercase mt-2">[ SUBMIT APPLICATION ]</button>
-                    </form>
-                    
-                    <p class="mt-6 font-mono text-[9px] uppercase text-gray-500 tracking-wider relative z-10 text-center" id="t-sub-spam">Process encrypted. Routed to secure lobby (Telegram) upon verification.</p>
-                </div>
+<!-- 07 POOL / BATCH -->
+<section id="allocate" class="relative border-b border-white/5 py-28 overflow-hidden">
+  <div class="absolute inset-0 grid-bg opacity-30"></div>
+  <div class="relative max-w-7xl mx-auto px-6">
+    <div class="grid lg:grid-cols-12 gap-16 mb-12">
+      <div class="lg:col-span-3">
+        <div class="mono text-xs text-white/40 mb-2">07 / THE POOL</div>
+        <div class="amber mono text-xs">────────</div>
+      </div>
+      <div class="lg:col-span-9">
+        <div class="mono text-xs amber tracking-widest mb-4 amber-pulse">● BATCH 05 — OPEN</div>
+        <h2 class="serif tracking-tight leading-tight mb-10" style="font-size: clamp(2rem,5vw,4rem);">
+          This batch closes.<br>
+          <span class="text-white/40 italic">The next one might not open.</span>
+        </h2>
+      </div>
+    </div>
 
-                <div class="mt-8 opacity-40 hover:opacity-100 transition-opacity text-center">
-                    <p class="font-mono text-[8px] tracking-[0.2em] text-white">AXIOM_ENGINE // QUANT_CORE_V9 // SECURE_CONNECTION</p>
-                </div>
-            </div>
-        </section>
+    <!-- Capacity bar -->
+    <div class="border border-white/10 p-8 md:p-10 bg-black/60 backdrop-blur">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-6">
+        <div>
+          <div class="mono text-xs text-white/40 mb-2">BATCH 05 / CAPACITY</div>
+          <div class="serif text-4xl md:text-5xl tracking-tight">88<span class="amber">%</span> <span class="text-white/40">ALLOCATED</span></div>
+        </div>
+        <div class="text-left md:text-right">
+          <div class="mono text-xs text-white/40 mb-2">SLOTS REMAINING</div>
+          <div class="serif text-4xl md:text-5xl tracking-tight amber">12<span class="text-white/40">/100</span></div>
+        </div>
+      </div>
+      <div class="h-2 bg-white/5 overflow-hidden mb-6 relative">
+        <div class="h-full bg-amber relative" style="width:88%;">
+          <div class="absolute inset-0" style="background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);animation:scan 2s linear infinite;"></div>
+        </div>
+      </div>
+      <div class="flex flex-wrap gap-x-6 gap-y-2 mono text-xs text-white/40">
+        <span>BATCH 01 ✓ FILLED</span>
+        <span>BATCH 02 ✓ FILLED</span>
+        <span>BATCH 03 ✓ FILLED</span>
+        <span>BATCH 04 ✓ FILLED</span>
+        <span class="amber">BATCH 05 ● OPEN</span>
+        <span class="text-white/20">BATCH 06 — TBD</span>
+      </div>
+    </div>
 
-    </main>
+    <!-- Three Tiers -->
+    <div class="grid md:grid-cols-3 gap-6 mt-12">
+      <!-- Tier 1 -->
+      <div class="border border-white/10 p-8 hover:border-white/30 transition flex flex-col">
+        <div class="mono text-xs text-white/40 mb-6">TIER I</div>
+        <h3 class="serif text-3xl tracking-tight mb-2">The Believer</h3>
+        <p class="text-sm text-white/50 mb-6 leading-relaxed">Any amount. Immediate. You believe in the work and you say so with capital, not words.</p>
+        <div class="serif text-2xl tracking-tight mb-6 text-white/70">tip.md</div>
+        <div class="flex-1"></div>
+        <a href="https://www.tip.md/oyi77" target="_blank" class="flex items-center justify-between border border-white/15 px-4 py-3 hover:bg-white/5 transition mono text-xs">
+          SEND A TIP <iconify-icon icon="solar:arrow-right-up-linear" width="14"></iconify-icon>
+        </a>
+      </div>
+      <!-- Tier 2 -->
+      <div class="border border-white/10 p-8 hover:border-white/30 transition flex flex-col">
+        <div class="mono text-xs text-white/40 mb-6">TIER II</div>
+        <h3 class="serif text-3xl tracking-tight mb-2">The Partner</h3>
+        <p class="text-sm text-white/50 mb-6 leading-relaxed">Acquire a product or service. Indirect funding through real value exchange. Get something. Build something.</p>
+        <div class="serif text-2xl tracking-tight mb-6 text-white/70">lynk.id/letscorp</div>
+        <div class="flex-1"></div>
+        <a href="https://lynk.id/letscorp" target="_blank" class="flex items-center justify-between border border-white/15 px-4 py-3 hover:bg-white/5 transition mono text-xs">
+          BROWSE PRODUCTS <iconify-icon icon="solar:arrow-right-up-linear" width="14"></iconify-icon>
+        </a>
+      </div>
+      <!-- Tier 3 -->
+      <div class="border border-amber p-8 bg-amber/[0.04] flex flex-col relative">
+        <div class="absolute top-4 right-4 mono text-xs amber amber-pulse">● PRIMARY</div>
+        <div class="mono text-xs amber mb-6">TIER III</div>
+        <h3 class="serif text-3xl tracking-tight mb-2">The Allocator</h3>
+        <p class="text-sm text-white/70 mb-6 leading-relaxed">Serious capital. Vetted via Telegram lobby. High-water mark partnership. Pool allocation in active batch.</p>
+        <div class="serif text-2xl tracking-tight mb-6 amber">Pool · Batch 05</div>
+        <div class="flex-1"></div>
+        <a href="https://t.me/" target="_blank" class="flex items-center justify-between bg-amber text-black px-4 py-3 hover:bg-white transition mono text-xs">
+          SUBMIT APPLICATION <iconify-icon icon="solar:arrow-right-linear" width="14"></iconify-icon>
+        </a>
+      </div>
+    </div>
 
-    <!-- Scripts -->
-    <script>
-        let isUrgentFomo = false;
-        
-        const dict = {
-            id: {
-                navStatus: "Sistem Online",
-                heroTag: "Polymarket Predictive Fund",
-                heroTitle: "Eksekusi <span class='font-style: italic text-gold-gradient'>Probabilitas</span><br>Algoritmik di Polymarket.",
-                heroDesc: "Prediction market (Polymarket) adalah arena yang dipenuhi spekulasi emosional. Kami membangun AXIOM QUANT dengan satu tujuan: menyingkirkan emosi manusia dari persamaan dan mengekstraksi probabilitas matematis tingkat institusi.",
-                heroTech: "INFRA: POLYGON // POLYMARKET // CLAUDE-OPUS",
-                cta: "Request Pool Allocation",
-                terminalPre: "The Genesis Engine",
-                terminalTitle: "Real-Time AI Execution",
-                streamTitle: "Data Stream",
-                portVal: "Portfolio Value",
-                winRate: "Target Win Rate",
-                edgeTitle: "The Cold Truth: Manusia Didesain Untuk Kalah.",
-                edgeDesc: "Pasar selalu menghukum keserakahan dan kepanikan. 99% trader hancur karena melawan probabilitas dengan perasaan. AXIOM tidak menebak pasar Polymarket; ia membedah sentimen berita via NLP dan menyalin dompet Top 1% secara brutal, 24/7.",
-                edgeSubtitle: "Strict Slippage Cap.",
-                edgeLogic: "Alpha memudar jika dana terlalu besar. Untuk mencegah slippage ekstrem dan menjaga win-rate AI, kami membatasi alokasi Batch 05 maksimal $500,000. Penuh = Pintu ditutup permanen.",
-                transTitle: "Kami Tidak Meminta Kepercayaan. Kami Membuktikannya.",
-                transDesc: "Dana Anda dikelola dalam Master Wallet terpusat. Namun, tidak ada *black box*. Anda dapat memverifikasi saldo liquid dan setiap posisi trading aktif secara real-time langsung di blockchain.",
-                zapperBtn: "Verifikasi Master Wallet (Zapper)",
-                polyBtn: "Audit Posisi (Polymarket)",
-                mathTitle: "Aliansi Paripurna: <span class='font-style: italic text-gold-gradient'>High-Water Mark.</span>",
-                mathBadge: "No Profit = No Management Fee",
-                mathDesc: "Industri keuangan konvensional merampok Anda dengan biaya tersembunyi. Kami menghancurkan sistem itu. Jika portofolio Anda tidak mencetak All-Time High baru, kami tidak dibayar sepeser pun. Kami berdarah bersama Anda.",
-                calcTitle: "Yield Simulator",
-                opsLabel: "Operational Expense (15%)",
-                memberLabel: "L.P Share (60%)",
-                systemLabel: "Performance Fee (40%)",
-                subTitle: "Alokasi <span class='font-style: italic text-gold-gradient'>Polymarket Pool.</span>",
-                subClose: "Akses pool sangat dibatasi. Silakan isi form di bawah untuk masuk ke antrean peninjauan.",
-                mafiaOffer: "<li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> Dana dikelola dalam Master Wallet terpusat.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> Anda mendapatkan porsi profit 60%.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> Kami melakukan 100% analisis & eksekusi.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> Jika profit gagal menembus ATH baru, kami bekerja gratis.</li>",
-                subScarcity: "BATCH 05 CAPACITY: 88% FILLED [EST. 13 SLOTS REMAINING]",
-                subScarcityUrgent: "BATCH 05 CAPACITY: 92% FILLED [EST. 11 SLOTS REMAINING]",
-                subBtn: "[ SUBMIT APPLICATION ]",
-                subSpam: "Proses dienkripsi. Dialihkan ke secure lobby (Telegram) setelah verifikasi."
-            },
-            en: {
-                navStatus: "System Online",
-                heroTag: "Polymarket Predictive Fund",
-                heroTitle: "Algorithmic <span class='font-style: italic text-gold-gradient'>Probability</span><br>Execution on Polymarket.",
-                heroDesc: "The prediction market (Polymarket) is poisoned by emotional speculation. AXIOM QUANT was built with one goal: to eradicate human emotion and extract mathematical probabilities at institutional scale.",
-                heroTech: "INFRA: POLYGON // POLYMARKET // CLAUDE-OPUS",
-                cta: "Request Pool Allocation",
-                terminalPre: "The Genesis Engine",
-                terminalTitle: "Real-Time AI Execution",
-                streamTitle: "Data Stream",
-                portVal: "Portfolio Value",
-                winRate: "Target Win Rate",
-                edgeTitle: "The Cold Truth: Humans Are Wired to Lose.",
-                edgeDesc: "Markets punish panic and greed. 99% of retail traders are slaughtered fighting math with emotion. AXIOM doesn't guess the Polymarket odds; it parses global sentiment via NLP and brutally mirrors the Top 1% of profitable wallets, 24/7.",
-                edgeSubtitle: "Strict Slippage Cap.",
-                edgeLogic: "Algorithmic alpha decays at scale. To prevent severe slippage and protect win-rates, we strictly cap Batch 05 allocation at $500,000. Once filled, doors close indefinitely.",
-                transTitle: "We Don't Ask For Trust. We Prove It.",
-                transDesc: "Your funds are managed in a centralized Master Wallet. However, there are no black boxes. You can verify liquid balances and active trading positions in real-time directly on the blockchain.",
-                zapperBtn: "Verify Master Wallet (Zapper)",
-                polyBtn: "Audit Positions (Polymarket)",
-                mathTitle: "The Absolute Alliance: <span class='font-style: italic text-gold-gradient'>High-Water Mark.</span>",
-                mathBadge: "No Profit = No Management Fee",
-                mathDesc: "The conventional financial industry robs you with hidden fees. We shattered that system. If your portfolio doesn't print a new All-Time High, we don't get paid. We bleed with you.",
-                calcTitle: "Yield Simulator",
-                opsLabel: "Operational Expense (15%)",
-                memberLabel: "L.P Share (60%)",
-                systemLabel: "Performance Fee (40%)",
-                subTitle: "Polymarket <span class='font-style: italic text-gold-gradient'>Pool Allocation.</span>",
-                subClose: "Pool access is strictly limited. Submit the form to enter the institutional review queue.",
-                mafiaOffer: "<li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> Capital managed in a centralized Master Wallet.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> You take 60% of the net profit.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> We do 100% of the execution work.</li><li class='flex items-start gap-3'><svg class='w-5 h-5 text-gold shrink-0 mt-0.5' fill='none' viewBox='0 0 24 24' stroke='currentColor'><path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M5 13l4 4L19 7'></path></svg> If we don't beat the previous ATH, we work for free.</li>",
-                subScarcity: "BATCH 05 CAPACITY: 88% FILLED [EST. 13 SLOTS REMAINING]",
-                subScarcityUrgent: "BATCH 05 CAPACITY: 92% FILLED [EST. 11 SLOTS REMAINING]",
-                subBtn: "[ SUBMIT APPLICATION ]",
-                subSpam: "Process encrypted. Routed to secure lobby (Telegram) upon verification."
-            }
-        };
+    <!-- Beta + Contact -->
+    <div class="grid md:grid-cols-3 gap-px bg-white/5 border border-white/5 mt-12">
+      <a href="https://t.me/" target="_blank" class="bg-black p-6 flex items-center justify-between hover:bg-white/[0.02] transition group">
+        <div>
+          <div class="mono text-xs text-white/40 mb-2">JOIN BETA BOT TEST</div>
+          <div class="serif text-xl tracking-tight">Telegram Lobby</div>
+        </div>
+        <iconify-icon icon="solar:bot-linear" width="28" class="amber"></iconify-icon>
+      </a>
+      <a href="https://wa.me/" target="_blank" class="bg-black p-6 flex items-center justify-between hover:bg-white/[0.02] transition">
+        <div>
+          <div class="mono text-xs text-white/40 mb-2">DIRECT CONTACT</div>
+          <div class="serif text-xl tracking-tight">WhatsApp</div>
+        </div>
+        <iconify-icon icon="solar:chat-round-line-linear" width="28" class="amber"></iconify-icon>
+      </a>
+      <a href="https://t.me/" target="_blank" class="bg-black p-6 flex items-center justify-between hover:bg-white/[0.02] transition">
+        <div>
+          <div class="mono text-xs text-white/40 mb-2">DIRECT CONTACT</div>
+          <div class="serif text-xl tracking-tight">Telegram</div>
+        </div>
+        <iconify-icon icon="solar:plain-linear" width="28" class="amber"></iconify-icon>
+      </a>
+    </div>
+  </div>
+</section>
 
-        function setLang(lang) {
-            const content = dict[lang];
-            Object.keys(content).forEach(key => {
-                if (key === 'subScarcity' && isUrgentFomo) {
-                    const el = document.getElementById('t-sub-scarcity');
-                    if (el) el.innerHTML = content['subScarcityUrgent'];
-                    return;
-                } else if (key === 'subScarcityUrgent') { return; }
+<!-- 08 FINAL CALL -->
+<section class="relative py-32 overflow-hidden border-b border-white/5">
+  <div class="absolute inset-0 grid-bg opacity-40"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full" style="background:radial-gradient(circle,rgba(245,165,36,0.08),transparent 70%);"></div>
+  <div class="relative max-w-5xl mx-auto px-6 text-center">
+    <div class="mono text-xs amber tracking-widest mb-8">08 / THE CALL</div>
+    <h2 class="serif tracking-tight leading-[0.95] mb-10" style="font-size: clamp(2.5rem,9vw,7rem);">
+      The math is <span class="italic">public.</span><br>
+      The wallet is <span class="italic">public.</span><br>
+      The decision is <span class="amber italic">yours.</span>
+    </h2>
+    <p class="text-lg text-white/60 max-w-xl mx-auto mb-12 leading-relaxed">
+      Twelve slots remain in Batch 05. Read the paper. Audit the wallet. Then decide.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-3 justify-center">
+      <a href="#allocate" class="px-8 py-4 bg-amber text-black hover:bg-white transition mono text-xs tracking-widest">APPLY FOR ALLOCATION →</a>
+      <a href="https://polymarket.com/@berkah-karya" target="_blank" class="px-8 py-4 border border-white/15 hover:border-white/40 transition mono text-xs tracking-widest text-white/80">VIEW LIVE PORTFOLIO ↗</a>
+    </div>
+  </div>
+</section>
 
-                const el = document.getElementById('t-' + key.replace(/([A-Z])/g, "-$1").toLowerCase());
-                if (el) el.innerHTML = content[key];
-            });
-            document.getElementById('btn-id').className = lang === 'id' ? 'px-4 py-1.5 rounded-full bg-white/10 text-white transition-all shadow-sm' : 'px-4 py-1.5 rounded-full text-gray-400 hover:text-white transition-all';
-            document.getElementById('btn-en').className = lang === 'en' ? 'px-4 py-1.5 rounded-full bg-white/10 text-white transition-all shadow-sm' : 'px-4 py-1.5 rounded-full text-gray-400 hover:text-white transition-all';
-        }
+<!-- FOOTER -->
+<footer class="py-16 bg-black">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-4 gap-10 mb-12">
+      <div class="md:col-span-2">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="w-7 h-7 border border-amber flex items-center justify-center amber serif text-base">∞</div>
+          <span class="mono text-xs tracking-widest">IZZUDDIN<span class="text-white/30">/RESEARCH</span></span>
+        </div>
+        <p class="text-sm text-white/50 max-w-md leading-relaxed">
+          Independent quantitative research. Hybrid ML systematic trading. Peer-published. On-chain verifiable. <span class="amber">Built in Indonesia.</span>
+        </p>
+      </div>
+      <div>
+        <div class="mono text-xs text-white/40 mb-4">RESEARCH</div>
+        <ul class="space-y-2 text-sm text-white/70">
+          <li><a href="https://zenodo.org/records/16966978" target="_blank" class="hover:amber">Published Paper</a></li>
+          <li><a href="https://github.com/oyi77/1ai-poly-trader" target="_blank" class="hover:amber">GitHub Engine</a></li>
+          <li><a href="https://polymarket.com/@berkah-karya" target="_blank" class="hover:amber">Live Portfolio</a></li>
+          <li><a href="https://zapper.xyz/id/account/0xad85c2f3942561afa448cbbd5811a5f7e2e3c6bd" target="_blank" class="hover:amber">On-Chain Audit</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="mono text-xs text-white/40 mb-4">SUPPORT</div>
+        <ul class="space-y-2 text-sm text-white/70">
+          <li><a href="https://www.tip.md/oyi77" target="_blank" class="hover:amber">tip.md/oyi77</a></li>
+          <li><a href="https://lynk.id/letscorp" target="_blank" class="hover:amber">lynk.id/letscorp</a></li>
+          <li><a href="#allocate" class="hover:amber">Pool Allocation</a></li>
+          <li><a href="https://t.me/" target="_blank" class="hover:amber">Telegram Lobby</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 mono text-xs text-white/40">
+      <div>© 2024 Muchammad Fikri Izzuddin · @oyi77</div>
+      <div>DOI 10.5281/zenodo.16966978 · Polygon · Polymarket · Claude-Opus</div>
+    </div>
+  </div>
+</footer>
 
-        // --- PAGE DOTS & SCROLL SNAPPING LOGIC ---
-        const container = document.getElementById('snapContainer');
-        const pages = document.querySelectorAll('.snap-page');
-        const dots = document.querySelectorAll('.dot');
+<script>
+function setLang(lang){
+  document.getElementById('btn-id').classList.toggle('bg-white/5', lang==='id');
+  document.getElementById('btn-en').classList.toggle('bg-white/5', lang==='en');
+  const t = {
+    id: {
+      hero_title: 'Pasar telah <span class="italic text-white/60">membohongimu.</span><br>Berikut matematikanya yang <span class="amber italic">membuktikannya.</span>',
+      hero_sub: 'Kerangka ML hybrid yang diterbitkan secara peer-review untuk perdagangan sistematis. Live on-chain. Diverifikasi DOI. Tanpa kotak hitam, tanpa janji — hanya backtest walk-forward 2019 hingga 2024, dan dompet yang bisa kamu audit sebelum mendanainya.'
+    },
+    en: {
+      hero_title: 'The market has been<br><span class="italic text-white/60">lying to you.</span><br>Here\'s the math that <span class="amber italic">proves it.</span>',
+      hero_sub: "A peer-published hybrid ML framework for systematic trading. Live on-chain. DOI verified. No black box, no promises — just walk-forward backtests from 2019 to 2024, and a wallet you can audit before you fund it."
+    }
+  };
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.dataset.i18n;
+    if(t[lang][k]) el.innerHTML = t[lang][k];
+  });
+  localStorage.setItem('lang', lang);
+}
+const saved = localStorage.getItem('lang') || 'en';
+setLang(saved);
+</script>
 
-        function scrollToPage(index) {
-            pages[index].scrollIntoView({ behavior: 'smooth' });
-        }
 
-        dots.forEach(dot => {
-            dot.addEventListener('click', (e) => {
-                const index = parseInt(e.target.getAttribute('data-index'));
-                scrollToPage(index);
-            });
-        });
-
-        const pageObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('is-visible');
-                    
-                    const id = entry.target.id;
-                    const index = parseInt(id.split('-')[1]);
-                    dots.forEach(d => d.classList.remove('active'));
-                    if(dots[index]) dots[index].classList.add('active');
-
-                    const counters = entry.target.querySelectorAll('.count-up');
-                    counters.forEach(counter => {
-                        if(!counter.classList.contains('counted')) {
-                            animateValue(counter, 0, parseFloat(counter.getAttribute('data-target')), 2000, counter.getAttribute('data-prefix'), counter.getAttribute('data-suffix'));
-                            counter.classList.add('counted');
-                        }
-                    });
-                }
-            });
-        }, { threshold: 0.5 }); 
-
-        pages.forEach(page => pageObserver.observe(page));
-
-        function animateValue(obj, start, end, duration, prefix="", suffix="") {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-                const current = easeOut * (end - start) + start;
-                obj.innerHTML = prefix + (end % 1 !== 0 ? current.toFixed(1) : Math.floor(current)) + suffix;
-                if (progress < 1) window.requestAnimationFrame(step);
-            };
-            window.requestAnimationFrame(step);
-        }
-
-        // ==========================================
-        // TERMINAL LOGIC (Data & Models)
-        // ==========================================
-        const realTrades = [
-            { act: 'Deposit', amount: '$100.62', token: 'USDC', market: 'Liquidity Pool' },
-            { act: 'Redeem', amount: '$45.45', token: 'YIELD', market: 'Bitcoin Up/Down May 3' },
-            { act: 'Buy', amount: '$9.53', token: 'Up', market: 'Bitcoin Up/Down May 3' },
-            { act: 'Buy', amount: '$13.19', token: 'Up', market: 'Bitcoin Up/Down May 3' },
-            { act: 'Redeem', amount: '$51.01', token: 'YIELD', market: 'Bitcoin Up/Down May 3' },
-            { act: 'Buy', amount: '$5.63', token: 'Yes', market: 'Russia-Ukraine Ceasefire' },
-            { act: 'Buy', amount: '$21.01', token: 'Down', market: 'Bitcoin Up/Down May 3' },
-            { act: 'Buy', amount: '$1.47', token: 'Yes', market: 'SpaceX IPO <$40B' },
-            { act: 'Buy', amount: '$1.90', token: 'Kraken', market: 'Kraken vs. Avalanche' },
-            { act: 'Buy', amount: '$0.75', token: 'Yes', market: 'Progressive Bulgaria (PB)' }
-        ];
-
-        let tradeIndex = 0;
-        function renderTrade() {
-            const container = document.getElementById('live-trades-feed');
-            if(!container) return;
-            if(container.children.length > 15) container.removeChild(container.lastChild);
-            
-            const t = realTrades[tradeIndex % realTrades.length];
-            const div = document.createElement('div');
-            
-            let actColor = 'text-white';
-            if (t.act === 'Buy') actColor = 'text-terminal';
-            else if (t.act === 'Redeem') actColor = 'text-cyan';
-            
-            const timeStr = new Date().toLocaleTimeString('en-US', { hour12: false });
-            
-            div.className = `flex justify-between items-start py-1 border-b border-white/5`;
-            div.innerHTML = `
-                <div class="flex gap-3 w-3/4 pr-2">
-                    <span class="opacity-40 shrink-0">[${timeStr}]</span>
-                    <span class="${actColor} shrink-0 w-8">${t.act}</span>
-                    <span class="opacity-70 truncate">${t.market}</span>
-                </div>
-                <div class="w-1/4 text-right shrink-0">
-                    <span class="font-bold ${t.act === 'Redeem' || t.act === 'Deposit' ? 'text-terminal' : 'text-danger'}">${t.amount}</span>
-                </div>
-            `;
-            container.prepend(div);
-            tradeIndex++;
-        }
-
-        const consoleLogs = [
-            "[CLAUDE_AI] ANALYZING POLYMARKET NEWS FEED...",
-            "[SYNC] MIRRORING TOP 1% WALLETS...",
-            "[SIG] BTC SPREAD ANOMALY DETECTED: 3.1C",
-            "[ACT] EXECUTING LIMIT ORDER 0x4ab...",
-            "[NLP] PARSING TWITTER SENTIMENT DATA...",
-            "[NET] LATENCY: 12ms TO POLYGON RPC",
-            "[LLM] PROBABILITY WIN_RATE > 65% -> ALLOCATING"
-        ];
-
-        function addConsoleLog() {
-            const container = document.getElementById('runtime-console');
-            if(!container) return;
-            if(container.children.length > 8) container.removeChild(container.firstChild);
-            
-            const msg = consoleLogs[Math.floor(Math.random() * consoleLogs.length)];
-            const div = document.createElement('div');
-            let formattedMsg = msg.replace('CLAUDE_AI', '<span class="text-terminal">CLAUDE_AI</span>')
-                                  .replace('SYNC', '<span class="text-cyan">SYNC</span>')
-                                  .replace('ACT', '<span class="text-gold">ACT</span>');
-            div.innerHTML = `<span class="opacity-40">[${new Date().toISOString().split('T')[1].slice(0,-1)}]</span> <span class="text-gray-300">${formattedMsg}</span>`;
-            container.appendChild(div);
-            container.scrollTop = container.scrollHeight;
-        }
-
-        // ==========================================
-        // CHARTS & CANVAS
-        // ==========================================
-        function initProbabilityTree() {
-            const canvas = document.getElementById('probabilityCanvas');
-            if(!canvas) return;
-            const ctx = canvas.getContext('2d');
-            let width = canvas.width = canvas.parentElement.clientWidth;
-            let height = canvas.height = canvas.parentElement.clientHeight;
-
-            window.addEventListener('resize', () => {
-                width = canvas.width = canvas.parentElement.clientWidth;
-                height = canvas.height = canvas.parentElement.clientHeight;
-            });
-
-            class Particle {
-                constructor() { this.reset(); }
-                reset() {
-                    this.x = width * 0.1; 
-                    this.y = height / 2;
-                    this.vx = (Math.random() * 3) + 1; 
-                    this.vy = (Math.random() - 0.5) * 1.5; 
-                    this.life = 0;
-                    this.maxLife = (Math.random() * 100) + 50;
-                    this.history = [{x: this.x, y: this.y}];
-                    this.color = `rgba(255, 255, 255, ${Math.random() * 0.3 + 0.1})`;
-                }
-                update() {
-                    this.x += this.vx;
-                    this.vy += (Math.random() - 0.5) * 0.5;
-                    this.y += this.vy;
-                    this.history.push({x: this.x, y: this.y});
-                    if(this.history.length > 20) this.history.shift(); 
-                    this.life++;
-                    if(this.life >= this.maxLife || this.x > width || this.y < 0 || this.y > height) this.reset();
-                }
-                draw() {
-                    ctx.beginPath();
-                    ctx.moveTo(this.history[0].x, this.history[0].y);
-                    for(let i=1; i<this.history.length; i++) ctx.lineTo(this.history[i].x, this.history[i].y);
-                    ctx.strokeStyle = this.color; ctx.lineWidth = 0.5; ctx.stroke();
-                }
-            }
-
-            const particles = Array.from({length: 80}, () => new Particle());
-            let mainLineX = width * 0.1, mainLineY = height / 2;
-
-            function animate() {
-                ctx.fillStyle = 'rgba(5, 5, 5, 0.15)'; 
-                ctx.fillRect(0, 0, width, height);
-                ctx.beginPath();
-                ctx.arc(width*0.1, height/2, 3, 0, Math.PI*2);
-                ctx.fillStyle = '#D4AF37'; ctx.fill();
-                
-                particles.forEach(p => { p.update(); p.draw(); });
-                
-                mainLineX += 3; mainLineY += (Math.random() - 0.5) * 0.5;
-                ctx.beginPath();
-                ctx.moveTo(width*0.1, height/2); ctx.lineTo(mainLineX, mainLineY);
-                ctx.strokeStyle = '#4ade80'; ctx.lineWidth = 1; ctx.stroke();
-                
-                if(mainLineX > width) { mainLineX = width * 0.1; mainLineY = height / 2; }
-                requestAnimationFrame(animate);
-            }
-            animate();
-        }
-
-        let edgeChart, mathChart;
-
-        function initEdgeChart() {
-            const ctxEdge = document.getElementById('edgeChart')?.getContext('2d');
-            if(!ctxEdge) return;
-            const grad = ctxEdge.createLinearGradient(0, 0, 0, 250);
-            grad.addColorStop(0, 'rgba(212, 175, 55, 0.2)'); grad.addColorStop(1, 'rgba(0,0,0,0)');
-
-            edgeChart = new Chart(ctxEdge, {
-                type: 'line',
-                data: {
-                    labels: Array.from({length: 30}, (_, i) => i+1),
-                    datasets: [{ 
-                        label: 'AI_ALGO', data: [10, 9, 9.5, 9, 14, 13.5, 13, 13, 19, 18, 18, 25, 24, 24, 32, 31, 30, 45, 44, 55, 54, 60, 59, 65, 64, 75, 74, 82, 81, 95], 
-                        borderColor: '#D4AF37', borderWidth: 3, stepped: true, pointRadius: 0, fill: true, backgroundColor: grad
-                    },
-                    { 
-                        label: 'HUMAN_AVG', data: [10, 15, 8, 12, 14, 11, 13, 9, 7, 10, 5, 8, 12, 10, 9, 11, 8, 7, 10, 6, 8, 5, 9, 4, 7, 3, 6, 2, 5, 1], 
-                        borderColor: 'rgba(248, 113, 113, 0.6)', borderWidth: 2, borderDash: [5, 5], pointRadius: 0, tension: 0.4 
-                    }]
-                },
-                options: { 
-                    responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } }, 
-                    scales: { x: { display: false }, y: { grid: { color: 'rgba(255,255,255,0.05)' }, border: { display: false } } }
-                }
-            });
-        }
-
-        function initMathChart() {
-            const ctxMath = document.getElementById('mathChart')?.getContext('2d');
-            if(!ctxMath) return;
-            const gross = parseInt(document.getElementById('profitInput').value);
-            const ops = gross * 0.15, net = gross - ops, member = net * 0.60, system = net * 0.40;
-
-            mathChart = new Chart(ctxMath, {
-                type: 'doughnut',
-                data: { 
-                    labels: ['L.P. Share', 'Perf. Fee', 'Ops'], 
-                    datasets: [{ data: [member, system, ops], backgroundColor: ['#D4AF37', '#FFFFFF', '#4B5563'], borderWidth: 4, borderColor: '#0f0f0f' }] 
-                },
-                options: { responsive: true, maintainAspectRatio: false, cutout: '80%', plugins: { legend: { display: false } } }
-            });
-        }
-
-        document.getElementById('profitInput')?.addEventListener('input', function() {
-            const gross = parseInt(this.value);
-            const ops = gross * 0.15, net = gross - ops, member = net * 0.60, system = net * 0.40;
-            document.getElementById('profitDisplay').innerText = `$${gross.toLocaleString()}`;
-            document.getElementById('valOps').innerText = `$${ops.toLocaleString()}`;
-            document.getElementById('valMember').innerText = `$${member.toLocaleString()}`;
-            document.getElementById('valSystem').innerText = `$${system.toLocaleString()}`;
-            if(mathChart) { mathChart.data.datasets[0].data = [member, system, ops]; mathChart.update(); }
-        });
-
-        function initQuantCanvas() {
-            const canvas = document.getElementById('quantCanvas');
-            if (!canvas) return;
-            const ctx = canvas.getContext('2d');
-            let width = canvas.width = window.innerWidth;
-            let height = canvas.height = document.getElementById('page-0').offsetHeight;
-
-            window.addEventListener('resize', () => { width = canvas.width = window.innerWidth; height = canvas.height = document.getElementById('page-0').offsetHeight; });
-
-            const fontSize = 12; const columns = width / fontSize; const drops = [];
-            for (let x = 0; x < columns; x++) drops[x] = Math.random() * height;
-
-            function draw() {
-                ctx.fillStyle = 'rgba(3, 3, 3, 0.1)'; ctx.fillRect(0, 0, width, height);
-                ctx.fillStyle = 'rgba(212, 175, 55, 0.3)'; ctx.font = fontSize + 'px "JetBrains Mono"';
-                for (let i = 0; i < drops.length; i++) {
-                    const text = Math.random() > 0.5 ? Math.random().toFixed(2) : (Math.random() > 0.8 ? '[OK]' : '1');
-                    ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                    if (drops[i] * fontSize > height && Math.random() > 0.975) drops[i] = 0;
-                    drops[i]++;
-                }
-            }
-            setInterval(draw, 50);
-        }
-
-        // --- Live AUM Simulator ---
-        const baseAUM = 5250.00;
-        let currentAUM = baseAUM;
-        setInterval(() => {
-            const fluctuation = (Math.random() * 4) - 1.5; 
-            currentAUM = currentAUM + fluctuation;
-            if (currentAUM > baseAUM + 15) currentAUM -= 5;
-            if (currentAUM < baseAUM - 15) currentAUM += 5;
-            const formatted = currentAUM.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
-            
-            document.querySelectorAll('.live-aum-val').forEach(el => {
-                el.innerText = formatted;
-                el.style.color = fluctuation > 0 ? '#4ade80' : '#f43f5e';
-                setTimeout(() => { el.style.color = ''; }, 600);
-            });
-        }, 3000);
-
-        // --- HASHING UTILITY UNTUK CAPI ---
-        async function hashData(string) {
-            const msgBuffer = new TextEncoder().encode(string.trim().toLowerCase());
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-        }
-
-        // --- Form Submit DENGAN META PIXEL & CAPI ---
-        document.getElementById('leadForm')?.addEventListener('submit', async function(e) {
-            e.preventDefault(); 
-
-            // 1. Ambil Data Form
-            const emailValue = document.getElementById('emailInput').value;
-            
-            // 2. Animasi UI Tombol
-            const btn = document.getElementById('t-sub-btn');
-            btn.disabled = true;
-            btn.className = "w-full border border-gold/50 text-gold bg-gold/5 font-sans font-medium py-3 rounded-lg text-sm tracking-widest uppercase mt-4";
-            let dots = 0;
-            const seq = setInterval(() => { dots = (dots + 1) % 4; btn.innerText = "> INITIATING TRANSFER" + ".".repeat(dots); }, 500);
-
-            // 3. META BROWSER PIXEL TRACKING (Event: Lead)
-            if(typeof fbq === 'function') {
-                fbq('track', 'Lead', {
-                    content_name: 'Axiom Quant Allocation Request'
-                });
-            }
-
-            // 4. META CONVERSIONS API (CAPI) TRACKING
-            const pixelId = '771021905629860';
-            const capiToken = 'EAAJxIW8ZC3KsBRdFoMlPQSuwZCL3wrhK3FYMGF12Hakrphy2hFFOo4O081P7VRQZAWZAyPstEaiZBUUo5PH1DhHXn870MeOQundNufjg8r2lWC6YCrU6WwS7RYJ9OXzRfUqu4Fd30Yvcp9qWuF52syzLDjz1ZBwkncCbhAh9ZC0XizZBtg867t9wQaMEW4nr9vxAewZDZD';
-
-            try {
-                const hashedEmail = await hashData(emailValue);
-                const eventId = 'lead_' + new Date().getTime();
-
-                const capiPayload = {
-                    "data": [
-                        {
-                            "event_name": "Lead",
-                            "event_time": Math.floor(Date.now() / 1000),
-                            "action_source": "website",
-                            "event_id": eventId,
-                            "event_source_url": window.location.href,
-                            "user_data": {
-                                "em": [hashedEmail],
-                                "client_user_agent": navigator.userAgent
-                            }
-                        }
-                    ]
-                };
-
-                await fetch(`https://graph.facebook.com/v19.0/${pixelId}/events?access_token=${capiToken}`, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(capiPayload)
-                });
-            } catch(error) {
-                console.log("CAPI tracking error, continuing to redirect.");
-            }
-            
-            // 5. Eksekusi Redirect Utama
-            setTimeout(() => { 
-                clearInterval(seq); 
-                window.location.href = "https://t.me/alwayscuanbos"; 
-            }, 2000);
-        });
-
-        // --- Init All & SMART LANGUAGE AUTO-DETECT ---
-        function initLanguage() {
-            const browserLang = navigator.language || navigator.userLanguage;
-            if (browserLang.toLowerCase().startsWith('id')) {
-                setLang('id');
-            } else {
-                setLang('en');
-            }
-        }
-
-        window.onload = () => {
-            Chart.defaults.font.family = '"JetBrains Mono", monospace';
-            Chart.defaults.color = '#9ca3af';
-            
-            initLanguage();
-            initQuantCanvas();
-            initEdgeChart();
-            initProbabilityTree();
-            initMathChart();
-            
-            for(let i=0; i<8; i++) renderTrade();
-            for(let i=0; i<6; i++) addConsoleLog();
-            setInterval(renderTrade, 800);
-            setInterval(addConsoleLog, 1500);
-
-            document.getElementById('profitInput')?.dispatchEvent(new Event('input'));
-            document.querySelectorAll('.live-aum-val').forEach(el => el.innerText = baseAUM.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}));
-        };
-    </script>
-</body>
-</html>
+</body></html>
